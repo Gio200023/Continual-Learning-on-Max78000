@@ -1,0 +1,28 @@
+/Users/gio/mnist/build/max20303.o: \
+ /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/PMIC/max20303.c \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/stdint.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/machine/_default_types.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/features.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/_newlib_version.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/_intsup.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/_stdint.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
+ /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000/mxc_device.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Include/max78000.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Include/core_cm4.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Include/core_cmInstr.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Include/core_cmFunc.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Include/core_cm4_simd.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Include/system_max78000.h \
+ /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000/mxc_errors.h \
+ /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000/mxc_pins.h \
+ /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000/gpio.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Include/gpio_regs.h \
+ /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000/mxc_delay.h \
+ /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000/i2c.h \
+ /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000/mxc_sys.h \
+ /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000/mxc_device.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Include/lpgcr_regs.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Include/gcr_regs.h \
+ /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Include/i2c_regs.h
