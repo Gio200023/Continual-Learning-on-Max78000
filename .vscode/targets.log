@@ -1,0 +1,1752 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Tue Jul 12 09:57:35 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 101)
+PREFIX = arm-none-eabi
+# automatic
+?F = $(notdir $?)
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+LC_CTYPE = UTF-8
+# environment
+VSCODE_LOG_NATIVE = false
+# makefile (from `Makefile', line 48)
+TARGET = MAX78000
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# environment
+kitty = /Users/gio/kitty-0.22.2/kitty
+# makefile
+ 
+CURDIR := /Users/gio/mnist
+# makefile
+SHELL = /bin/sh
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 63)
+PERIPH_DRIVER_BUILD_DIR = ${PERIPH_DRIVER_DIR}/bin/$(TARGET_UC)/$(LIBRARY_VARIANT)
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 79)
+RISCV_CORE := 
+# environment
+_ = /usr/bin/make
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 237)
+CFLAGS = -mthumb -mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -Wa,-mimplicit-it=thumb $(MXC_OPTIMIZE_CFLAGS) -ffunction-sections -fdata-sections -MD -Wall -Wno-format -c -fno-isolate-erroneous-paths-dereference -DTARGET=$(TARGET) -DTARGET_REV=$(TARGET_REV) -g3 -ggdb -DDEBUG $(PROJ_CFLAGS) ${patsubst %,-I%,$(call fixpath,$(IPATH))}
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 236)
+AFLAGS = -mthumb -mcpu=cortex-m4 -MD $(PROJ_AFLAGS) ${patsubst %,-I%,$(call fixpath,$(IPATH))}
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 221)
+STD_LIBS = -lc -lm -lnosys
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 1)
+MAKEFILE_LIST :=  Makefile /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/board.mk /Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk /Users/gio/MaximSDK/Libraries/PeriphDrivers/max78000_files.mk /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 55)
+STARTUPFILE = startup_$(TARGET_LC).S
+# makefile (from `/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/board.mk', line 49)
+PROJ_CFLAGS = -Wall -Wcast-align -DMXC_ASSERT_ENABLE -DARM_MATH_CM4  -DCAMERA_OV7692
+# environment
+TMP = /Users/gio/tmp
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 238)
+CXXFLAGS = -mthumb -mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -Wa,-mimplicit-it=thumb $(MXC_OPTIMIZE_CFLAGS) -ffunction-sections -fdata-sections -MD -Wall -Wno-format -fno-rtti -fno-exceptions -std=c++11 -c -DTARGET=$(TARGET) -DTARGET_REV=$(TARGET_REV) $(PROJ_CFLAGS) ${patsubst %,-I%,$(call fixpath,$(IPATH))}
+# environment
+AUTOJUMP_SOURCED = 1
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 63)
+LINKERFILE = $(CMSIS_ROOT)/Device/Maxim/$(TARGET_UC)/Source/GCC/$(TARGET_LC).ld
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 223)
+PROJ_LIBS := 
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 232)
+fixpath = $(1)
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 41)
+OBJS_NOPATH := main.o cnn.o softmax.o board.o stdio.o led.o pb.o tft_ili9341.o camera.o ov7692.o sccb.o max20303.o startup_max78000.o heap.o system_max78000.o
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 74)
+TARGET_MAKEFILE := 
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/h9/k1nb5lxs7bn4yv4dm4gnxdph0000gn/T/vscode-ipc-04e51ee3-d644-44ad-9781-df9af8d5d211.sock
+# environment
+VSCODE_CWD = /Users/gio/mnist
+# environment
+ALACRITTY_SOCKET = /var/folders/h9/k1nb5lxs7bn4yv4dm4gnxdph0000gn/T/Alacritty-38523.sock
+# environment
+PATH = /usr/local/sbin:/usr/local/opt/openssl@1.1/bin:/usr/local/opt/openssl@1.1/bin:/usr/local/bin/python3:/bin:/Users/gio/MaximSDK/Tools/GNUTools/10.3/bin:/Users/gio/MaximSDK/Tools/xPack/riscv-none-embed-gcc/10.2.0-1.2/bin:/Users/gio/MaximSDK/Tools/OpenOCD/bin:/Users/gio/ing/mongodb-macos-x86_64-5.0.8/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/gio/Library/Python/3.8/bin
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 201)
+LD = ${PREFIX}-gcc
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/max78000_files.mk', line 58)
+INCLUDE_DIR := /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include
+# makefile (from `Makefile', line 43)
+PROJECT = mnist
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 76)
+TARGET_REV = 0x4131
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 111)
+GCCVERSIONGTEQ4 := 1
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 96)
+IPATH = . $(BOARD_DIR)/Include $(BOARD_DIR)/../Include  $(MISC_DRIVERS_DIR) $(MISC_DRIVERS_DIR)/Camera $(MISC_DRIVERS_DIR)/Display $(MISC_DRIVERS_DIR)/LED $(MISC_DRIVERS_DIR)/PushButton $(MISC_DRIVERS_DIR)/PMIC $(MISC_DRIVERS_DIR)/Touchscreen ${PERIPH_DRIVER_INCLUDE_DIR} $(CMSIS_ROOT)/Device/Maxim/$(TARGET_UC)/Include $(CMSIS_ROOT)/Include
+# environment
+ALACRITTY_LOG = /var/folders/h9/k1nb5lxs7bn4yv4dm4gnxdph0000gn/T/Alacritty-38523.log
+# environment
+TOOLCHAIN_PATH = /Users/gio/MaximSDK/Tools
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 92)
+VPATH = . $(CMSIS_ROOT)/Device/Maxim/$(TARGET_UC)/Source $(BOARD_DIR)/Source $(BOARD_DIR)/../Source  $(MISC_DRIVERS_DIR) $(MISC_DRIVERS_DIR)/Camera $(MISC_DRIVERS_DIR)/Display $(MISC_DRIVERS_DIR)/LED $(MISC_DRIVERS_DIR)/PushButton $(MISC_DRIVERS_DIR)/PMIC $(MISC_DRIVERS_DIR)/Touchscreen $(CMSIS_ROOT)/Device/Maxim/$(TARGET_UC)/Source/GCC $(CMSIS_ROOT)/Device/Maxim/$(TARGET_UC)/Source
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 198)
+AR = ${PREFIX}-ar
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 239)
+LDFLAGS = -mthumb -mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -Xlinker --gc-sections -Xlinker -Map -Xlinker ${BUILD_DIR}/$(PROJECT).map $(PROJ_LDFLAGS) ${patsubst %,-L%,$(call fixpath,$(LIBPATH))}
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# makefile (from `Makefile', line 76)
+CMSIS_ROOT = $(LIBS_DIR)/CMSIS
+# environment
+HOMEBREW_GITHUB_API_TOKEN = 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
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.vnYSjbGpzP/Listeners
+# automatic
+%F = $(notdir $%)
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/max78000_files.mk', line 57)
+SOURCE_DIR := /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source
+# environment
+VSCODE_PIPE_LOGGING = true
+# makefile (from `Makefile', line 107)
+MXC_OPTIMIZE_CFLAGS = -O2
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 42)
+OBJS := /Users/gio/mnist/build/main.o /Users/gio/mnist/build/cnn.o /Users/gio/mnist/build/softmax.o /Users/gio/mnist/build/board.o /Users/gio/mnist/build/stdio.o /Users/gio/mnist/build/led.o /Users/gio/mnist/build/pb.o /Users/gio/mnist/build/tft_ili9341.o /Users/gio/mnist/build/camera.o /Users/gio/mnist/build/ov7692.o /Users/gio/mnist/build/sccb.o /Users/gio/mnist/build/max20303.o /Users/gio/mnist/build/startup_max78000.o /Users/gio/mnist/build/heap.o /Users/gio/mnist/build/system_max78000.o
+# environment
+PWD = /Users/gio/mnist
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 87)
+PERIPH_DRIVER_LIB := libPeriphDriver_softfp.a
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/gio
+# makefile (from `/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/board.mk', line 51)
+MISC_DRIVERS_DIR = $(BOARD_DIR)/../../../MiscDrivers
+ 
+# environment
+LD_LIBRARY_PATH = /Users/gio/MaximSDK/Tools/OpenOCD:
+# default
+MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
+# environment
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/gio/Library/Application Support/Code/CachedData/dfd34e8260c270da74b5c2d86d61aee4b6d56977
+# environment
+LOGNAME = gio
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+ZSH = /Users/gio/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from `Makefile', line 113)
+BOARD_DIR = $(LIBS_DIR)/Boards/$(TARGET_UC)/$(BOARD)
+# environment
+XPC_FLAGS = 0x0
+# environment
+COLORTERM = truecolor
+# makefile (from `Makefile', line 51)
+MAKE = make
+# default
+MAKECMDGOALS := all
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 84)
+SRCS = main.c cnn.c softmax.c board.c stdio.c led.c pb.c tft_ili9341.c camera.c ov7692.c sccb.c max20303.c ${STARTUPFILE} heap.c system_$(TARGET_LC).c
+# environment
+SHLVL = 3
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 107)
+CC = ${PREFIX}-gcc
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 99)
+LIBPATH = $(CMSIS_ROOT)/Device/Maxim/$(TARGET_UC)/Source/GCC
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 47)
+BUILD_DIR = $(CURDIR)/build
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = gio
+# makefile
+.DEFAULT_GOAL := all
+# environment
+playPause = 0
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 42)
+TARGET_LC := max78000
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 70)
+ENTRY = Reset_Handler
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 80)
+RISCV_LOAD := 
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# makefile (from `Makefile', line 73)
+LIBS_DIR = $(subst \,/,$(subst :,,$(MAXIM_PATH))/Libraries)
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 76)
+PROJ_LDFLAGS := 
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk', line 41)
+TARGET_UC := MAX78000
+# environment
+SpotPid = 0
+# default
+MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/h9/k1nb5lxs7bn4yv4dm4gnxdph0000gn/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/gio/Library/Application Support/Code/1.66.2-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.4615207.4615213.408D24E8-88E7-4257-AF25-E28AE1BA956D
+# environment
+MAXIM_PATH = /Users/gio/MaximSDK
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 227)
+OBJDUMP = ${PREFIX}-objdump
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/max78000_files.mk', line 56)
+PERIPH_DIR := /Users/gio/MaximSDK/Libraries/PeriphDrivers
+# automatic
++F = $(notdir $+)
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 56)
+LIBRARY_VARIANT = softfp
+# makefile (from `Makefile', line 63)
+BOARD = FTHR_RevA
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/max78000_files.mk', line 162)
+PERIPH_DRIVER_C_FILES = $(SOURCE_DIR)/SYS/mxc_assert.c $(SOURCE_DIR)/SYS/mxc_delay.c $(SOURCE_DIR)/SYS/mxc_lock.c $(SOURCE_DIR)/SYS/pins_ai85.c $(SOURCE_DIR)/SYS/sys_ai85.c $(SOURCE_DIR)/SYS/nvic_table.c $(SOURCE_DIR)/ADC/adc_me17.c $(SOURCE_DIR)/ADC/adc_reva.c $(SOURCE_DIR)/AES/aes_me17.c $(SOURCE_DIR)/AES/aes_revb.c $(SOURCE_DIR)/CAMERAIF/cameraif_ai85.c $(SOURCE_DIR)/CAMERAIF/cameraif_reva.c $(SOURCE_DIR)/DMA/dma_me17.c $(SOURCE_DIR)/DMA/dma_reva.c $(SOURCE_DIR)/CRC/crc_me17.c $(SOURCE_DIR)/CRC/crc_reva.c $(SOURCE_DIR)/LP/lp_ai85.c $(SOURCE_DIR)/LPCMP/lpcmp_ai85.c $(SOURCE_DIR)/LPCMP/lpcmp_reva.c $(SOURCE_DIR)/FLC/flc_common.c $(SOURCE_DIR)/FLC/flc_me17.c $(SOURCE_DIR)/FLC/flc_reva.c $(SOURCE_DIR)/FLC/flc_revb.c $(SOURCE_DIR)/GPIO/gpio_common.c $(SOURCE_DIR)/GPIO/gpio_ai85.c $(SOURCE_DIR)/GPIO/gpio_reva.c $(SOURCE_DIR)/I2C/i2c_me17.c $(SOURCE_DIR)/I2C/i2c_reva.c $(SOURCE_DIR)/I2S/i2s_ai85.c $(SOURCE_DIR)/I2S/i2s_reva.c $(SOURCE_DIR)/ICC/icc_me17.c $(SOURCE_DIR)/ICC/icc_reva.c $(SOURCE_DIR)/OWM/owm_me17.c $(SOURCE_DIR)/OWM/owm_reva.c $(SOURCE_DIR)/PT/pt_me17.c $(SOURCE_DIR)/PT/pt_reva.c $(SOURCE_DIR)/RTC/rtc_me17.c $(SOURCE_DIR)/RTC/rtc_reva.c $(SOURCE_DIR)/SEMA/sema_me17.c $(SOURCE_DIR)/SEMA/sema_reva.c $(SOURCE_DIR)/SPI/spi_me17.c $(SOURCE_DIR)/SPI/spi_reva.c $(SOURCE_DIR)/TRNG/trng_me17.c $(SOURCE_DIR)/TRNG/trng_revb.c $(SOURCE_DIR)/TMR/tmr_common.c $(SOURCE_DIR)/TMR/tmr_ai85.c $(SOURCE_DIR)/TMR/tmr_revb.c $(SOURCE_DIR)/UART/uart_ai85.c $(SOURCE_DIR)/UART/uart_common.c $(SOURCE_DIR)/UART/uart_revb.c $(SOURCE_DIR)/WDT/wdt_common.c $(SOURCE_DIR)/WDT/wdt_me17.c $(SOURCE_DIR)/WDT/wdt_revb.c $(SOURCE_DIR)/WUT/wut_me17.c $(SOURCE_DIR)/WUT/wut_reva.c
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/max78000_files.mk', line 165)
+PERIPH_DRIVER_H_FILES = $(shell find $(PERIPH_DRIVER_INCLUDE_DIR) -name '*.h')
+# environment
+COMMAND_MODE = unix2003
+# makefile (from `Makefile', line 58)
+COMPILER = GCC
+# default
+MAKEFILES := 
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 40)
+SRCS_NOPATH := main.c cnn.c softmax.c board.c stdio.c led.c pb.c tft_ili9341.c camera.c ov7692.c sccb.c max20303.c startup_max78000.c heap.c system_max78000.c
+ 
+# automatic
+<F = $(notdir $<)
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 108)
+CXX = ${PREFIX}-g++
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 94)
+LIBS = ${PERIPH_DRIVER_BUILD_DIR}/${PERIPH_DRIVER_LIB}
+# automatic
+^F = $(notdir $^)
+# makefile (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 226)
+OBJCOPY = ${PREFIX}-objcopy
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/max78000_files.mk', line 160)
+PERIPH_DRIVER_INCLUDE_DIR = $(INCLUDE_DIR)/$(TARGET_UC)/ $(SOURCE_DIR)/ADC $(SOURCE_DIR)/AES $(SOURCE_DIR)/CAMERAIF $(SOURCE_DIR)/DMA $(SOURCE_DIR)/CRC $(SOURCE_DIR)/LP $(SOURCE_DIR)/LPCMP $(SOURCE_DIR)/FLC $(SOURCE_DIR)/GPIO $(SOURCE_DIR)/I2C $(SOURCE_DIR)/I2S $(SOURCE_DIR)/ICC $(SOURCE_DIR)/OWM $(SOURCE_DIR)/PT $(SOURCE_DIR)/RTC $(SOURCE_DIR)/SEMA $(SOURCE_DIR)/SPI $(SOURCE_DIR)/TRNG $(SOURCE_DIR)/TMR $(SOURCE_DIR)/UART $(SOURCE_DIR)/WDT $(SOURCE_DIR)/WUT
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+AUTOJUMP_ERROR_PATH = /Users/gio/Library/autojump/errors.log
+# makefile (from `Makefile', line 117)
+PERIPH_DRIVER_DIR = $(LIBS_DIR)/PeriphDrivers
+# environment
+LANG = C
+# environment
+TERM = xterm-256color
+# makefile (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 78)
+DUAL_CORE := 
+# environment
+VSCODE_PID = 15776
+# variable set hash-table stats:
+# Load=138/1024=13%, Rehash=0, Collisions=41/800=5%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers (device 16777224, inode 5575230): No files, no impossibilities so far.
+# /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/Camera (device 16777224, inode 5575231): No files, no impossibilities so far.
+# /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC (device 16777224, inode 4776616): 13 files, no impossibilities.
+# /Users/gio/mnist/build: could not be stat'd.
+# . (device 16777224, inode 7434450): 22 files, no impossibilities.
+# /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../Source: could not be stat'd.
+# /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/PushButton (device 16777224, inode 5575236): No files, no impossibilities so far.
+# /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/PMIC (device 16777224, inode 5575235): No files, no impossibilities so far.
+# /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source (device 16777224, inode 4776615): No files, no impossibilities so far.
+# /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/Display (device 16777224, inode 5575232): No files, no impossibilities so far.
+# /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/LED (device 16777224, inode 5575234): No files, no impossibilities so far.
+# /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/Touchscreen (device 16777224, inode 5575237): No files, no impossibilities so far.
+# /Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/Source (device 16777224, inode 4776581): No files, no impossibilities so far.
+
+# 35 files, no impossibilities in 13 directories.
+
+# Implicit Rules
+
+/Users/gio/mnist/build/%.o: %.c
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 244):
+	@if [ 'x${ECLIPSE}' != x ]; 																			\
+	then 																									\
+	echo ${CC} ${CFLAGS} -o $(call fixpath,${@}) $(call fixpath,${<}) | sed 's/-I\/\(.\)\//-I\1:\//g' ; \
+	elif [ 'x${VERBOSE}' != x ];                                               								\
+	then 																									\
+	echo ${CC} ${CFLAGS} -o $(call fixpath,${@}) $(call fixpath,${<});     								\
+	else                                                                       								\
+	echo "  CC    ${<}";                                                   								\
+	fi
+	@${CC} ${CFLAGS} -o $(call fixpath,${@}) $(call fixpath,${<})
+	
+
+/Users/gio/mnist/build/%.o: %.cpp
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 260):
+	@if [ 'x${ECLIPSE}' != x ]; 																			\
+	then 																									\
+	echo ${CXX} ${CXXFLAGS} -o $(call fixpath,${@}) $(call fixpath,${<}) | sed 's/-I\/\(.\)\//-I\1:\//g' ; \
+	elif [ 'x${VERBOSE}' != x ];                                               								\
+	then 																									\
+	echo ${CXX} ${CXXFLAGS} -o $(call fixpath,${@}) $(call fixpath,${<});     								\
+	else                                                                       								\
+	echo "  CXX    ${<}";                                                   								\
+	fi
+	@${CXX} ${CXXFLAGS} -o $(call fixpath,${@}) $(call fixpath,${<})
+	
+
+/Users/gio/mnist/build/%.o: %.S
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 276):
+	@if [ 'x${VERBOSE}' = x ];                                                   \
+	then                                                                        \
+	echo "  AS    ${<}";                                                    \
+	else                                                                        \
+	echo ${CC} ${AFLAGS} -o $(call fixpath,${@}) -c $(call fixpath,${<});   \
+	fi
+	@${CC} ${AFLAGS} -o $(call fixpath,${@}) -c $(call fixpath,${<})
+	
+
+/Users/gio/mnist/build/%.a:
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 289):
+	@if [ 'x${VERBOSE}' = x ];                                                   \
+	then                                                                        \
+	echo "  AR    ${@}";                                                    \
+	else                                                                        \
+	echo ${AR} -cr $(call fixpath,${@}) $(call fixpath,${^});               \
+	fi
+	@${AR} -cr $(call fixpath,${@}) $(call fixpath,${^})
+	
+
+/Users/gio/mnist/build/%.elf:
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 299):
+	@if [ 'x${VERBOSE}' = x ];                                                   \
+	then                                                                        \
+	echo "  LD    ${@} ${LNK_SCP}";                                         \
+	else                                                                        \
+	echo ${LD} -T $(call fixpath,${LINKERFILE})                             \
+	--entry ${ENTRY}                                                   \
+	$(call fixpath,${LDFLAGS})                                         \
+	-o $(call fixpath,${@})                                            \
+	$(call fixpath,$(filter %.o, ${^}))                                \
+	-Xlinker --start-group                                             \
+	$(call fixpath,$(filter %.a, ${^}))                                \
+	${PROJ_LIBS}                                                       \
+ 
+	${STD_LIBS}                                                        \
+	-Xlinker --end-group;                                              \
+	fi;                                                                         \
+	${LD} -T $(call fixpath,${LINKERFILE})                                       \
+	--entry ${ENTRY}                                                       \
+	$(call fixpath,${LDFLAGS})                                             \
+	-o $(call fixpath,${@})                                                \
+	$(call fixpath,$(filter %.o, ${^}))                                    \
+	-Xlinker --start-group                                                 \
+	$(call fixpath,$(filter %.a, ${^}))                                    \
+	${PROJ_LIBS}                                                           \
+	${STD_LIBS}                                                            \
+	-Xlinker --end-group
+	
+
+%.srec: %.elf
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 327):
+	@if [ 'x${VERBOSE}' = x ];                                                   \
+	then                                                                        \
+	echo "Creating ${@}";                                                   \
+	else                                                                        \
+	echo ${OBJCOPY} -O srec $(call fixpath,${<}) $(call fixpath,${@});      \
+	fi
+	@$(OBJCOPY) -O srec $< $(call fixpath,${@})
+	
+
+%.hex: %.elf
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 337):
+	@if [ 'x${VERBOSE}' = x ];                                                   \
+	then                                                                        \
+	echo "Creating ${@}";                                                   \
+	else                                                                        \
+	echo ${OBJCOPY} -O ihex $(call fixpath,${<}) $(call fixpath,${@});      \
+	fi
+	@$(OBJCOPY) -O ihex $< $(call fixpath,${@})
+	
+
+%.bin: %.elf
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 347):
+	@if [ 'x${VERBOSE}' = x ];                                                   \
+	then                                                                        \
+	echo "Creating ${@}";                                                   \
+	else                                                                        \
+	echo ${OBJCOPY} -O binary $(call fixpath,${<}) $(call fixpath,${@});    \
+	fi
+	@$(OBJCOPY) -O binary $< $(call fixpath,${@})
+	
+
+%.dasm: %.elf
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 357):
+	@if [ 'x${VERBOSE}' = x ];                                                   \
+	then                                                                        \
+	echo "Creating ${@}";                                                   \
+	else                                                                        \
+	echo $(OBJDUMP) -S $(call fixpath,${<}) $(call fixpath,${@});        \
+	fi
+	@$(OBJDUMP) -S $< > $(call fixpath,${@})
+	
+
+# 9 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SPI/spi_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 22:10:30
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_revb_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/pb.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_revb.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/RTC/rtc_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/OWM/owm_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LPCMP/lpcmp_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//crc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//cameraif.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+ 
+all: mkbuildir /Users/gio/mnist/build/mnist.elf
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+
+# Not a target:
+/Users/gio/mnist/build/board.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+FORCE:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_revc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/mnist.bin:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/camera.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WUT/wut_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: all release lib mkbuildir clean FORCE debug
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CRC/crc_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/system_max78000.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LPCMP/lpcmp_ai85.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SPI/spi_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2S/i2s_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/pt_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/mnist.hex:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_common.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/ptg_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+mkbuildir:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := mkbuildir
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := 
+# automatic
+ 
+# | := 
+# automatic
+# < := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/12=17%
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 70):
+	@mkdir -p ${BUILD_DIR}
+	
+
+# Not a target:
+/Users/gio/mnist/build/startup_max78000.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+__dummy__:
+#  A default, MAKEFILES, or -include/sinclude makefile.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+distclean: clean libclean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_ai85.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/RTC/rtc_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2S/i2s_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/mxc_lock.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_revc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_key_revb_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//flc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+/Users/gio/mnist/build/mnist.a: /Users/gio/mnist/build/main.o /Users/gio/mnist/build/cnn.o /Users/gio/mnist/build/softmax.o /Users/gio/mnist/build/board.o /Users/gio/mnist/build/stdio.o /Users/gio/mnist/build/led.o /Users/gio/mnist/build/pb.o /Users/gio/mnist/build/tft_ili9341.o /Users/gio/mnist/build/camera.o /Users/gio/mnist/build/ov7692.o /Users/gio/mnist/build/sccb.o /Users/gio/mnist/build/max20303.o /Users/gio/mnist/build/startup_max78000.o /Users/gio/mnist/build/heap.o /Users/gio/mnist/build/system_max78000.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CRC/crc_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//pt.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_assert.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_common.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-12 09:57:11
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+ 
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_revb_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+sla: all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revc_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+debug:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 368):
+	@echo CYGWIN = ${CYGWIN}
+	@echo
+	@echo BUILD_DIR = ${BUILD_DIR}
+	@echo
+	@echo SRCS = ${SRCS}
+	@echo
+	@echo SRCS_NOPATH = ${SRCS_NOPATH}
+	@echo
+	@echo OBJS_NOPATH = ${OBJS_NOPATH}
+	@echo
+	@echo OBJS = ${OBJS}
+	@echo
+	@echo LIBS = ${LIBS}
+	@echo
+	@echo VPATH = ${VPATH}
+	@echo
+	@echo IPATH = ${IPATH}
+	
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/mnist.srec:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//uart.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_ai85.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/pt_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/RTC/rtc_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/nvic_table.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/max20303.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//rtc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2S/i2s_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_ai85.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//owm.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revb.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/OWM/owm_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+/Users/gio/mnist/build/mnist.elf: /Users/gio/MaximSDK/Libraries/PeriphDrivers/bin/MAX78000/softfp/libPeriphDriver_softfp.a /Users/gio/mnist/build/main.o /Users/gio/mnist/build/cnn.o /Users/gio/mnist/build/softmax.o /Users/gio/mnist/build/board.o /Users/gio/mnist/build/stdio.o /Users/gio/mnist/build/led.o /Users/gio/mnist/build/pb.o /Users/gio/mnist/build/tft_ili9341.o /Users/gio/mnist/build/camera.o /Users/gio/mnist/build/ov7692.o /Users/gio/mnist/build/sccb.o /Users/gio/mnist/build/max20303.o /Users/gio/mnist/build/startup_max78000.o /Users/gio/mnist/build/heap.o /Users/gio/mnist/build/system_max78000.o /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.ld
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SEMA/sema_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//aes.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_common.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ 
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_revb_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//trng.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//dma.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_common.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_revb_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/pt_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//gpio.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/max78000_files.mk:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 22:10:30
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/pt_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/bin/MAX78000/softfp/libPeriphDriver_softfp.a: /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/mxc_assert.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/mxc_delay.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/mxc_lock.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/pins_ai85.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/sys_ai85.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/nvic_table.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_revb.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_ai85.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CRC/crc_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CRC/crc_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LP/lp_ai85.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LPCMP/lpcmp_ai85.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LPCMP/lpcmp_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_common.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_revb.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_common.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_ai85.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2S/i2s_ai85.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2S/i2s_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/OWM/owm_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/OWM/owm_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/pt_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/pt_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/RTC/rtc_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/RTC/rtc_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SEMA/sema_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SEMA/sema_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SPI/spi_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SPI/spi_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_revb.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_common.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_ai85.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_revb.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_ai85.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_common.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revb.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_common.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_revb.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WUT/wut_me17.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WUT/wut_reva.c /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//adc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_device.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//dma.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_sys.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//lpcmp.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//icc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_errors.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//crc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//cameraif.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//i2s.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//wut.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//emcc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//uart.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//sema.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//owm.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_lock.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_pins.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//aes.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//trng.h /Users/gio/ 
+MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//gpio.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//tpu.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//rtc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//flc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//spi.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//nvic_table.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_assert.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//tmr.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_delay.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//wdt.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//lp.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//pt.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//i2c.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_revb_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_key_revb_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_revb_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CRC/crc_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CRC/crc_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LPCMP/lpcmp_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LPCMP/lpcmp_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_revb_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_revc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_common.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_common.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_revb_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2S/i2s_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2S/i2s_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_common.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/OWM/owm_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/OWM/owm_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/ptg_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/pt_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/PT/pt_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/RTC/rtc_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/RTC/rtc_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SEMA/sema_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SEMA/sema_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SPI/spi_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SPI/spi_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_revb_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_common.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_revc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_revb_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revb_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revc.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_common.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revc_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_revb_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_revb.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_reva_regs.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WUT/wut_reva.h /Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WUT/wut_reva_regs.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 97):
+	$(MAKE) -f ${PERIPH_DRIVER_DIR}/libPeriphDriver.mk  lib BUILD_DIR=${PERIPH_DRIVER_BUILD_DIR} 
+	
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//emcc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LPCMP/lpcmp_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/tft_ili9341.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LP/lp_ai85.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_ai85.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/board.mk:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-18 23:11:02
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+/Users/gio/mnist/build/led.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CRC/crc_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_revb.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+lib: mkbuildir /Users/gio/mnist/build/mnist.a
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+ 
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SEMA/sema_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_lock.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SPI/spi_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_common.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/stdio.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//tmr.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_common.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//lpcmp.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//icc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//lp.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_revb_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/RTC/rtc_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+release: mkbuildir /Users/gio/mnist/build/mnist.elf /Users/gio/mnist/build/mnist.srec /Users/gio/mnist/build/mnist.hex /Users/gio/mnist/build/mnist.bin /Users/gio/mnist/build/mnist.dasm
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_pins.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.ld:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SEMA/sema_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+ 
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//nvic_table.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_revb.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//sema.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ADC/adc_revb_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_common.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/sys_ai85.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/mxc_delay.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WUT/wut_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_revb_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-10 21:59:02
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/gcc.mk', line 75):
+	@rm -rf ${BUILD_DIR} ${wildcard *~}
+	
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_common.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean.periph:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `/Users/gio/MaximSDK/Libraries/PeriphDrivers/periphdriver.mk', line 100):
+	@rm -rf ${PERIPH_DRIVER_BUILD_DIR}/*
+	
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//wdt.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ 
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/pins_ai85.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//i2s.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_device.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2S/i2s_ai85.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SPI/spi_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_errors.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TMR/tmr_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/TRNG/trng_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_common.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//tpu.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CAMERAIF/cameraif_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/OWM/owm_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_sys.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/mnist.dasm:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/heap.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//adc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//i2c.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+libclean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 132):
+	$(MAKE)  -f ${PERIPH_DRIVER_DIR}/periphdriver.mk clean.periph
+	
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SEMA/sema_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//wut.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_revb.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+ 
+
+# Not a target:
+/Users/gio/mnist/build/ov7692.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revb_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/FLC/flc_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_revb.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/AES/aes_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/softmax.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/DMA/dma_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/ICC/icc_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/cnn.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC/max78000.mk:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 22:10:30
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_me17.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/I2C/i2c_revb.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//spi.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WDT/wdt_common.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/LPCMP/lpcmp_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WUT/wut_reva_regs.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/UART/uart_revc.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/SYS/mxc_assert.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000//mxc_delay.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/WUT/wut_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/mnist/build/sccb.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/OWM/owm_reva.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/CRC/crc_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+/Users/gio/MaximSDK/Libraries/PeriphDrivers/Source/GPIO/gpio_reva.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=201/1024=20%, Rehash=0, Collisions=62/444=14%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# General (`VPATH' variable) search path:
+# /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source:/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/Source:/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers:/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/Camera:/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/Display:/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/LED:/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/PushButton:/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/PMIC:/Users/gio/MaximSDK/Libraries/Boards/MAX78000/FTHR_RevA/../../../MiscDrivers/Touchscreen:/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source/GCC:/Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Source
+
+# # of strings in strcache: 7
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 3733 / max = 3733 / min = 3733 / avg = 3733
+
+# Finished Make data base on Tue Jul 12 09:57:35 2022
+
+ 
