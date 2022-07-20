@@ -41,10 +41,13 @@
 #include <stdio.h>
 #include "mxc.h"
 #include "cnn.h"
-#include "sampledata.h"
+#include "sampledata_emnist.h"
 #include "sampleoutput.h"
 
+uint32_t learning_rate = 0.1;
+int iteration = 5000;
 volatile uint32_t cnn_time; // Stopwatch
+int true_output[10] = {1,0,0,0,0,0,0,0,0,0};
 
 void fail(void)
 {
@@ -54,7 +57,7 @@ void fail(void)
 
 // 1-channel 28x28 data input (784 bytes / 196 32-bit words):
 // CHW 28x28, channel 0
-static const uint32_t input_0[] = SAMPLE_INPUT_0;
+static const uint32_t input_0[] = SAMPLE_INPUT_EMNIST;
 
 void load_input(void)
 {
@@ -121,8 +124,6 @@ int main(void)
 
   cnn_init(); // Bring state machine into consistent state
   cnn_load_weights(); // Load kernels
-  print_weights();
-  MXC_Delay(SEC(2));
   cnn_load_bias();
   cnn_configure(); // Configure state machine
   load_input(); // Load data input
@@ -132,7 +133,7 @@ int main(void)
   while (cnn_time == 0)
     __WFI(); // Wait for CNN
 
-  if (check_output() != CNN_OK) fail();
+  // if (check_output() != CNN_OK) fail();
   softmax_layer();
 
   printf("\n*** PASS ***\n\n");
@@ -149,7 +150,10 @@ int main(void)
     tens = digs % 10;
     digs = digs / 10;
     printf("[%7d] -> Class %d: %d.%d%%\n", ml_data[i], i, digs, tens);
+    
   }
+
+  
 
   return 0;
 }

@@ -68,6 +68,8 @@
     ],
     "C_Cpp.default.defines": [
         "${config:board}"
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "Disabled",
+    "git.ignoreLimitWarning": true
 }
 

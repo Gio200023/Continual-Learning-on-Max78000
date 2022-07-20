@@ -46,7 +46,8 @@
                 "path": [
                     "${default}"
                 ]
-            }
+            },
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4

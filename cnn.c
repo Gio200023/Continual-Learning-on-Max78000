@@ -111,23 +111,6 @@ int cnn_load_weights(void)
   return CNN_OK;
 }
 
-int print_weights(void){
-
-  const uint32_t *ptr = kernels;
-  uint32_t len;
-  volatile uint32_t *addr;
-
-  while ((addr = (volatile uint32_t *) *ptr++) != 0) {
-    *((volatile uint8_t *) ((uint32_t) addr | 1)) = 0x01; // Set address
-    len = *ptr++;
-    while (len-- > 0)
-      printf("Address[%p], Value= %d\n",ptr++,*ptr++);
-  }
-
-  return CNN_OK;
-
-}
-
 static const uint8_t bias_0[] = BIAS_0;
 
 static void memcpy_8to32(uint32_t *dst, const uint8_t *src, int n)
