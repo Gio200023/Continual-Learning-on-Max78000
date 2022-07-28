@@ -83,6 +83,7 @@ export CMSIS_ROOT
 # Source files for this test (add path to VPATH below)
 SRCS  = main.c cnn.c
 SRCS += softmax.c
+SRCS += backpropagation.c
 
 # Where to find source files for this test
 VPATH  = .

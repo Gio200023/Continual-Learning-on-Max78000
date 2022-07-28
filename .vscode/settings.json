@@ -70,6 +70,14 @@
         "${config:board}"
     ],
     "C_Cpp.errorSquiggles": "Disabled",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "files.associations": {
+        "backpropagation.h": "c",
+        "math.h": "c",
+        "sampleoutput.h": "c",
+        "stdio.h": "c",
+        "mxc.h": "c",
+        "cnn.h": "c"
+    }
 }
 

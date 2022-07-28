@@ -41,13 +41,20 @@
 #include <stdio.h>
 #include "mxc.h"
 #include "cnn.h"
-#include "sampledata_emnist.h"
+#include "sampledata_mnist.h"
 #include "sampleoutput.h"
+#include "math.h"
+#include "backpropagation.h"
 
-uint32_t learning_rate = 0.1;
-int iteration = 5000;
 volatile uint32_t cnn_time; // Stopwatch
-int true_output[10] = {1,0,0,0,0,0,0,0,0,0};
+
+/* Backpropagation variables */
+uint32_t learning_rate = 0.1;
+int iterations = 5000;
+q15_t true_output[CNN_NUM_OUTPUTS] = {0x7fff,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0};
+q15_t cost[CNN_NUM_OUTPUTS]={0};
+q15_t deltaW[CNN_NUM_OUTPUTS]={0};
+q15_t dW[CNN_NUM_OUTPUTS]={0};
 
 void fail(void)
 {
@@ -57,24 +64,46 @@ void fail(void)
 
 // 1-channel 28x28 data input (784 bytes / 196 32-bit words):
 // CHW 28x28, channel 0
-static const uint32_t input_0[] = SAMPLE_INPUT_EMNIST;
+static const uint32_t input_0[] = SAMPLE_INPUT_MNIST;
 
 void load_input(void)
 {
   // This function loads the sample data input -- replace with actual data
-
   memcpy32((uint32_t *) 0x50400000, input_0, 196);
+}
+
+/*Print frozen layer output*/
+int print_output(int layer_num){
+
+  int i;
+  uint32_t mask, len;
+  volatile uint32_t *addr;
+  const uint32_t *ptr = get_sample_output_ptr(layer_num);
+
+  while ((addr = (volatile uint32_t *) *ptr++) != 0) {
+    mask = *ptr++;
+    len = *ptr++;
+    for (i = 0; i < len; i++){
+      printf("output=%d \n",addr[len+i]);
+      if ((*addr++ & mask) != *ptr++) {
+        printf("Data mismatch (%d/%d) at address 0x%08x: Expected 0x%08x, read 0x%08x.\n",
+              i + 1, len, addr - 1, *(ptr - 1), *(addr - 1) & mask);
+        return CNN_FAIL;
+      }
+    }
+  }
+
+  return CNN_OK;
 }
 
 // Expected output of layer 4 for mnist given the sample input (known-answer test)
 // Delete this function for production code
-static const uint32_t sample_output[] = SAMPLE_OUTPUT;
-int check_output(void)
+int check_output(int layer_num)
 {
   int i;
   uint32_t mask, len;
   volatile uint32_t *addr;
-  const uint32_t *ptr = sample_output;
+  const uint32_t *ptr = get_sample_output_ptr(layer_num);
 
   while ((addr = (volatile uint32_t *) *ptr++) != 0) {
     mask = *ptr++;
@@ -86,18 +115,24 @@ int check_output(void)
         return CNN_FAIL;
       }
   }
-
   return CNN_OK;
 }
 
 // Classification layer:
 static int32_t ml_data[CNN_NUM_OUTPUTS];
+static int32_t ml_data_frozen[CNN_NUM_OUTPUTS_FROZEN_LAYER];
 static q15_t ml_softmax[CNN_NUM_OUTPUTS];
 
 void softmax_layer(void)
 {
-  cnn_unload((uint32_t *) ml_data);
+  cnn_unload_frozen_layer((uint32_t *) ml_data_frozen);
+  cnn_unload((uint32_t *) ml_data); //va a prendersi i risultati
   softmax_q17p14_q15((const q31_t *) ml_data, CNN_NUM_OUTPUTS, ml_softmax);
+}
+
+int mean_squared_error(int16_t pred_result, int16_t true_result){
+  true_result= true_output[0];
+  return exp(pred_result - true_result) ;
 }
 
 int main(void)
@@ -120,6 +155,9 @@ int main(void)
   // CNN clock: APB (50 MHz) div 1
   cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
 
+  /* Select number of inference iterations */
+  // int n_it = 10;
+
   printf("\n*** CNN Inference Test ***\n");
 
   cnn_init(); // Bring state machine into consistent state
@@ -133,27 +171,54 @@ int main(void)
   while (cnn_time == 0)
     __WFI(); // Wait for CNN
 
-  // if (check_output() != CNN_OK) fail();
   softmax_layer();
 
-  printf("\n*** PASS ***\n\n");
-
-#ifdef CNN_INFERENCE_TIMER
-  printf("Approximate inference time: %u us\n\n", cnn_time);
-#endif
+  #ifdef CNN_INFERENCE_TIMER
+    printf("Approximate inference time: %u us\n\n", cnn_time);
+  #endif
 
   cnn_disable(); // Shut down CNN clock, disable peripheral
 
-  printf("Classification results:\n");
+  printf("First classification results:\n");
   for (i = 0; i < CNN_NUM_OUTPUTS; i++) {
     digs = (1000 * ml_softmax[i] + 0x4000) >> 15;
+    printf("Ml softmax[%d]: %d",i,ml_softmax[i]);
     tens = digs % 10;
     digs = digs / 10;
     printf("[%7d] -> Class %d: %d.%d%%\n", ml_data[i], i, digs, tens);
-    
   }
 
+  /* Online Learning: Backpropagation */
+  for ( i = 0; i < iterations; i++ ){
   
+    cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
+
+    cnn_init(); // Bring state machine into consistent state
+    cnn_load_weights(); // Load kernels
+    cnn_load_bias();
+    cnn_configure(); // Configure state machine
+    load_input(); // Load data input
+    cnn_start(); // Start CNN processing
+
+    SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk; // SLEEPDEEP=0
+    while (cnn_time == 0)
+      __WFI(); // Wait for CNN
+
+    softmax_layer();
+    
+    array_substraction(cost,true_output,ml_softmax, sizeof ml_softmax/sizeof ml_softmax[0]);
+    for(int s=0; s < CNN_NUM_OUTPUTS; s++){
+      printf("cost= %d\n",cost[s]);
+    }
+
+    //weights update
+    // for(int m=0; m < CNN_NUM_OUTPUTS; m++){
+    //   delta_multiplication(deltaW,cost,ml_data[m],sizeof ml_data/sizeof ml_data[0]);
+    //   array_multiplication(dW,deltaW,learning_rate,sizeof deltaW/sizeof deltaW[0]);
+      
+    // }
+
+  // }
 
   return 0;
 }

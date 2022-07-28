@@ -38,6 +38,12 @@ typedef int16_t q15_t;
 
 /* Number of outputs for this network */
 #define CNN_NUM_OUTPUTS 10
+#define CNN_NUM_OUTPUTS_LAYER_0 48
+#define CNN_NUM_OUTPUTS_LAYER_1 10
+#define CNN_NUM_OUTPUTS_FROZEN_LAYER 192
+
+/* Number of layers */
+#define LAYER_NUM 2
 
 /* Use this timer to time the inference */
 #define CNN_INFERENCE_TIMER MXC_TMR0
@@ -69,6 +75,8 @@ int cnn_disable(void);
 
 /* Perform minimum accelerator initialization so it can be configured */
 int cnn_init(void);
+int cnn_configure_layer_0(void);
+int cnn_configure_layer_1(void);
 
 /* Configure accelerator for the given network */
 int cnn_configure(void);
@@ -84,6 +92,8 @@ int cnn_load_bias(void);
 
 /* Start accelerator processing */
 int cnn_start(void);
+int cnn_start_layer_0(void);
+int cnn_start_layer_1(void);
 
 /* Force stop accelerator */
 int cnn_stop(void);
@@ -94,13 +104,25 @@ int cnn_continue(void);
 /* Unload results from accelerator */
 int cnn_unload(uint32_t *out_buf);
 
-/* Turn on the boost circuit */
-int cnn_boost_enable(mxc_gpio_regs_t *port, uint32_t pin);
+/* Unload results of frozen model from accelerator */
+int cnn_unload_frozen_layer(uint32_t *out_buf);
 
-/* Turn off the boost circuit */
-int cnn_boost_disable(mxc_gpio_regs_t *port, uint32_t pin);
+/* Specific layer initialization */
+int cnn_init_layer(int layer_num);
 
-/* Print weights */
-int print_weights();
+/* Specific layer configuration */
+int cnn_config_layer(int layer_num);
+
+/* Start a specific layer */
+int cnn_start_layer(int layer_num);
+
+/* Get output configuration pointer for a given layer*/
+const uint32_t* get_output_conf_prt(int layer_num);
+
+/* Get sample output pointer for a given layer*/
+const uint32_t* get_sample_output_ptr(int layer_num);
+
+/* Quick cnn enable, to be used between layers in layer-by-layer configuration */
+int cnn_quick_enable();
 
 #endif // __CNN_H__

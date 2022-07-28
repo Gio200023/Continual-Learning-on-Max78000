@@ -40,14 +40,15 @@
             "defines": [
                 "${default}"
             ],
-            "intelliSenseMode": "gcc-arm",
-            "compilerPath": "${config:ARM_GCC_path}/bin/arm-none-eabi-gcc",
+            "intelliSenseMode": "macos-gcc-arm",
+            "compilerPath": "/Users/gio/MaximSDK/Tools/GNUTools/10.3/bin/arm-none-eabi-gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14",
             "browse": {
                 "path": [
                     "${default}"
                 ]
-            },
-            "configurationProvider": "ms-vscode.makefile-tools"
+            }
         }
     ],
     "version": 4
