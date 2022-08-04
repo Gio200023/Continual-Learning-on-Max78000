@@ -1,83 +1,62 @@
-/********************
- *
- *  Backpropagation
- *
- *********************/
-
-#include "backpropagation.h"
-#include "stdint.h"
-#include "math.h"
-#include "stdio.h"
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+#include "unistd.h"
 #include "weights.h"
 
-void array_substraction(q15_t *res, q15_t *arr1, q15_t *arr2, int size)
-{
-
-    q15_t tmp[size];
-    int i = 0;
-    for (i = 0; i < size; i++)
-    {
-        tmp[i] = arr1[i] - arr2[i];
+#define SAMPLE_OUTPUT_LAYER_0                                                                               \
+    {                                                                                                       \
+        0x50400000, 0xffffffff, 0x00000010, 0x007f0b7f, 0x0f7f087f, 0x037f197f, 0x246e3a44, 0x00715e7f,     \
+            0x006b697f, 0x0056347f, 0x3d3b627f, 0x0000633e, 0x00007f18, 0x0000260b, 0x00222b00, 0x00003c00, \
+            0x00007f00, 0x00002400, 0x001d0000, 0x50408000, 0xffffffff, 0x00000010, 0x7f7f3400, 0x7f7f0f00, \
+            0x5d6d2100, 0x4200392a, 0x7f7f0011, 0x7f7f0000, 0x697f1600, 0x0a000000, 0x7f59003b, 0x5140095b, \
+            0x002e0000, 0x00340000, 0x38382e31, 0x0049022d, 0x0c7f0000, 0x33731800, 0x50410000, 0xffffffff, \
+            0x00000010, 0x3d520000, 0x7f642200, 0x7f7e2f20, 0x7f652300, 0x6f680000, 0x7f7f0000, 0x7f7f0000, \
+            0x7f143500, 0x7f7f342c, 0x7f7f007f, 0x4a7f006d, 0x003b007f, 0x71560030, 0x567f007f, 0x027f007f, \
+            0x001d007f, 0x00000000                                                                          \
     }
-    for (i = 0; i < size; i++)
-    {
-        if (tmp[i] <= 0)
-            res[i] = 0;
-        else
-            res[i] = 1;
-    }
-}
+const uint32_t sample_output_layer_0[] = SAMPLE_OUTPUT_LAYER_0;
 
-void delta_multiplication(q15_t *res, q15_t *cost, int32_t out_value, int size)
-{
 
-    for (int i = 0; i < size; i++)
-    {
-        res[i] = cost[i] * out_value;
-    }
-}
-
-void dW_multiplication(q15_t *res, q15_t *delta, uint32_t l_rate, int size)
-{
-
-    for (int i = 0; i < size; i++)
-    {
-        res[i] = delta[i] * l_rate;
-    }
-}
 
 int mod2(int val)
 {
     return -((val >> 7) & 0b1) * pow(2, 7) + ((val >> 6) & 0b1) * pow(2, 6) + ((val >> 5) & 0b1) * pow(2, 5) + ((val >> 4) & 0b1) * pow(2, 4) + ((val >> 3) & 0b1) * pow(2, 3) + ((val >> 2) & 0b1) * pow(2, 2) + ((val >> 1) & 0b1) * pow(2, 1) + ((val >> 0) & 0b1) * pow(2, 0);
 }
 
-void output_layer_3(const uint32_t out, uint16_t *final)
+int output_layer3()
 {
-    const uint32_t *ptr = out;
+    const uint32_t *ptr = sample_output_layer_0;
+    uint32_t mask, len;
     int count = 0;
-    uint32_t first[16];
-    uint32_t second[16];
-    uint32_t third[16];
-    uint32_t fourth[16];
-    int step = 0;
+    int first[16];
+    int second[16];
+    int third[16];
+    int fourth[16];
+    int final[192];
+    int pos = 0;
     int try = 0;
 
-    while (*ptr != 0)
+    while (*ptr++ != 0)
     {
+        mask = *ptr++;
+        len = *ptr++;
         count = 0;
 
-        for (int i = 0; i < 16; i++)
+        for (int i = 0; i < len; i++)
         {
-            first[count] = mod2((*(ptr)) >> 0);
-            step += 1;
-            second[count] = mod2((*(ptr)) >> 8);
-            step += 1;
-            third[count] = mod2((*(ptr)) >> 16);
-            step += 1;
-            fourth[count] = mod2((*(ptr)) >> 24);
-            step += 1;
-            count++;
             *ptr++;
+            first[count] = mod2((*(ptr - 1)) >> 0);
+            pos++;
+            second[count] = mod2((*(ptr - 1)) >> 8);
+            pos++;
+            third[count] = mod2((*(ptr - 1)) >> 16);
+            pos++;
+            fourth[count] = mod2((*(ptr - 1)) >> 24);
+            pos++;
+            count++;
         }
 
         if (try == 0)
@@ -128,7 +107,7 @@ void output_layer_3(const uint32_t out, uint16_t *final)
 
         if (try == 2)
         {
-            for (int i = 128; i < CNN_NUM_OUTPUTS_FROZEN_LAYER; i++)
+            for (int i = 128; i < 192; i++)
             {
                 if (i < 144)
                 {
@@ -142,7 +121,7 @@ void output_layer_3(const uint32_t out, uint16_t *final)
                 {
                     final[i] = third[i - 160];
                 }
-                else if (i >= 176 && i < CNN_NUM_OUTPUTS_FROZEN_LAYER)
+                else if (i >= 176 && i < 192)
                 {
                     final[i] = fourth[i - 176];
                 }
@@ -151,13 +130,20 @@ void output_layer_3(const uint32_t out, uint16_t *final)
 
         try++;
     }
+    printf("final=");
+    for (int i = 0; i < 192; i++)
+    {
+        printf("%d,", final[i]);
+    }
+    return 0;
 }
 
-uint16_t append[16];
+uint8_t append[16];
+uint8_t final[192];
 int contatore = 0;
 int counter = 0;
 
-void split(int hex1, int hex2, int hex3, int hex4, int hex5, uint16_t *final)
+void split(int hex1, int hex2, int hex3, int hex4, int hex5)
 {
     int i, m;
     for (i = 0; i < 2; i++)
@@ -229,61 +215,64 @@ void split(int hex1, int hex2, int hex3, int hex4, int hex5, uint16_t *final)
     {
         final[j + counter] = append[j];
     }
-
     counter += 16;
 }
 
-static const uint32_t pesi[] = WEIGHTS;
+static const uint32_t kernels[] = KERNELS;
 
-void find_weights(uint16_t *weights)
+int cnn_load_weights(void)
 {
-    int i, m;
-    volatile uint32_t *addr;
-
-    for (i = 0; i < (sizeof(pesi) / sizeof(pesi[0])); i++)
+    int i, m, count = 0;
+    for (i = 0; i < (sizeof(kernels) / sizeof(kernels[0])); i++)
     {
-        if ((pesi[i] >> 16) == 0x0 && (pesi[i - 1] >> 24) == 0x50 && (pesi[i] == 41 || pesi[i] == 329))
+        if ((kernels[i] >> 16) == 0x0 && (kernels[i - 1] >> 24) == 0x50 && (kernels[i] == 41 || kernels[i] == 329))
         {
-            if (pesi[i] == 41)
+            // printf("Kernel_%d= \n", count);
+            if (kernels[i] == 41)
             {
-                addr = (volatile uint32_t *)pesi[i - 1];
-                split(*(addr + 2), *(addr + 3), *(addr + 4), *(addr + 5), *(addr + 6), weights);
-                printf("%08x, %08x,%08x,%08x,%08x\n", addr + 2, addr + 3, addr + 4, addr + 5, addr + 6);
+                split(kernels[i +  1], kernels[i +  2], kernels[i +  3], kernels[i +  4], kernels[i +  5]);
             }
-            if (pesi[i] == 329)
+            if (kernels[i] == 329)
             {
                 for (m = 0; m < 329; m++)
                 {
-                    addr = (volatile uint32_t *)pesi[i - 1];
                     if (m >= 288 && m < 293)
                     {
-                        split(*(addr + m + 2), *(addr + m + 3), *(addr + m + 4), *(addr + m + 5), *(addr + m + 6), weights);
-                        printf("%08x, %08x,%08x,%08x,%08x\n", addr + m + 2, addr + m + 3, addr + m + 4, addr + m + 5, addr + m + 6);
+                        split(kernels[i + m + 1], kernels[i + m + 2], kernels[i + m + 3], kernels[i + m + 4], kernels[i + m + 5]);
                         break;
                     }
                 }
             }
+            // printf("\n");
+            count++;
         }
     }
+
+    printf("final=");
+    for (i = 0; i < 192; i++)
+    {
+        printf("%d,", final[i]);
+    }
+    printf("\n");
+    return 1;
 }
 
-void trova_pesi(uint32_t *out_buf)
-{
-    uint32_t len;
-    volatile uint32_t *addr;
-    const uint32_t *ptr = pesi;
-    //(volatile uint32_t *) cast --> espliciti il tipo dicendo di andare a prenderlo in memoria e no cache
-    while ((addr = (volatile uint32_t *)*ptr++) != 0)
-    {
-        printf("inizio = %0x\n", addr);
-        len = *ptr++;
-        printf("%08x\n", len);
-        printf("%08x\n",* (volatile uint32_t *) 0x50180200);
-        for (int m = 0; m < 5; m++)
-        {
-            printf("location= %08x, Value= %08x\n", addr, *addr);
-            addr++; // questo incremento devo farlo dopo  
-        }
+#define WEIGHTS {0x50180200, 0x00000029,0x50184200, 0x00000029,0x50188200, 0x00000029,\
+                 0x5018c200, 0x00000029,0x50190000, 0x00000149,0x50194000, 0x00000149,\
+                 0x50198000, 0x00000149,0x5019c000, 0x00000149,0x501a0000, 0x00000149,\
+                 0x501a4000, 0x00000149,0x501a8000, 0x00000149,0x501ac000, 0x00000149}
+static const uint32_t pesi[] = WEIGHTS;
 
+int main()
+{
+    volatile uint32_t *pointer;
+    volatile uint32_t *addr;
+    volatile uint32_t *count;
+    pointer = (volatile uint32_t *) 0x50180200;
+
+    for(int i=0; i < 41; i++){
+        printf("location= %x,",pointer++);
     }
+
+    return 0;
 }

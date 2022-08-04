@@ -1,8 +1,7 @@
-import numpy as np
-import os
-import time
-
-KERNELS =[ \
+#define BIAS_0 { \
+  0x16, 0x1c, 0xe4, 0xdd, 0x13, 0xf7, 0xe0, 0xf6, 0x1f, 0x08 \
+} 
+#define KERNELS { \
   0x50180000, 0x00000087, 0x33110429, 0xf6ea2cf4, 0xf7760e1b, 0xf080e006, 0x15410ec4, 0xcc1e297d, \
   0xfff0deed, 0xf324e87f, 0xc01f5b80, 0xfe0023ed, 0xfa182b27, 0x301ed9e2, 0x2a2be5ed, 0x1a480301, \
   0x280cda2d, 0x16807f15, 0xfd22111c, 0xfb2ff4e7, 0x132d13dc, 0x0520e501, 0x40320225, 0xb2aa80e4, \
@@ -2245,36 +2244,4 @@ KERNELS =[ \
   0x0ac711f5, 0xf43093a4, 0x80f7efc8, 0x081c372c, 0xb97313ef, 0x4bdd44eb, 0xa32580e5, 0xcfa9d8b4, \
   0xc521e802, 0xfe2302ee, 0xf4f8fa80, 0xe3c1cd80, 0xe9ccde48, 0xd0e5de45, 0xe0f03184, 0x80f2a498, \
   0x4ad61750, 0x00000000 \
-]
-
-kernel1 = []
-kernel2 = []
-
-KERNEL_OMOGENEO=41
-KERNEL_ETEROGENEO=329
-
-# for h in a:
-#     if (h) == 3:
-#         for m in range(h):
-#             b.append(a[h+m])
-# print(b)
-
-f = open("kernels.txt", "a")
-
-count=0
-for h in range(len(KERNELS)):
-    if (KERNELS[h] >> 16) == 0x0 and (KERNELS[h-1]>>24)==0x50 and (KERNELS[h]==41 or KERNELS[h]==329):
-        f.write("Kernel_"+str(count)+"=")
-        if KERNELS[h]==41:
-            for m in range(KERNELS[h]):
-                kernel1.append(hex(KERNELS[h+m+1]))
-        if KERNELS[h]== 329:
-            for m in range(KERNELS[h]):
-                kernel2.append(hex(KERNELS[h+m+1]))
-            kernel1.append(kernel2[-41:])
-        f.write(str(kernel1))
-        f.write("\n")
-        kernel1.clear()
-        count +=1
-
-
+}
