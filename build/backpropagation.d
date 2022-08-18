@@ -1,0 +1,39 @@
+/Users/gio/Online-Learning-on-Max78000/build/backpropagation.o: \
+ backpropagation.c backpropagation.h cnn.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/stdint.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/machine/_default_types.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/features.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/_newlib_version.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/_intsup.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/_stdint.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/math.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/reent.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/_ansi.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/newlib.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/config.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/machine/ieeefp.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/_types.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/machine/_types.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/lock.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/cdefs.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/_ansi.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/stdio.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/lib/gcc/arm-none-eabi/10.3.1/include/stdarg.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/types.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/machine/endian.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/machine/_endian.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/select.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/_sigset.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/_timeval.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/timespec.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/_timespec.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/_pthreadtypes.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/sched.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/machine/types.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/sys/stdio.h \
+ weights.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/stdlib.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/machine/stdlib.h \
+ /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/alloca.h

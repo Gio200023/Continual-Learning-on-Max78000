@@ -19,6 +19,32 @@ Kernels_layer4_0_mod2=[-16,44,94,46,-69,-28,12,-7,-107,-69,-11,9,-3,9,11,-1,37,3
 
 Kernels_layer4_1_mod2=[-53,-68,-26,-18,-50,-43,-8,0,9,-56,-56,-7,30,-3,20,12,52,109,80,31,80,126,127,49,55,108,49,-9,2,32,6,-23,-23,-19,-50,-35,42,-6,-69,-41,114,81,12,-5,54,61,10,11,-1,10,3,-6,-8,-39,-28,-21,-37,-73,-55,-45,-29,-42,-48,-35,-28,-19,-32,-22,-32,-17,-38,-35,-22,2,-33,-31,-20,-44,-37,-20,-6,-46,-89,-61,26,10,-39,-44,36,58,74,52,-2,51,42,39,-27,-3,4,-1,75,127,127,90,126,127,127,126,94,127,127,100,-38,-33,-51,-31,-71,-36,-74,-51,-43,-30,-60,-13,4,-4,-21,8,43,39,37,14,23,60,76,35,-74,-29,49,43,-26,-15,15,11,-20,-48,-64,-32,-44,-100,-126,-63,-25,-16,-93,-104,-6,-6,-48,-61,-10,9,20,6,23,46,15,-39,39,89,36,-27,-8,-5,-6,-17,13,18,-35,-38,28,21,-36,-41,43,41,-48,-62,49,15,-43,-15]
 
+sample_2 = np.array([0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0x0000ffff, 0x00000000, 0x00000000, 0xffffffff, \
+  0xffffffff, 0xffffffff, 0xffffffff, 0x00000000, 0x00000000, 0x00000000, 0xffffffff, 0xffffffff, \
+  0xffffffff, 0x00ffffff, 0x00000000, 0x00000000, 0x00000000, 0xffffffff, 0xffffffff, 0xffffffff, \
+  0x0000ffff, 0x00000000, 0x00000000, 0x00000000, 0xffffffff, 0xffffffff, 0xffffffff, 0x000000ff, \
+  0x00000000, 0x00000000, 0xff000000, 0xffffffff, 0xffffffff, 0x00ffffff, 0x00000000, 0x00000000, \
+  0x00000000, 0xffffff00, 0xffffffff, 0xffffffff, 0x00000000, 0x00000000, 0x00000000, 0xff000000, \
+  0xffffffff, 0xffffffff, 0x00ffffff, 0x00000000, 0x00000000, 0x00000000, 0xffff0000, 0xffffffff, \
+  0xffffffff, 0x0000ffff, 0x00000000, 0x00000000, 0x00000000, 0xffffffff, 0xffffffff, 0xffffffff, \
+  0x0000ffff, 0x00000000, 0x00000000, 0xffff0000, 0xffffffff, 0xffffffff, 0xffffffff, 0x0000ffff, \
+  0x00000000, 0x00000000, 0xffff0000, 0xffffffff, 0xffffffff, 0xffffffff, 0x0000ffff, 0x00000000, \
+  0x00000000, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0x00ffffff, 0x00000000, 0xff000000, \
+  0xffffffff, 0xffffffff, 0x000000ff, 0xffffffff, 0x00ffffff, 0x00000000, 0xff000000, 0xffffffff, \
+  0x00ffffff, 0x00000000, 0xffffffff, 0x0000ffff, 0x00000000, 0xffffff00, 0xffffffff, 0x00000000, \
+  0x00000000, 0xffffffff, 0x0000ffff, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, \
+  0xffffffff, 0x0000ffff, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xffffffff, \
+  0x0000ffff, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xffffffff, 0x00ffffff, \
+  0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0xffffffff, 0x00ffffff, 0x00000000, \
+  0x00000000, 0x00000000, 0x00000000, 0xffff0000, 0xffffffff, 0xffffffff, 0x00000000, 0x00000000, \
+  0x00000000, 0xff000000, 0xffffffff, 0xffffffff, 0xffffffff, 0x0000ffff, 0x00000000, 0x00000000, \
+  0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, \
+  0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, \
+  0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, \
+  0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, \
+  0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, \
+  0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff])
+
 def mod2(val):
   return -((val >> 7) & 0b1)*2**7 + ((val >> 6) & 0b1)*2**6 + ((val >> 5) & 0b1)*2**5 + ((val >> 4) & 0b1)*2**4 + ((val >> 3) & 0b1)*2**3 + ((val >> 2) & 0b1)*2**2 + ((val >> 1) & 0b1)*2**1 + ((val >> 0) & 0b1)*2**0
 
@@ -31,10 +57,10 @@ def transform_mod2(list,name):
     print(mod2((h >> 24) & 0xff), end=',')
   print("]")
 
-first = [0xd7b1ecef, 0xeb34376b]
-print(transform_mod2(first,"first"))
+# first = [0xd7b1ecef, 0xeb34376b]
+# print(transform_mod2(first,"first"))
 # second = 0x03
-# print(mod2(second))
+# print(mod2(0xe4))
 # print("kernel=",end='[')
 # for h in range(len(kernels_layer4_1)):
 #   if(h%4==0):
@@ -51,3 +77,6 @@ print(transform_mod2(first,"first"))
 
 # print(transform_mod2(SAMPLE_OUTPUT_LAYER_0,"sample"))
 # print(sum(np.multiply(sample_mod2,Kernels_layer4_0_mod2)))
+# print(mod2(0x80))
+# print(hex(mod2(0xf9) - 1))
+print(sample_2.shape)

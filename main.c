@@ -35,6 +35,13 @@
 // mnist
 // Created using ai8xize.py --log --test-dir sdk/Examples/MAX78000/CNN --prefix mnist --checkpoint-file trained/ai85-mnist-qat8-q.pth.tar --config-file networks/mnist-chw-ai85.yaml --softmax --overwrite --debug --log-pooling --debug-computation --compact-data --mexpress --timer 0 --display-checkpoint --device MAX78000 --timer 0 --display-checkpoint --verbose
 
+/**
+ *
+ * TODO: sistemare load_weights, Load inputs da UART
+ * ALMOST: sistemare cost, ora come ora da risultati ma scarsi
+ *
+ */
+
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
@@ -42,40 +49,36 @@
 #include "mxc.h"
 #include "cnn.h"
 #include "sampledata_mnist.h"
-#include "sampleoutput.h"
 #include "math.h"
 #include "backpropagation.h"
-#include "cnn.h"
 
 /**
  * @brief layers variables
  *
  */
-const uint32_t output_layer_0[] = SAMPLE_OUTPUT_LAYER_0;
-const uint32_t output_layer_1[] = SAMPLE_OUTPUT_LAYER_1;
-q15_t output_L0[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
+uint8_t output_L0[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
 
 /**
  * @brief wieghts array
  *
  */
-q15_t weights[CNN_NUM_OUTPUTS_FROZEN_LAYER];
+int8_t weights[CNN_NUM_OUTPUTS_FROZEN_LAYER];
 
 /**
- * @brief prediction #0 channel -> wieghts x layer_n-1 layer
+ * @brief prediction #0 channel -> wieghts x n-1 layer
  *
  */
-q15_t *prediction[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
-
+int16_t prediction[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
 volatile uint32_t cnn_time; // Stopwatch
 
 /* Backpropagation variables */
-uint32_t learning_rate = 0.1;
+float learning_rate = 0.01;
 int iterations = 5000;
-q15_t true_output[CNN_NUM_OUTPUTS] = {0x7fff, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0};
-q15_t cost = -1;
-q15_t deltaW = 0;
-q15_t dW = 0;
+q15_t true_output[CNN_NUM_OUTPUTS] = {0x7fff, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+q15_t cost[10] = {0};
+int16_t deltaW = 0;
+int dW[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
+int db = 0;
 
 void fail(void)
 {
@@ -86,33 +89,33 @@ void fail(void)
 
 // 1-channel 28x28 data input (784 bytes / 196 32-bit words):
 // CHW 28x28, channel 0
-static const uint32_t input_0[] = SAMPLE_INPUT_MNIST;
+int count = 0;
+// static uint32_t *input_0 = &sample_inputs_all[0][0];
+static uint32_t input_0[] = SAMPLE_INPUT_MNIST;
 
 void load_input(void)
 {
   // This function loads the sample data input -- replace with actual data
+  // memcpy32((uint32_t *)0x50400000, *(input_0 + count++ * 1000), 196);
   memcpy32((uint32_t *)0x50400000, input_0, 196);
 }
 
 // Classification layer:
 static int32_t ml_data[CNN_NUM_OUTPUTS];
-static int32_t sto_a_prova[CNN_NUM_OUTPUTS_LAYER_0];
 static int32_t ml_data_frozen[CNN_NUM_OUTPUTS_LAYER_0];
 static q15_t ml_softmax[CNN_NUM_OUTPUTS];
 
 void softmax_layer(void)
 {
-  
   cnn_unload((uint32_t *)ml_data); // va a prendersi i risultati
   softmax_q17p14_q15((const q31_t *)ml_data, CNN_NUM_OUTPUTS, ml_softmax);
 }
 
+int a = 0;
 int main(void)
 {
-  int i;
+  int i, f = 0;
   int digs, tens;
-  volatile uint32_t *addr;
-  
 
   MXC_ICC_Enable(MXC_ICC0); // Enable cache
 
@@ -125,127 +128,129 @@ int main(void)
   // DO NOT DELETE THIS LINE:
   MXC_Delay(SEC(2)); // Let debugger interrupt if needed
 
-  // Enable peripheral, enable CNN interrupt, turn on CNN clock
-  // CNN clock: APB (50 MHz) div 1
-  cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
-
-  
-
-  /*************************
-   *
+  /**************************************************************************
    *  INFERENCE PER LAYER WITH BACKPROPAGATION: ONLINE LEARNING
-   *
-   *************************/
+   *************************************************************************/
 
   int layer_count = 0;
-  cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
-  cnn_init_layer(layer_count); // Bring state machine into consistent state
-  cnn_load_weights();          // Load kernels
-  cnn_load_bias();
-  MXC_TMR_SW_Start(MXC_TMR1);
+  // Enable peripheral, enable CNN interrupt, turn on CNN clock
+  // CNN clock: APB (50 MHz) div 1
+  // cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
 
-  for (i = 0; i < 1; i++)
+  // MXC_TMR_SW_Start(MXC_TMR1);
+  volatile uint32_t *addr;
+  for (i = 0; i < 10; i++)
   {
-    for (layer_count = 0; layer_count < LAYER_NUM; layer_count++)
+    cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
+    cnn_init();
+    for (layer_count = 0; layer_count < LAYER_NUM; layer_count = get_next_OS_layer(layer_count))
     {
-      if (i != 0 || layer_count != 0)
-      {
-        /* init last layer */
-        cnn_init_layer(layer_count);
-      }
+      cnn_load_weights(); // Load kernels
+      cnn_load_bias();
 
-      /* load input */
+      cnn_set_layer_count(layer_count);
+      cnn_config_layer(layer_count);
+
       if (layer_count == 0)
         load_input();
+      cnn_start();
 
-      /* start and configure layers */
-      cnn_config_layer(layer_count);
-      cnn_start_layer(layer_count);
+      printf("Layer = %d\n", layer_count);
 
       while (cnn_time == 0)
-        __WFI(); /* Wait for CNN */
+        __WFI(); // Wait for CNN
+
+      addr = (volatile uint32_t *)0x50400000;
+
+      for (int l = 0; l < 10; l++)
+      {
+        printf("questo: %x\n",*addr++);
+      }
 
       if (layer_count == 0)
       {
         /* take output of layer_n-1 layer */
-        cnn_unload_frozen_layer((uint32_t *) ml_data_frozen);
-        output_layer_3(ml_data_frozen, output_L0);
+        cnn_unload_frozen_layer((uint32_t *)ml_data_frozen); // mnist: WORKS
+        output_layer_3(ml_data_frozen, output_L0);           // WORKS
+        /* find weigths of first channel */
+        find_weights(weights, FIND, dW); // WORKS
       }
 
-      if (layer_count == LAYER_NUM - 1)
-      {
-        softmax_layer();
-        trova_pesi((uint32_t *) sto_a_prova);
-      }
-
-      if (i != iterations - 1 || layer_count != LAYER_NUM - 1)
-        cnn_quick_enable();
+      cnn_stop_SMs(); // Be sure that before next iterations all the State Machines are stopped
     }
-    
-    /* find weigths of first channel */
-    // find_weights(weights);
 
-    // for(int m=0; m < 4; m++){
-    //   printf("%x\n",sto_a_prova[m]);
-    // }
-
-    // trova_pesi((uint32_t *) sto_a_prova);
-    printf("\n\n");
-
-    // for(i=0; i < CNN_NUM_OUTPUTS_FROZEN_LAYER; i++){
-    //   printf("")
-    // }
-
-    /* predict channel 0 */
-    // for (i = 0; i < CNN_NUM_OUTPUTS_FROZEN_LAYER; i++)
+    // for (i = 0; i < 2; i++)
     // {
-    //   prediction[i] = (weights[i] * output_L0[i]);
-    // }
+
+    //   for (layer_count = 0; layer_count < LAYER_NUM; layer_count = get_next_OS_layer(layer_count))
+    //   {
+    //     cnn_set_layer_count(layer_count);
+    //     /* start and configure layers */
+    //     cnn_config_layer(layer_count);
+    //     /* load input */
+    //     if (layer_count == 0)
+    //     {
+    //       load_input();
+    //     }
+    //     cnn_start();
+
+    //     while (cnn_time == 0) // forse devo ripetrmettere il caputring time
+    //       __WFI();            /* Wait for CNN */
+
+    //     cnn_stop_SMs();
+
+    //     if (layer_count == 0)
+    //     {
+    //       /* take output of layer_n-1 layer */
+    //       cnn_unload_frozen_layer((uint32_t *)ml_data_frozen); // mnist: WORKS
+    //       output_layer_3(ml_data_frozen, output_L0);           // WORKS
+    //       /* find weigths of first channel */
+    //       find_weights(weights, FIND, dW); // WORKS
+    //     }
+    //   }
+
+    softmax_layer();
+    /* predict channel 0 */
+    for (int place = 0; place < CNN_NUM_OUTPUTS_FROZEN_LAYER; place++)
+    {
+      prediction[place] = (weights[place] * output_L0[place]);
+    }
 
     /********************
      *  BACKPROPAGATION  *
      ********************/
 
-    /* Find neuron that need a weights changes */
-    // array_substraction(cost,true_output,ml_softmax, sizeof ml_softmax/sizeof ml_softmax[0]);
+    /* Find neuron that need a weights changes */ // COST NON RIESCO A TROVARLO ANCORA: TODO
+    array_substraction(cost, ml_softmax, true_output, sizeof ml_softmax / sizeof ml_softmax[0]);
 
-    // for (i = 0; i < CNN_NUM_OUTPUTS_FROZEN_LAYER; i++)
-    // {
-    //   deltaW = cost * *prediction[i];
-    //   dW = deltaW * learning_rate;
-    //   weights_writing(i,dW);
-    // }
+    for (f = 0; f < 1; f++)
+    {
+      for (int m = 0; m < CNN_NUM_OUTPUTS_FROZEN_LAYER; m++) // per ogni peso del layer i^th
+      {
+        /* Algoritmo sul totale */
+        // deltaW = cost[m] * (q15_t)prediction[i][m]; //mi trovo deltaW moltiplicando il cost del layer i^th con ogni prediction
+        // dW = (uint32_t)((float)learning_rate * deltaW); //mi trovo poi dW
+
+        /* Algorimto solo sul primo channel */
+        deltaW = cost[0] * prediction[m]; // need to convert them in smaller number
+        dW[m] = (int)(learning_rate * deltaW);
+      }
+      find_weights(weights, UPDATE, (int)dW);
+    }
+    printf("%d\n", a++);
+    cnn_disable();
   }
 
   // cnn_disable();
 
-  // printf("Classification results:\n");
-  // for (i = 0; i < CNN_NUM_OUTPUTS; i++)
-  // {
-  //   digs = (1000 * ml_softmax[i] + 0x4000) >> 15;
-  //   tens = digs % 10;
-  //   digs = digs / 10;
-  //   printf("[%7d] -> Class %d: %d.%d%%\n", ml_data[i], i, digs, tens);
-  // }
-
-  /************************************
-   *
-   *  Online Learning: Backpropagation
-   *
-   * **********************************/
-  //   array_substraction(cost,true_output,ml_softmax, sizeof ml_softmax/sizeof ml_softmax[0]);
-  //   for(int s=0; s < CNN_NUM_OUTPUTS; s++){
-  //     printf("cost= %d\n",cost[s]);
-  //   }
-
-  // //  weights update
-  //  for(int m=0; m < CNN_NUM_OUTPUTS; m++){
-  //    delta_multiplication(deltaW,cost,ml_data[m],sizeof ml_data/sizeof ml_data[0]);
-  //    array_multiplication(dW,deltaW,learning_rate,sizeof deltaW/sizeof deltaW[0]);
-  //    peso[m] = peso[m] - dW;
-  //  }
-
-  // }
+  printf("Classification results:\n");
+  for (i = 0; i < CNN_NUM_OUTPUTS; i++)
+  {
+    digs = (1000 * ml_softmax[i] + 0x4000) >> 15;
+    tens = digs % 10;
+    digs = digs / 10;
+    printf("[%7d] -> Class %d: %d.%d%%\n", ml_data[i], i, digs, tens);
+  }
 
   return 0;
 }

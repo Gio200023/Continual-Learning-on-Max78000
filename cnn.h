@@ -1,9 +1,9 @@
 /**************************************************************************************************
-* Copyright (C) 2019-2021 Maxim Integrated Products, Inc. All Rights Reserved.
-*
-* Maxim Integrated Products, Inc. Default Copyright Notice:
-* https://www.maximintegrated.com/en/aboutus/legal/copyrights.html
-**************************************************************************************************/
+ * Copyright (C) 2019-2021 Maxim Integrated Products, Inc. All Rights Reserved.
+ *
+ * Maxim Integrated Products, Inc. Default Copyright Notice:
+ * https://www.maximintegrated.com/en/aboutus/legal/copyrights.html
+ **************************************************************************************************/
 
 /*
  * This header file was automatically generated for the mnist network from a template.
@@ -43,10 +43,16 @@ typedef int16_t q15_t;
 #define CNN_NUM_OUTPUTS_FROZEN_LAYER 192
 
 /* Number of layers */
-#define LAYER_NUM 2
+#define LAYER_NUM 5
+
+/* Number of One-Shot layers */
+#define OS_LAYER_NUM 1
+
+/* One-Shot layers */
+#define OS_LAYERS {0}
 
 /* Use this timer to time the inference */
-#define CNN_INFERENCE_TIMER MXC_TMR0
+// #define CNN_INFERENCE_TIMER MXC_TMR0
 
 /* Port pin actions used to signal that processing is active */
 
@@ -56,9 +62,9 @@ typedef int16_t q15_t;
 #define SYS_COMPLETE LED_Off(0)
 
 /* Run software SoftMax on unloaded data */
-void softmax_q17p14_q15(const q31_t * vec_in, const uint16_t dim_vec, q15_t * p_out);
+void softmax_q17p14_q15(const q31_t *vec_in, const uint16_t dim_vec, q15_t *p_out);
 /* Shift the input, then calculate SoftMax */
-void softmax_shift_q17p14_q15(q31_t * vec_in, const uint16_t dim_vec, uint8_t in_shift, q15_t * p_out);
+void softmax_shift_q17p14_q15(q31_t *vec_in, const uint16_t dim_vec, uint8_t in_shift, q15_t *p_out);
 
 /* Stopwatch - holds the runtime when accelerator finishes */
 extern volatile uint32_t cnn_time;
@@ -75,11 +81,6 @@ int cnn_disable(void);
 
 /* Perform minimum accelerator initialization so it can be configured */
 int cnn_init(void);
-int cnn_configure_layer_0(void);
-int cnn_configure_layer_1(void);
-
-/* Configure accelerator for the given network */
-int cnn_configure(void);
 
 /* Load accelerator weights */
 int cnn_load_weights(void);
@@ -92,8 +93,6 @@ int cnn_load_bias(void);
 
 /* Start accelerator processing */
 int cnn_start(void);
-int cnn_start_layer_0(void);
-int cnn_start_layer_1(void);
 
 /* Force stop accelerator */
 int cnn_stop(void);
@@ -116,13 +115,16 @@ int cnn_config_layer(int layer_num);
 /* Start a specific layer */
 int cnn_start_layer(int layer_num);
 
-/* Get output configuration pointer for a given layer*/
-const uint32_t* get_output_conf_prt(int layer_num);
+/* Stop all the cnn State Machines */
+void cnn_stop_SMs();
 
-/* Get sample output pointer for a given layer*/
-const uint32_t* get_sample_output_ptr(int layer_num);
+/* Get the next One-Shot layer available */
+int get_next_OS_layer(int layer_count);
 
-/* Quick cnn enable, to be used between layers in layer-by-layer configuration */
-int cnn_quick_enable();
+/* Get last One-Show layer number */
+int get_last_OS_layer();
+
+/* Set layer count value to configuration registers*/
+int cnn_set_layer_count(int layer_num);
 
 #endif // __CNN_H__

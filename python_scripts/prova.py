@@ -1,9 +1,5 @@
+import os
 import numpy as np
 
-lista=np.array([[6,2],[3,4],[5,6]])
-# print(lista[0,:])
-
-lista1 = [1,2,3,4,5]
-print(lista[2,:].reshape(1,lista.shape[1]))
-print(lista)
-#print(lista[:-1])
+a = np.random.randint(-128, 127, size=(1, 28, 28), dtype=np.int64)
+np.save(os.path.join('tests', 'sample_mnist'), a, allow_pickle=False, fix_imports=False)

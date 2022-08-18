@@ -5,6 +5,7 @@
 #include <math.h>
 #include "unistd.h"
 #include "weights.h"
+#include <inttypes.h>
 
 #define SAMPLE_OUTPUT_LAYER_0                                                                               \
     {                                                                                                       \
@@ -18,8 +19,6 @@
             0x001d007f, 0x00000000                                                                          \
     }
 const uint32_t sample_output_layer_0[] = SAMPLE_OUTPUT_LAYER_0;
-
-
 
 int mod2(int val)
 {
@@ -230,7 +229,7 @@ int cnn_load_weights(void)
             // printf("Kernel_%d= \n", count);
             if (kernels[i] == 41)
             {
-                split(kernels[i +  1], kernels[i +  2], kernels[i +  3], kernels[i +  4], kernels[i +  5]);
+                split(kernels[i + 1], kernels[i + 2], kernels[i + 3], kernels[i + 4], kernels[i + 5]);
             }
             if (kernels[i] == 329)
             {
@@ -257,22 +256,130 @@ int cnn_load_weights(void)
     return 1;
 }
 
-#define WEIGHTS {0x50180200, 0x00000029,0x50184200, 0x00000029,0x50188200, 0x00000029,\
-                 0x5018c200, 0x00000029,0x50190000, 0x00000149,0x50194000, 0x00000149,\
-                 0x50198000, 0x00000149,0x5019c000, 0x00000149,0x501a0000, 0x00000149,\
-                 0x501a4000, 0x00000149,0x501a8000, 0x00000149,0x501ac000, 0x00000149}
+#define WEIGHTS                                                                     \
+    {                                                                               \
+        0x50180200, 0x00000029, 0x50184200, 0x00000029, 0x50188200, 0x00000029,     \
+            0x5018c200, 0x00000029, 0x50190000, 0x00000149, 0x50194000, 0x00000149, \
+            0x50198000, 0x00000149, 0x5019c000, 0x00000149, 0x501a0000, 0x00000149, \
+            0x501a4000, 0x00000149, 0x501a8000, 0x00000149, 0x501ac000, 0x00000149  \
+    }
 static const uint32_t pesi[] = WEIGHTS;
+
+uint8_t bias[] = {0x16, 0x1c, 0xe4, 0xdd, 0x13, 0xf7, 0xe0, 0xf6, 0x1f, 0x08};
+
+int aho[] = {0x50180200, 0x00000029};
+
+int ciao[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+void printa(const uint8_t *src)
+{
+    int n = 10;
+    while (n-- > 0)
+    {
+        printf("*bias= %d\n", *src++);
+    }
+}
+
+void update_poitners(int *biasetto)
+{
+    // printf("*bias = %d\n",*(biasetto));
+    *(biasetto + 6) += 11;
+}
 
 int main()
 {
-    volatile uint32_t *pointer;
-    volatile uint32_t *addr;
-    volatile uint32_t *count;
-    pointer = (volatile uint32_t *) 0x50180200;
+    // volatile uint32_t *pointer;
+    // volatile uint32_t *addr=bias;
+    // volatile uint32_t *count;
+    // pointer = (volatile uint32_t *) 0x50180200;
 
-    for(int i=0; i < 41; i++){
-        printf("location= %x,",pointer++);
-    }
+    // for(int i=0; i < 41; i++){
+    //     printf("location= %x,",pointer++);
+    // }
+    // *((volatile uint8_t *)((uint32_t)addr | 1)) = 0x01;
+    // printf("%08d",*addr);
+    // printf("%08d",addr);
+    // printa(addr);
+    // for(int i=0; i < sizeof(bias)/sizeof(bias[0]); i++){
+    //     printf("*bias= %03d\n",*addr++);
+    // }
+
+    // float prova = 0.01;
+    // printf("%0.2f\n",prova);
+    // printf("RPIMA: ");
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     printf(" %d, ", ciao[i]);
+    // }
+
+    // update_poitners(ciao);
+
+    // printf("DOPO: ");
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     printf(" %d, ", ciao[i]);
+    // }
+
+    // printf("RPIMA: ");
+    // for (int i = 0; i < 2; i++)
+    // {
+    //     printf(" %x,", aho[i]);
+    // }
+
+    // *aho |= 22 << 8;
+
+    // printf("DOPO: ");
+    // for (int i = 0; i < 2; i++)
+    // {
+    //     printf(" %x,", aho[i]);
+    // }
+
+    /* weights update */
+    int prova[] = {0xf0bccbff};
+    int dW[] = {0x1, 1, 2, 1, 1};
+    uint8_t tmp;
+    int update_place = 0;
+    tmp = mod2((*prova >> 24) & 0xff) - *(dW);
+    printf("il minore = %x\n",((((*prova >> 24) & 0xff) - tmp) << 24));
+    printf("Mod : %2x\n", mod2((*prova >> 24) & 0xff));
+    printf("tutto %x\n",*prova - ((((*prova >> 24) & 0xff) - tmp) << 24));
+    *prova = *prova - ((((*prova >> 24) & 0xff) - tmp) << 24);
+    
+    
+    printf("dw = %x\n", *dW);
+    printf("tmp = %x\n", tmp);
+    printf("prova di mezzo %0x\n", *prova);
+    printf("\n");
+
+    // tmp = mod2((*prova >> 16) & 0xff) - 1;
+    // *prova = *prova - ((((*prova >> 16) & 0xff) - tmp) << 16);
+    // printf("tmp = %x\n", tmp);
+    // printf("prova finale %0x\n", *prova);
+
+    // tmp = mod2((*prova >> 8) & 0xff) - 1;
+    // *prova = *prova - ((((*prova >> 8) & 0xff) - tmp) << 8);
+    // printf("tmp = %x\n", tmp);
+    // printf("prova finale %0x\n", *prova);
+
+    // tmp = mod2((*prova >> 0) & 0xff) - 1;
+    // *prova = *prova - ((((*prova >> 0) & 0xff) - tmp) << 0);
+    // printf("tmp = %x\n", tmp);
+    // printf("prova finale %0x\n", *prova);
+
+    // tmp = mod2((*prova >> 24) & 0xff) - *(dW);
+    // printf("Mod : %2x\n",mod2((*prova >> 24) & 0xff));
+    // printf("dw = %x\n",*dW);
+    // printf("tmp = %x\n",tmp);
+    // *prova = *prova - ((((*prova >> 24) & 0xff) - tmp) << 24);
+    // printf("*prova = %x\n",*prova);
+
+    /* float to uint32_t */
+    // uint32_t a;
+    // float b;
+
+    // a = -1.4;
+    // b=0.45;
+    // printf("a = %f, b = %f\n",(float)a,b);
 
     return 0;
 }

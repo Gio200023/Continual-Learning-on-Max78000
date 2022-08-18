@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <unistd.h>
+#include "sample_inputs.h"
 
 #define SAMPLE_OUTPUT_LAYER_0                                                                               \
     {                                                                                                       \
@@ -201,12 +202,14 @@ int main()
      * @brief Pointer example
      * 
      */
-    uint32_t *pro;
-    pro = prova();
+    // uint32_t *pro;
+    // pro = prova();
 
-    for(int i=0; i< 10; i++){
-        printf("%d ",*(pro+i));
-    }
+    // for(int i=0; i< 10; i++){
+    //     printf("%d ",*(pro+i));
+    // }
+
+    printf("%x\n",sample_inputs_all[1][1]);
 
     return 0;
 }
