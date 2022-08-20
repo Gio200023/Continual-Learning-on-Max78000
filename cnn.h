@@ -52,7 +52,7 @@ typedef int16_t q15_t;
 #define OS_LAYERS {0}
 
 /* Use this timer to time the inference */
-// #define CNN_INFERENCE_TIMER MXC_TMR0
+#define CNN_INFERENCE_TIMER MXC_TMR0
 
 /* Port pin actions used to signal that processing is active */
 

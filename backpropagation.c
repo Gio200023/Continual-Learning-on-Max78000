@@ -18,7 +18,7 @@ void array_substraction(q15_t *res, q15_t *arr1, q15_t *arr2, int size)
     for (i = 0; i < size; i++)
     {
         *(res + i) = round(((*(arr1 + i) - *(arr2 + i)) / 0x7fff));
-        printf("tmp[%2d]: ml_soft[%4d]-true[%5d]= %d\n", i, arr1[i], arr2[i], res[i]);
+        // printf("tmp[%2d]: ml_soft[%4d]-true[%5d]= %d\n", i, arr1[i], arr2[i], res[i]);
     }
 }
 
@@ -164,6 +164,12 @@ uint32_t sottraction(int32_t *hex, int *dW, int shift)
 void split(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *hex5, int8_t *final, int choose, int *dW)
 {
     int i, m;
+
+    if (counter == 192)
+    {
+        counter = 0;
+    }
+
     for (i = 0; i < 2; i++)
     {
         i ? (contatore = 7) : (contatore = 9);
@@ -229,9 +235,8 @@ void split(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *
         {
             *(final + j + counter) = append[j];
         }
+        counter +=16;
     }
-
-    counter += 16;
 }
 
 void find_weights(int8_t *weights, int choose, int *dW)
@@ -250,10 +255,10 @@ void find_weights(int8_t *weights, int choose, int *dW)
                 }
                 else if (choose == 1)
                 {
-                    printf("\n");
-                    printf("PRIMA = %x , %x , %x , %x , %x\n",(int32_t)*(kernels_miei + i + 1), (int32_t)*(kernels_miei + i + 2), (int32_t)*(kernels_miei + i + 3), (int32_t)*(kernels_miei + i + 4), (int32_t)*(kernels_miei + i + 5));
+                    // printf("\n");
+                    // printf("PRIMA = %x , %x , %x , %x , %x\n", (int32_t) * (kernels_miei + i + 1), (int32_t) * (kernels_miei + i + 2), (int32_t) * (kernels_miei + i + 3), (int32_t) * (kernels_miei + i + 4), (int32_t) * (kernels_miei + i + 5));
                     split((int32_t)(kernels_miei + i + 1), (int32_t)(kernels_miei + i + 2), (int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 4), (int32_t)(kernels_miei + i + 5), weights, choose, dW);
-                    printf("DOPO = %x , %x , %x , %x , %x\n\n",(int32_t)*(kernels_miei + i + 1), (int32_t)*(kernels_miei + i + 2), (int32_t)*(kernels_miei + i + 3), (int32_t)*(kernels_miei + i + 4), (int32_t)*(kernels_miei + i + 5));
+                    // printf("DOPO = %x , %x , %x , %x , %x\n\n", (int32_t) * (kernels_miei + i + 1), (int32_t) * (kernels_miei + i + 2), (int32_t) * (kernels_miei + i + 3), (int32_t) * (kernels_miei + i + 4), (int32_t) * (kernels_miei + i + 5));
                 }
             }
             if (kernels_miei[i] == 329)

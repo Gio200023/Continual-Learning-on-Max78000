@@ -111,6 +111,6 @@
  /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Include/wdt_regs.h \
  /Users/gio/MaximSDK/Libraries/PeriphDrivers/Include/MAX78000/wut.h \
  /Users/gio/MaximSDK/Libraries/CMSIS/Device/Maxim/MAX78000/Include/wut_regs.h \
- cnn.h sampledata_mnist.h \
+ cnn.h sampledata_emnist.h \
  /Users/gio/MaximSDK/Tools/GNUTools/10.3/arm-none-eabi/include/math.h \
  backpropagation.h

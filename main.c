@@ -37,7 +37,7 @@
 
 /**
  *
- * TODO: sistemare load_weights, Load inputs da UART
+ * TODO: Load inputs da UART
  * ALMOST: sistemare cost, ora come ora da risultati ma scarsi
  *
  */
@@ -48,7 +48,7 @@
 #include <stdio.h>
 #include "mxc.h"
 #include "cnn.h"
-#include "sampledata_mnist.h"
+#include "sampledata_emnist.h"
 #include "math.h"
 #include "backpropagation.h"
 
@@ -91,7 +91,7 @@ void fail(void)
 // CHW 28x28, channel 0
 int count = 0;
 // static uint32_t *input_0 = &sample_inputs_all[0][0];
-static uint32_t input_0[] = SAMPLE_INPUT_MNIST;
+static uint32_t input_0[] = SAMPLE_INPUT_EMNIST;
 
 void load_input(void)
 {
@@ -131,23 +131,20 @@ int main(void)
   /**************************************************************************
    *  INFERENCE PER LAYER WITH BACKPROPAGATION: ONLINE LEARNING
    *************************************************************************/
-
+  cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
   int layer_count = 0;
-  // Enable peripheral, enable CNN interrupt, turn on CNN clock
-  // CNN clock: APB (50 MHz) div 1
-  // cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
-
   // MXC_TMR_SW_Start(MXC_TMR1);
   volatile uint32_t *addr;
-  for (i = 0; i < 10; i++)
+  for (i = 0; i < 1000; i++)
   {
-    cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
+    // Enable peripheral, enable CNN interrupt, turn on CNN clock
+    // CNN clock: APB (50 MHz) div 1
+    
     cnn_init();
+    cnn_load_weights(); // Load kernels
+    cnn_load_bias();
     for (layer_count = 0; layer_count < LAYER_NUM; layer_count = get_next_OS_layer(layer_count))
     {
-      cnn_load_weights(); // Load kernels
-      cnn_load_bias();
-
       cnn_set_layer_count(layer_count);
       cnn_config_layer(layer_count);
 
@@ -155,17 +152,8 @@ int main(void)
         load_input();
       cnn_start();
 
-      printf("Layer = %d\n", layer_count);
-
       while (cnn_time == 0)
         __WFI(); // Wait for CNN
-
-      addr = (volatile uint32_t *)0x50400000;
-
-      for (int l = 0; l < 10; l++)
-      {
-        printf("questo: %x\n",*addr++);
-      }
 
       if (layer_count == 0)
       {
@@ -179,37 +167,15 @@ int main(void)
       cnn_stop_SMs(); // Be sure that before next iterations all the State Machines are stopped
     }
 
-    // for (i = 0; i < 2; i++)
-    // {
-
-    //   for (layer_count = 0; layer_count < LAYER_NUM; layer_count = get_next_OS_layer(layer_count))
-    //   {
-    //     cnn_set_layer_count(layer_count);
-    //     /* start and configure layers */
-    //     cnn_config_layer(layer_count);
-    //     /* load input */
-    //     if (layer_count == 0)
-    //     {
-    //       load_input();
-    //     }
-    //     cnn_start();
-
-    //     while (cnn_time == 0) // forse devo ripetrmettere il caputring time
-    //       __WFI();            /* Wait for CNN */
-
-    //     cnn_stop_SMs();
-
-    //     if (layer_count == 0)
-    //     {
-    //       /* take output of layer_n-1 layer */
-    //       cnn_unload_frozen_layer((uint32_t *)ml_data_frozen); // mnist: WORKS
-    //       output_layer_3(ml_data_frozen, output_L0);           // WORKS
-    //       /* find weigths of first channel */
-    //       find_weights(weights, FIND, dW); // WORKS
-    //     }
-    //   }
-
     softmax_layer();
+
+#ifdef CNN_INFERENCE_TIMER
+    if (i % 100 == 0)
+    {
+      printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
+    }
+#endif
+
     /* predict channel 0 */
     for (int place = 0; place < CNN_NUM_OUTPUTS_FROZEN_LAYER; place++)
     {
@@ -220,7 +186,7 @@ int main(void)
      *  BACKPROPAGATION  *
      ********************/
 
-    /* Find neuron that need a weights changes */ // COST NON RIESCO A TROVARLO ANCORA: TODO
+    /* Find neuron that need a weights changes */ // COST da migliorare: TODO
     array_substraction(cost, ml_softmax, true_output, sizeof ml_softmax / sizeof ml_softmax[0]);
 
     for (f = 0; f < 1; f++)
@@ -238,10 +204,11 @@ int main(void)
       find_weights(weights, UPDATE, (int)dW);
     }
     printf("%d\n", a++);
-    cnn_disable();
   }
-
-  // cnn_disable();
+  cnn_disable();
+#ifdef CNN_INFERENCE_TIMER
+  printf("Approximate inference time of last iteration: %u us\n\n", cnn_time);
+#endif
 
   printf("Classification results:\n");
   for (i = 0; i < CNN_NUM_OUTPUTS; i++)

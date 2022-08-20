@@ -208,8 +208,9 @@ int main()
     // for(int i=0; i< 10; i++){
     //     printf("%d ",*(pro+i));
     // }
-
-    printf("%x\n",sample_inputs_all[1][1]);
+    int prova = 1;
+    // printf("%x\n",sample_inputs_all[1][1]);
+    prova ? (printf("ciao ") && printf("urca\n")) : printf("sbagliato");
 
     return 0;
 }
