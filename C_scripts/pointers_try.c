@@ -58,15 +58,75 @@ void modi(int *ptr)
 //     printf("dopodopo %d\n", *pntr);
 // }
 
-int prova[2][3] = {{1, 2, 3}, {4, 5, 6}};
+int n = 0;
+void due(int (*try)[3])
+{
+    for (int i = 0; i < 3; i++)
+    {
+        (*try)[i] = n++;
+    }
+}
+int place = 0;
+// void fill(int try[3][3])
+// {
+//     due(try +)
+// }
+
+void update_bias(int *bias)
+{
+    for (int i = 0; i < 6; i++)
+    {
+        *(bias + i) += 2;
+    }
+}
 
 int main()
 {
     // printf("%d\n",sizeof(sample)/sizeof(uint8_t));
-    int *input_0 = &prova[0][0];
+    // int *input_0 = &prova[0][0];
 
-    for (int i = 0; i < 2; i++)
+    // for (int i = 0; i < 2; i++)
+    // {
+    //     printf("%x ", *(input_0 + i * 3));
+    // }
+
+    // fill a multidimensional array
+    // int prova[3][3] = {0};
+    // for (int f = 0; f < 3; f++)
+    // {
+    //     printf("\n");
+    //     for (int m = 0; m < 3; m++)
+    //     {
+    //         printf(" %d ", prova[f][m]);
+    //     }
+    // }
+    // fill(prova);
+
+    // for (int f = 0; f < 3; f++)
+    // {
+    //     printf("\n");
+    //     for (int m = 0; m < 3; m++)
+    //     {
+    //         printf(" %d ", prova[f][m]);
+    //     }
+    // }
+
+    // int m=0;
+    // int append[10] = {0};
+    // append[m++]=7;
+    // append[m++]=5;
+    // append[m]=3453;
+
+    // for(int i=0; i< 10; i++){
+    //     printf(" %d ",append[i]);
+    // }
+
+    // BIAS UPDATE
+    int bias[6] = {1, 2, 3, 4, 5, 6};
+    update_bias(bias);
+
+    for (int i = 0; i < 6; i++)
     {
-        printf("%x ", *(input_0 + i * 3));
+        printf("%d\n", bias[i]);
     }
 }

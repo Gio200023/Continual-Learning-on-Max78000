@@ -18,23 +18,6 @@ void array_substraction(q15_t *res, q15_t *arr1, q15_t *arr2, int size)
     for (i = 0; i < size; i++)
     {
         *(res + i) = round(((*(arr1 + i) - *(arr2 + i)) / 0x7fff));
-        // printf("tmp[%2d]: ml_soft[%4d]-true[%5d]= %d\n", i, arr1[i], arr2[i], res[i]);
-    }
-}
-
-void delta_multiplication(q15_t *res, q15_t *cost, int32_t out_value, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        res[i] = cost[i] * out_value;
-    }
-}
-
-void dW_multiplication(q15_t *res, q15_t *delta, uint32_t l_rate, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        res[i] = delta[i] * l_rate;
     }
 }
 
@@ -144,104 +127,399 @@ void output_layer_3(const int32_t out, uint8_t *final)
 }
 
 uint16_t append[16];
-int contatore = 0;
 int counter = 0;
 static int update_place = 0;
+static int spot = 0;
 
-uint32_t sottraction(int32_t *hex, int *dW, int shift)
+uint32_t sottraction(int32_t *hex, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int shift)
 {
     int8_t tmp;
-    if (update_place == 192)
-    {
-        update_place = 0;
-    }
-    tmp = mod2((*hex >> shift) & 0xff) - *(dW + update_place++);
+    tmp = mod2((*hex >> shift) & 0xff) - (*dW)[update_place++];
     *hex = *hex - ((((*hex >> shift) & 0xff) - tmp) << shift);
 
     return *hex;
 }
 
-void split(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *hex5, int8_t *final, int choose, int *dW)
+// 7 hex weights in this channel
+void split_7(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *hex5, int32_t *hex6, int32_t *hex7, int8_t (*final)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
 {
-    int i, m;
+    int i, m = 0;
+    if (choose == 0) // FIND
+    {
+        if (spot == 0)
+        {
+            append[m++] = mod2(*hex2 >> 8);
+            append[m++] = mod2(*hex2 >> 16);
+            append[m++] = mod2(*hex2 >> 24);
+            append[m++] = mod2(*hex1 >> 0);
+            append[m++] = mod2(*hex5 >> 24);
+            append[m++] = mod2(*hex4 >> 0);
+            append[m++] = mod2(*hex4 >> 8);
+            append[m++] = mod2(*hex4 >> 16);
+            append[m++] = mod2(*hex4 >> 24);
+            append[m++] = mod2(*hex3 >> 0);
+            append[m++] = mod2(*hex3 >> 8);
+            append[m++] = mod2(*hex3 >> 16);
+            append[m++] = mod2(*hex3 >> 24);
+            append[m++] = mod2(*hex7 >> 16);
+            append[m++] = mod2(*hex7 >> 24);
+            append[m++] = mod2(*hex6 >> 0);
+        }
+        else
+        {
+            append[m++] = mod2(*hex2 >> 24);
+            append[m++] = mod2(*hex1 >> 0);
+            append[m++] = mod2(*hex1 >> 8);
+            append[m++] = mod2(*hex5 >> 0);
+            append[m++] = mod2(*hex5 >> 8);
+            append[m++] = mod2(*hex5 >> 16);
+            append[m++] = mod2(*hex5 >> 24);
+            append[m++] = mod2(*hex4 >> 0);
+            append[m++] = mod2(*hex4 >> 8);
+            append[m++] = mod2(*hex4 >> 16);
+            append[m++] = mod2(*hex4 >> 24);
+            append[m++] = mod2(*hex3 >> 0);
+            append[m++] = mod2(*hex7 >> 24);
+            append[m++] = mod2(*hex6 >> 0);
+            append[m++] = mod2(*hex6 >> 8);
+            append[m++] = mod2(*hex6 >> 16);
+        }
 
+        for (int j = 0; j < 16; j++)
+        {
+            (*final)[j + counter] = (int8_t)append[j];
+        }
+    }
+    else if (choose == 1) // UPDATE
+    {
+        if (spot == 0)
+        {
+            *hex2 = sottraction(hex2, dW, 8);
+            *hex2 = sottraction(hex2, dW, 16);
+            *hex2 = sottraction(hex2, dW, 24);
+            *hex1 = sottraction(hex1, dW, 0);
+            *hex5 = sottraction(hex5, dW, 24);
+            *hex4 = sottraction(hex4, dW, 0);
+            *hex4 = sottraction(hex4, dW, 8);
+            *hex4 = sottraction(hex4, dW, 16);
+            *hex4 = sottraction(hex4, dW, 24);
+            *hex3 = sottraction(hex3, dW, 0);
+            *hex3 = sottraction(hex3, dW, 8);
+            *hex3 = sottraction(hex3, dW, 16);
+            *hex3 = sottraction(hex3, dW, 24);
+            *hex7 = sottraction(hex7, dW, 16);
+            *hex7 = sottraction(hex7, dW, 24);
+            *hex6 = sottraction(hex6, dW, 0);
+        }
+        else
+        {
+            *hex2 = sottraction(hex2, dW, 24);
+            *hex1 = sottraction(hex1, dW, 0);
+            *hex1 = sottraction(hex1, dW, 8);
+            *hex5 = sottraction(hex5, dW, 0);
+            *hex5 = sottraction(hex5, dW, 8);
+            *hex5 = sottraction(hex5, dW, 16);
+            *hex5 = sottraction(hex5, dW, 24);
+            *hex4 = sottraction(hex4, dW, 0);
+            *hex4 = sottraction(hex4, dW, 8);
+            *hex4 = sottraction(hex4, dW, 16);
+            *hex4 = sottraction(hex4, dW, 24);
+            *hex3 = sottraction(hex3, dW, 0);
+            *hex7 = sottraction(hex7, dW, 24);
+            *hex6 = sottraction(hex6, dW, 0);
+            *hex6 = sottraction(hex6, dW, 8);
+            *hex6 = sottraction(hex6, dW, 16);
+        }
+    }
+}
+
+// 6 hex weights in this channel
+void split_6(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *hex5, int32_t *hex6, int8_t (*final)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
+{
+    int i, m = 0;
+    if (choose == 0) // find
+    {
+        if (spot == 0)
+        {
+            append[m++] = mod2(*hex1 >> 8);
+            append[m++] = mod2(*hex1 >> 16);
+            append[m++] = mod2(*hex4 >> 8);
+            append[m++] = mod2(*hex4 >> 16);
+            append[m++] = mod2(*hex4 >> 24);
+            append[m++] = mod2(*hex3 >> 0);
+            append[m++] = mod2(*hex3 >> 8);
+            append[m++] = mod2(*hex3 >> 16);
+            append[m++] = mod2(*hex3 >> 24);
+            append[m++] = mod2(*hex2 >> 0);
+            append[m++] = mod2(*hex2 >> 8);
+            append[m++] = mod2(*hex6 >> 0);
+            append[m++] = mod2(*hex6 >> 8);
+            append[m++] = mod2(*hex6 >> 16);
+            append[m++] = mod2(*hex6 >> 24);
+            append[m++] = mod2(*hex5 >> 0);
+        }
+        else if (spot == 1)
+        {
+            append[m++] = mod2(*hex2 >> 8);
+            append[m++] = mod2(*hex2 >> 16);
+            append[m++] = mod2(*hex2 >> 24);
+            append[m++] = mod2(*hex1 >> 0);
+            append[m++] = mod2(*hex1 >> 8);
+            append[m++] = mod2(*hex1 >> 16);
+            append[m++] = mod2(*hex5 >> 8);
+            append[m++] = mod2(*hex5 >> 16);
+            append[m++] = mod2(*hex5 >> 24);
+            append[m++] = mod2(*hex4 >> 0);
+            append[m++] = mod2(*hex4 >> 8);
+            append[m++] = mod2(*hex4 >> 16);
+            append[m++] = mod2(*hex4 >> 24);
+            append[m++] = mod2(*hex3 >> 0);
+            append[m++] = mod2(*hex3 >> 8);
+            append[m++] = mod2(*hex6 >> 0);
+        }
+        else if (spot == 2)
+        {
+            append[m++] = mod2(*hex3 >> 8);
+            append[m++] = mod2(*hex3 >> 16);
+            append[m++] = mod2(*hex3 >> 24);
+            append[m++] = mod2(*hex2 >> 0);
+            append[m++] = mod2(*hex2 >> 8);
+            append[m++] = mod2(*hex2 >> 16);
+            append[m++] = mod2(*hex2 >> 24);
+            append[m++] = mod2(*hex1 >> 0);
+            append[m++] = mod2(*hex6 >> 24);
+            append[m++] = mod2(*hex5 >> 0);
+            append[m++] = mod2(*hex5 >> 8);
+            append[m++] = mod2(*hex5 >> 16);
+            append[m++] = mod2(*hex5 >> 24);
+            append[m++] = mod2(*hex4 >> 0);
+            append[m++] = mod2(*hex4 >> 8);
+            append[m++] = mod2(*hex4 >> 16);
+        }
+        else if (spot == 3)
+        {
+            append[m++] = mod2(*hex1 >> 24);
+            append[m++] = mod2(*hex4 >> 16);
+            append[m++] = mod2(*hex4 >> 24);
+            append[m++] = mod2(*hex3 >> 0);
+            append[m++] = mod2(*hex3 >> 8);
+            append[m++] = mod2(*hex3 >> 16);
+            append[m++] = mod2(*hex3 >> 24);
+            append[m++] = mod2(*hex2 >> 0);
+            append[m++] = mod2(*hex2 >> 8);
+            append[m++] = mod2(*hex2 >> 16);
+            append[m++] = mod2(*hex6 >> 8);
+            append[m++] = mod2(*hex6 >> 16);
+            append[m++] = mod2(*hex6 >> 24);
+            append[m++] = mod2(*hex5 >> 0);
+            append[m++] = mod2(*hex5 >> 8);
+            append[m++] = mod2(*hex5 >> 16);
+        }
+        else if (spot == 4)
+        {
+            append[m++] = mod2(*hex2 >> 24);
+            append[m++] = mod2(*hex1 >> 0);
+            append[m++] = mod2(*hex1 >> 8);
+            append[m++] = mod2(*hex1 >> 16);
+            append[m++] = mod2(*hex1 >> 24);
+            append[m++] = mod2(*hex5 >> 16);
+            append[m++] = mod2(*hex5 >> 24);
+            append[m++] = mod2(*hex4 >> 0);
+            append[m++] = mod2(*hex4 >> 8);
+            append[m++] = mod2(*hex4 >> 16);
+            append[m++] = mod2(*hex4 >> 24);
+            append[m++] = mod2(*hex3 >> 0);
+            append[m++] = mod2(*hex3 >> 8);
+            append[m++] = mod2(*hex3 >> 16);
+            append[m++] = mod2(*hex6 >> 8);
+            append[m++] = mod2(*hex6 >> 16);
+        }
+        for (int j = 0; j < 16; j++)
+        {
+            (*final)[j + counter] = (int8_t)append[j];
+        }
+    }
+    else // update
+    {
+        if (spot == 0)
+        {
+            *hex1 = sottraction(hex1, dW, 8);
+            *hex1 = sottraction(hex1, dW, 16);
+            *hex4 = sottraction(hex4, dW, 8);
+            *hex4 = sottraction(hex4, dW, 16);
+            *hex4 = sottraction(hex4, dW, 24);
+            *hex3 = sottraction(hex3, dW, 0);
+            *hex3 = sottraction(hex3, dW, 8);
+            *hex3 = sottraction(hex3, dW, 16);
+            *hex3 = sottraction(hex3, dW, 24);
+            *hex2 = sottraction(hex2, dW, 0);
+            *hex2 = sottraction(hex2, dW, 8);
+            *hex6 = sottraction(hex6, dW, 0);
+            *hex6 = sottraction(hex6, dW, 8);
+            *hex6 = sottraction(hex6, dW, 16);
+            *hex6 = sottraction(hex6, dW, 24);
+            *hex5 = sottraction(hex5, dW, 0);
+        }
+        else if (spot == 1)
+        {
+            *hex2 = sottraction(hex2, dW, 8);
+            *hex2 = sottraction(hex2, dW, 16);
+            *hex2 = sottraction(hex2, dW, 24);
+            *hex1 = sottraction(hex1, dW, 0);
+            *hex1 = sottraction(hex1, dW, 8);
+            *hex1 = sottraction(hex1, dW, 16);
+            *hex5 = sottraction(hex5, dW, 8);
+            *hex5 = sottraction(hex5, dW, 16);
+            *hex5 = sottraction(hex5, dW, 24);
+            *hex4 = sottraction(hex4, dW, 0);
+            *hex4 = sottraction(hex4, dW, 8);
+            *hex4 = sottraction(hex4, dW, 16);
+            *hex4 = sottraction(hex4, dW, 24);
+            *hex3 = sottraction(hex3, dW, 0);
+            *hex3 = sottraction(hex3, dW, 8);
+            *hex6 = sottraction(hex6, dW, 0);
+        }
+        else if (spot == 2)
+        {
+            *hex3 = sottraction(hex3, dW, 8);
+            *hex3 = sottraction(hex3, dW, 16);
+            *hex3 = sottraction(hex3, dW, 24);
+            *hex2 = sottraction(hex2, dW, 0);
+            *hex2 = sottraction(hex2, dW, 8);
+            *hex2 = sottraction(hex2, dW, 16);
+            *hex2 = sottraction(hex2, dW, 24);
+            *hex1 = sottraction(hex1, dW, 0);
+            *hex6 = sottraction(hex6, dW, 24);
+            *hex5 = sottraction(hex5, dW, 0);
+            *hex5 = sottraction(hex5, dW, 8);
+            *hex5 = sottraction(hex5, dW, 16);
+            *hex5 = sottraction(hex5, dW, 24);
+            *hex4 = sottraction(hex4, dW, 0);
+            *hex4 = sottraction(hex4, dW, 8);
+            *hex4 = sottraction(hex4, dW, 16);
+        }
+        else if (spot == 3)
+        {
+            *hex1 = sottraction(hex1, dW, 24);
+            *hex4 = sottraction(hex4, dW, 16);
+            *hex4 = sottraction(hex4, dW, 24);
+            *hex3 = sottraction(hex3, dW, 0);
+            *hex3 = sottraction(hex3, dW, 8);
+            *hex3 = sottraction(hex3, dW, 16);
+            *hex3 = sottraction(hex3, dW, 24);
+            *hex2 = sottraction(hex2, dW, 0);
+            *hex2 = sottraction(hex2, dW, 8);
+            *hex2 = sottraction(hex2, dW, 16);
+            *hex6 = sottraction(hex6, dW, 8);
+            *hex6 = sottraction(hex6, dW, 16);
+            *hex6 = sottraction(hex6, dW, 24);
+            *hex5 = sottraction(hex5, dW, 0);
+            *hex5 = sottraction(hex5, dW, 8);
+            *hex5 = sottraction(hex5, dW, 16);
+        }
+        else if (spot == 4)
+        {
+            *hex2 = sottraction(hex2, dW, 24);
+            *hex1 = sottraction(hex1, dW, 0);
+            *hex1 = sottraction(hex1, dW, 8);
+            *hex1 = sottraction(hex1, dW, 16);
+            *hex1 = sottraction(hex1, dW, 24);
+            *hex5 = sottraction(hex5, dW, 16);
+            *hex5 = sottraction(hex5, dW, 24);
+            *hex4 = sottraction(hex4, dW, 0);
+            *hex4 = sottraction(hex4, dW, 8);
+            *hex4 = sottraction(hex4, dW, 16);
+            *hex4 = sottraction(hex4, dW, 24);
+            *hex3 = sottraction(hex3, dW, 0);
+            *hex3 = sottraction(hex3, dW, 8);
+            *hex3 = sottraction(hex3, dW, 16);
+            *hex6 = sottraction(hex6, dW, 8);
+            *hex6 = sottraction(hex6, dW, 16);
+        }
+    }
+}
+
+// 5 hex weights in this channel
+void split_5(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *hex5, int8_t (*final)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
+{
+    int i, m = 0;
+
+    if (choose == 0) // FIND
+    {
+        append[m++] = mod2(*hex3 >> 24);
+        append[m++] = mod2(*hex2 >> 0);
+        append[m++] = mod2(*hex2 >> 8);
+        append[m++] = mod2(*hex2 >> 16);
+        append[m++] = mod2(*hex2 >> 24);
+        append[m++] = mod2(*hex1 >> 0);
+        append[m++] = mod2(*hex1 >> 8);
+        if (spot == 0)
+        {
+            append[m++] = mod2(*hex1 >> 16);
+
+            append[m++] = mod2(*hex1 >> 24);
+        }
+        else
+        {
+            append[m++] = mod2(*hex5 >> 0);
+
+            append[m++] = mod2(*hex5 >> 8);
+        }
+        append[m++] = mod2(*hex5 >> 16);
+        append[m++] = mod2(*hex5 >> 24);
+        append[m++] = mod2(*hex4 >> 0);
+        append[m++] = mod2(*hex4 >> 8);
+        append[m++] = mod2(*hex4 >> 16);
+        append[m++] = mod2(*hex4 >> 24);
+        append[m++] = mod2(*hex3 >> 0);
+
+        for (int j = 0; j < 16; j++)
+        {
+            (*final)[j + counter] = (int8_t)append[j];
+        }
+    }
+    else if (choose == 1) // UPDATE
+    {
+        *hex3 = sottraction(hex3, dW, 24);
+        *hex2 = sottraction(hex2, dW, 0);
+        *hex2 = sottraction(hex2, dW, 8);
+        *hex2 = sottraction(hex2, dW, 16);
+        *hex2 = sottraction(hex2, dW, 24);
+        *hex1 = sottraction(hex1, dW, 0);
+        *hex1 = sottraction(hex1, dW, 8);
+        if (spot == 0)
+        {
+            *hex1 = sottraction(hex1, dW, 16);
+
+            *hex1 = sottraction(hex1, dW, 24);
+        }
+        else
+        {
+            *hex5 = sottraction(hex5, dW, 0);
+
+            *hex5 = sottraction(hex5, dW, 8);
+        }
+        *hex5 = sottraction(hex5, dW, 16);
+        *hex5 = sottraction(hex5, dW, 24);
+        *hex4 = sottraction(hex4, dW, 0);
+        *hex4 = sottraction(hex4, dW, 8);
+        *hex4 = sottraction(hex4, dW, 16);
+        *hex4 = sottraction(hex4, dW, 24);
+        *hex3 = sottraction(hex3, dW, 0);
+    }
+}
+
+void find_weights(int8_t (*weights)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
+{
+    int i, m = 288, place = 0;
+    if (update_place == 192)
+    {
+        update_place = 0;
+    }
     if (counter == 192)
     {
         counter = 0;
     }
-
-    for (i = 0; i < 2; i++)
-    {
-        i ? (contatore = 7) : (contatore = 9);
-
-        for (m = 0; m < contatore; m++)
-        {
-            if (i == 0)
-            {
-                if (m == 0)
-                {
-                    choose ? (*hex3 = sottraction(hex3, dW, 24)) : (append[m] = mod2(*hex3 >> 24));
-                }
-                else if (m == 1)
-                {
-                    choose ? (*hex2 = sottraction(hex2, dW, 0)) : (append[m] = mod2(*hex2 >> 0));
-                    m++;
-                    choose ? (*hex2 = sottraction(hex2, dW, 8)) : (append[m] = mod2(*hex2 >> 8));
-                    m++;
-                    choose ? (*hex2 = sottraction(hex2, dW, 16)) : (append[m] = mod2(*hex2 >> 16));
-                    m++;
-                    choose ? (*hex2 = sottraction(hex2, dW, 24)) : (append[m] = mod2(*hex2 >> 24));
-                }
-                else if (m == 5)
-                {
-                    choose ? (*hex1 = sottraction(hex1, dW, 0)) : (append[m] = mod2(*hex1 >> 0));
-                    m++;
-                    choose ? (*hex1 = sottraction(hex1, dW, 8)) : (append[m] = mod2(*hex1 >> 8));
-                    m++;
-                    choose ? (*hex1 = sottraction(hex1, dW, 16)) : (append[m] = mod2(*hex1 >> 16));
-                    m++;
-                    choose ? (*hex1 = sottraction(hex1, dW, 24)) : (append[m] = mod2(*hex1 >> 24));
-                }
-            }
-            if (i == 1)
-            {
-                if (m == 0)
-                {
-                    choose ? (*hex5 = sottraction(hex5, dW, 16)) : (append[m + 9] = mod2(*hex5 >> 16));
-                    m++;
-                    choose ? (*hex5 = sottraction(hex5, dW, 24)) : (append[m + 9] = mod2(*hex5 >> 24));
-                }
-                else if (m == 2)
-                {
-                    choose ? (*hex4 = sottraction(hex4, dW, 0)) : (append[m + 9] = mod2(*hex4 >> 0));
-                    m++;
-                    choose ? (*hex4 = sottraction(hex4, dW, 8)) : (append[m + 9] = mod2(*hex4 >> 8));
-                    m++;
-                    choose ? (*hex4 = sottraction(hex4, dW, 16)) : (append[m + 9] = mod2(*hex4 >> 16));
-                    m++;
-                    choose ? (*hex4 = sottraction(hex4, dW, 24)) : (append[m + 9] = mod2(*hex4 >> 24));
-                }
-                else if (m == 6)
-                {
-                    choose ? (*hex3 = sottraction(hex3, dW, 0)) : (append[m + 9] = mod2(*hex3 >> 0));
-                }
-            }
-        }
-    }
-
-    if (choose == 0)
-    {
-        for (int j = 0; j < 16; j++)
-        {
-            *(final + j + counter) = append[j];
-        }
-        counter +=16;
-    }
-}
-
-void find_weights(int8_t *weights, int choose, int *dW)
-{
-    int i, m = 0;
 
     for (i = 0; i < 17930; i++)
     {
@@ -249,37 +527,70 @@ void find_weights(int8_t *weights, int choose, int *dW)
         {
             if (kernels_miei[i] == 41)
             {
-                if (choose == 0)
-                {
-                    split((int32_t)(kernels_miei + i + 1), (int32_t)(kernels_miei + i + 2), (int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 4), (int32_t)(kernels_miei + i + 5), weights, choose, dW);
-                }
-                else if (choose == 1)
-                {
-                    // printf("\n");
-                    // printf("PRIMA = %x , %x , %x , %x , %x\n", (int32_t) * (kernels_miei + i + 1), (int32_t) * (kernels_miei + i + 2), (int32_t) * (kernels_miei + i + 3), (int32_t) * (kernels_miei + i + 4), (int32_t) * (kernels_miei + i + 5));
-                    split((int32_t)(kernels_miei + i + 1), (int32_t)(kernels_miei + i + 2), (int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 4), (int32_t)(kernels_miei + i + 5), weights, choose, dW);
-                    // printf("DOPO = %x , %x , %x , %x , %x\n\n", (int32_t) * (kernels_miei + i + 1), (int32_t) * (kernels_miei + i + 2), (int32_t) * (kernels_miei + i + 3), (int32_t) * (kernels_miei + i + 4), (int32_t) * (kernels_miei + i + 5));
-                }
+                split_5((int32_t)(kernels_miei + i + 1), (int32_t)(kernels_miei + i + 2), (int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 4), (int32_t)(kernels_miei + i + 5), (weights + place), choose, dW + place++);
+                split_6((int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 5), (int32_t)(kernels_miei + i + 6), (int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 9), weights + place, choose, dW + place++);
+
+                split_7((int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 10), (int32_t)(kernels_miei + i + 11), (int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), weights + place, choose, dW + place++);
+                spot++; // 1
+
+                split_6((int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), (int32_t)(kernels_miei + i + 15), (int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 18), weights + place, choose, dW + place++);
+                spot++; // 2
+
+                split_6((int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 17), (int32_t)(kernels_miei + i + 18), (int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 20), (int32_t)(kernels_miei + i + 21), weights + place, choose, dW + place++);
+                spot++; // 3
+
+                split_6((int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 21), (int32_t)(kernels_miei + i + 22), (int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), weights + place, choose, dW + place++);
+                spot = 1;
+
+                split_7((int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), (int32_t)(kernels_miei + i + 26), (int32_t)(kernels_miei + i + 27), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), weights + place, choose, dW + place++);
+                spot = 4; // 4
+
+                split_6((int32_t)(kernels_miei + i + 28), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), (int32_t)(kernels_miei + i + 31), (int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 34), weights + place, choose, dW + place++);
+                spot = 1;
+
+                split_5((int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 33), (int32_t)(kernels_miei + i + 34), (int32_t)(kernels_miei + i + 35), (int32_t)(kernels_miei + i + 36), weights + place, choose, dW + place++);
+                spot = 0;
+
+                split_5((int32_t)(kernels_miei + i + 37), (int32_t)(kernels_miei + i + 38), (int32_t)(kernels_miei + i + 39), (int32_t)(kernels_miei + i + 40), (int32_t)(kernels_miei + i + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+                place = 0;
+                counter += 16;
+                update_place = 0;
+                i += 39;
             }
-            if (kernels_miei[i] == 329)
+            else if (kernels_miei[i] == 329)
             {
-                for (m = 0; m < 329; m++)
-                {
-                    if (m >= 288 && m < 293)
-                    {
-                        if (choose == 0)
-                        {
-                            split((int32_t)(kernels_miei + m + i + 1), (int32_t)(kernels_miei + m + i + 2), (int32_t)(kernels_miei + m + i + 3), (int32_t)(kernels_miei + m + i + 4), (int32_t)(kernels_miei + m + i + 5), weights, choose, dW);
-                            break;
-                        }
-                        else if (choose == 1)
-                        {
-                            split((int32_t)(kernels_miei + m + i + 1), (int32_t)(kernels_miei + m + i + 2), (int32_t)(kernels_miei + m + i + 3), (int32_t)(kernels_miei + m + i + 4), (int32_t)(kernels_miei + m + i + 5), weights, choose, dW);
-                            break;
-                        }
-                    }
-                }
+                split_5((int32_t)(kernels_miei + i + m + 1), (int32_t)(kernels_miei + i + m + 2), (int32_t)(kernels_miei + i + m + 3), (int32_t)(kernels_miei + i + m + 4), (int32_t)(kernels_miei + i + m + 5), weights + place, choose, dW + place++);
+                split_6((int32_t)(kernels_miei + i + m + 3), (int32_t)(kernels_miei + i + m + 5), (int32_t)(kernels_miei + i + m + 6), (int32_t)(kernels_miei + i + m + 7), (int32_t)(kernels_miei + i + m + 8), (int32_t)(kernels_miei + i + m + 9), weights + place, choose, dW + place++);
+                split_7((int32_t)(kernels_miei + i + m + 7), (int32_t)(kernels_miei + i + m + 8), (int32_t)(kernels_miei + i + m + 10), (int32_t)(kernels_miei + i + m + 11), (int32_t)(kernels_miei + i + m + 12), (int32_t)(kernels_miei + i + m + 13), (int32_t)(kernels_miei + i + m + 14), weights + place, choose, dW + place++);
+                spot++; // 1
+                split_6((int32_t)(kernels_miei + i + m + 12), (int32_t)(kernels_miei + i + m + 13), (int32_t)(kernels_miei + i + m + 14), (int32_t)(kernels_miei + i + m + 15), (int32_t)(kernels_miei + i + m + 16), (int32_t)(kernels_miei + i + m + 18), weights + place, choose, dW + place++);
+                spot++; // 2
+                split_6((int32_t)(kernels_miei + i + m + 16), (int32_t)(kernels_miei + i + m + 17), (int32_t)(kernels_miei + i + m + 18), (int32_t)(kernels_miei + i + m + 19), (int32_t)(kernels_miei + i + m + 20), (int32_t)(kernels_miei + i + m + 21), weights + place, choose, dW + place++);
+                spot++; // 3
+                split_6((int32_t)(kernels_miei + i + m + 19), (int32_t)(kernels_miei + i + m + 21), (int32_t)(kernels_miei + i + m + 22), (int32_t)(kernels_miei + i + m + 23), (int32_t)(kernels_miei + i + m + 24), (int32_t)(kernels_miei + i + m + 25), weights + place, choose, dW + place++);
+                spot = 1;
+                split_7((int32_t)(kernels_miei + i + m + 23), (int32_t)(kernels_miei + i + m + 24), (int32_t)(kernels_miei + i + m + 25), (int32_t)(kernels_miei + i + m + 26), (int32_t)(kernels_miei + i + m + 27), (int32_t)(kernels_miei + i + m + 29), (int32_t)(kernels_miei + i + m + 30), weights + place, choose, dW + place++);
+                spot = 4; // 4
+                split_6((int32_t)(kernels_miei + i + m + 28), (int32_t)(kernels_miei + i + m + 29), (int32_t)(kernels_miei + i + m + 30), (int32_t)(kernels_miei + i + m + 31), (int32_t)(kernels_miei + i + m + 32), (int32_t)(kernels_miei + i + m + 34), weights + place, choose, dW + place++);
+                spot = 1;
+                split_5((int32_t)(kernels_miei + i + m + 32), (int32_t)(kernels_miei + i + m + 33), (int32_t)(kernels_miei + i + m + 34), (int32_t)(kernels_miei + i + m + 35), (int32_t)(kernels_miei + i + m + 36), weights + place, choose, dW + place++);
+                spot = 0;
+                split_5((int32_t)(kernels_miei + i + m + 37), (int32_t)(kernels_miei + i + m + 38), (int32_t)(kernels_miei + i + m + 39), (int32_t)(kernels_miei + i + m + 40), (int32_t)(kernels_miei + i + m + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+                place = 0;
+                counter += 16;
+                update_place = 0;
+                i += 39;
             }
         }
+    }
+}
+
+void bias_update(q15_t *cost, float learning_rate)
+{
+    int tmp;
+    for (int i = 0; i < 10; i++)
+    {
+        tmp = learning_rate * *(cost+i);
+        bias[i] -= tmp;
     }
 }

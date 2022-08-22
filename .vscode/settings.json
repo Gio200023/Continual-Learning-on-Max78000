@@ -77,7 +77,13 @@
         "sampleoutput.h": "c",
         "stdio.h": "c",
         "mxc.h": "c",
-        "cnn.h": "c"
+        "cnn.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "ranges": "c",
+        "utility": "c",
+        "sampledata_emnist.h": "c"
     }
 }
 

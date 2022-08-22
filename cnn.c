@@ -108,7 +108,7 @@ int cnn_load_weights(void)
 	{
 		*((volatile uint8_t *)((uint32_t)addr | 1)) = 0x01; // Set address
 		len = *ptr++;
-		// printf("Eccolo %x\n", *ptr);
+
 		while (len-- > 0)
 		{
 			*addr++ = *ptr++;
@@ -118,7 +118,7 @@ int cnn_load_weights(void)
 	return CNN_OK;
 }
 
-uint8_t bias[10] = {0x16, 0x1c, 0xe4, 0xdd, 0x13, 0xf7, 0xe0, 0xf6, 0x1f, 0x08};
+// uint8_t bias[10] = {0x16, 0x1c, 0xe4, 0xdd, 0x13, 0xf7, 0xe0, 0xf6, 0x1f, 0x08};
 
 static const uint8_t *bias_0 = bias;
 
@@ -853,7 +853,6 @@ int get_next_OS_layer(int layer_count)
 			return OS_layers[i + 1];
 		}
 	}
-	printf("qui2\n");
 	printf("[ERR]: Layer %d is not in the One-Shot list\n", layer_count);
 	return 0;
 }
