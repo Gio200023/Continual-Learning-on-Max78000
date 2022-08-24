@@ -1,5 +1,9 @@
 import numpy as np
 
+"""
+Sample application of OL algorithm 
+"""
+
 true_output=np.array([32767])
 out_softmax=np.array([3855])
 learning_rate=0.001

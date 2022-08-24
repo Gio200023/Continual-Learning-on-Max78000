@@ -35,27 +35,15 @@
 // mnist
 // Created using ai8xize.py --log --test-dir sdk/Examples/MAX78000/CNN --prefix mnist --checkpoint-file trained/ai85-mnist-qat8-q.pth.tar --config-file networks/mnist-chw-ai85.yaml --softmax --overwrite --debug --log-pooling --debug-computation --compact-data --mexpress --timer 0 --display-checkpoint --device MAX78000 --timer 0 --display-checkpoint --verbose
 
-/**
- *
- * TODO: Load inputs da UART
- * 
- */
-
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
 #include <stdio.h>
 #include "mxc.h"
 #include "cnn.h"
-#include "sampledata_emnist.h"
+#include "sample_inputs.h"
 #include "math.h"
 #include "backpropagation.h"
-
-/**
- * @brief layers variables
- *
- */
-uint8_t output_L0[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
 
 /**
  * @brief weigths array
@@ -64,20 +52,31 @@ uint8_t output_L0[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
 int8_t weights[CNN_NUM_OUTPUTS][CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
 
 /**
- * @brief prediction #0 channel -> wieghts x n-1 layer
+ * @brief predictions of every channel -> weights[][] x output[LAYER_NUM-1]
  *
  */
-int16_t prediction[CNN_NUM_OUTPUTS][CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
-volatile uint32_t cnn_time; // Stopwatch
+int8_t prediction[CNN_NUM_OUTPUTS][CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0}; // da int16 a int8
 
-/* Backpropagation variables */
-float learning_rate = 0.01;
-int iterations = 5000;
-q15_t true_output[CNN_NUM_OUTPUTS] = {0x7fff, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-q15_t cost[10] = {0};
+// Learning rate
+float learning_rate = 0.1;
+
+// True output array and cost array
+int true_output[CNN_NUM_OUTPUTS] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int cost[10] = {0};
+
+// Values to subtract
 int16_t deltaW = 0;
 int dW[CNN_NUM_OUTPUTS][CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
-int db = 0;
+
+// Output array
+static int32_t ml_data[CNN_NUM_OUTPUTS];
+static int32_t ml_data_frozen[CNN_NUM_OUTPUTS_LAYER_0];
+int8_t output_L0[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0}; // cambiato da uint a int
+
+// Softmax array
+static q15_t ml_softmax[CNN_NUM_OUTPUTS];
+
+volatile uint32_t cnn_time; // Stopwatch
 
 void fail(void)
 {
@@ -88,20 +87,17 @@ void fail(void)
 
 // 1-channel 28x28 data input (784 bytes / 196 32-bit words):
 // CHW 28x28, channel 0
-int count = 0;
-// static uint32_t *input_0 = &sample_inputs_all[0][0];
-static uint32_t input_0[] = SAMPLE_INPUT_EMNIST;
-
+int input = 0;
+static uint32_t *input_0;
 void load_input(void)
 {
-  // This function loads the sample data input -- replace with actual data
+  if (input == 45)
+  {
+    input = 0;
+  }
+  input_0 = (uint32_t *)sample_inputs_all[input++];
   memcpy32((uint32_t *)0x50400000, input_0, 196);
 }
-
-// Classification layer:
-static int32_t ml_data[CNN_NUM_OUTPUTS];
-static int32_t ml_data_frozen[CNN_NUM_OUTPUTS_LAYER_0];
-static q15_t ml_softmax[CNN_NUM_OUTPUTS];
 
 void softmax_layer(void)
 {
@@ -127,20 +123,20 @@ int main(void)
   MXC_Delay(SEC(2)); // Let debugger interrupt if needed
 
   /**************************************************************************
-   *  INFERENCE PER LAYER WITH BACKPROPAGATION: ONLINE LEARNING
+   *  INFERENCE LAYER BY LAYER WITH BACKPROPAGATION --> CONTINUAL LEARNING
    *************************************************************************/
 
   // Enable peripheral, enable CNN interrupt, turn on CNN clock
   // CNN clock: APB (50 MHz) div 1
   cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
+
   int layer_count = 0;
-  // MXC_TMR_SW_Start(MXC_TMR1);
-  volatile uint32_t *addr;
-  for (i = 0; i < 1000; i++)
+  for (i = 0; i < ITERATIONS; i++)
   {
-    cnn_init();
+    cnn_init();         // Bring state machines to consistent state
     cnn_load_weights(); // Load kernels
-    cnn_load_bias();
+    cnn_load_bias();    // Load biases
+
     for (layer_count = 0; layer_count < LAYER_NUM; layer_count = get_next_OS_layer(layer_count))
     {
       cnn_set_layer_count(layer_count);
@@ -148,29 +144,35 @@ int main(void)
 
       if (layer_count == 0)
         load_input();
-      cnn_start();
+      cnn_start(); // Start state machines
 
       while (cnn_time == 0)
         __WFI(); // Wait for CNN
 
       if (layer_count == 0)
       {
-        /* take output of layer_n-1 layer */
-        cnn_unload_frozen_layer((uint32_t *)ml_data_frozen); // WORKS
-        output_layer_3(ml_data_frozen, output_L0);           // WORKS
-        /* find weights of first channel */
-        find_weights(weights, FIND, dW); // WORKS
+        /* take output of last but one layer */
+        cnn_unload_frozen_layer((uint32_t *)ml_data_frozen);
+        output_layer_3(ml_data_frozen, output_L0);
+
+        /* find weights of every channel */
+        find_weights(weights, FIND, dW);
       }
 
       cnn_stop_SMs(); // Be sure that before next iterations all the State Machines are stopped
     }
-    softmax_layer();
+    softmax_layer(); // Softmax array with percentage
+
+    if ((i + 1) % 100 == 0)
+    {
+      input = 0;
+    }
 
 #ifdef CNN_INFERENCE_TIMER
     if (i % 100 == 0)
     {
       printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
-      printf("Classification results:\n");
+      printf("Classification results of [%d] lap:\n", i);
       for (int inf = 0; inf < CNN_NUM_OUTPUTS; inf++)
       {
         digs = (1000 * ml_softmax[inf] + 0x4000) >> 15;
@@ -181,7 +183,7 @@ int main(void)
     }
 #endif
 
-    /* predict channel 0 */
+    /* predict channel output */
     for (f = 0; f < CNN_NUM_OUTPUTS; f++)
     {
       for (int place = 0; place < CNN_NUM_OUTPUTS_FROZEN_LAYER; place++)
@@ -193,25 +195,23 @@ int main(void)
      *  BACKPROPAGATION  *
      ********************/
 
-    /* Find neuron that need a weights changes */ // COST da migliorare: TODO
+    /* Find neurons that need a weights change */
     array_substraction(cost, ml_softmax, true_output, sizeof ml_softmax / sizeof ml_softmax[0]);
 
-    for (f = 0; f < CNN_NUM_OUTPUTS; f++)
+    for (f = 0; f < CNN_NUM_OUTPUTS; f++) // for every output channel
     {
-      for (int place = 0; place < CNN_NUM_OUTPUTS_FROZEN_LAYER; place++) // per ogni peso del layer i^th
+      for (int place = 0; place < CNN_NUM_OUTPUTS_FROZEN_LAYER; place++) // for the lenght of each channel
       {
-        /* Algoritmo sul totale */
-        deltaW = cost[f] * (q15_t)prediction[f][place];           // mi trovo deltaW moltiplicando il cost del layer i^th con ogni prediction
-        dW[f][place] = (uint32_t)((float)learning_rate * deltaW); // mi trovo poi dW
-
-        /* Algorimto solo sul primo channel */
-        // deltaW = cost[0] * prediction[m]; // need to convert them in smaller number
-        // dW[m] = (int)(learning_rate * deltaW);
+        /* Update on every channel */
+        deltaW = cost[f] * (q15_t)prediction[f][place]; // deltaW is the prediction of the f^th times cost[f]
+        dW[f][place] = ((float)learning_rate * deltaW); // dW is the value to deduct from the weights
       }
-      find_weights(weights, UPDATE, dW);
     }
-    printf("%d\n", a++);
+
+    find_weights(weights, UPDATE, dW); // UPDATE weights
+    bias_update(cost, learning_rate);
   }
+
   cnn_disable();
 #ifdef CNN_INFERENCE_TIMER
   printf("Approximate inference time of last iteration: %u us\n\n", cnn_time);
@@ -225,10 +225,8 @@ int main(void)
     digs = digs / 10;
     printf("[%7d] -> Class %d: %d.%d%%\n", ml_data[i], i, digs, tens);
   }
-
   return 0;
 }
-
 /*
   SUMMARY OF OPS
   Hardware: 10,883,968 ops (10,751,808 macc; 128,576 comp; 3,584 add; 0 mul; 0 bitwise)

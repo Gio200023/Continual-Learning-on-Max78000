@@ -11,13 +11,15 @@
 #include "weights.h"
 #include "math.h"
 
-void array_substraction(q15_t *res, q15_t *arr1, q15_t *arr2, int size)
+void array_substraction(int *res, q15_t *arr1, int *arr2, int size)
 {
     // ml_softmax-true_output
     int i = 0;
+    double tmp;
     for (i = 0; i < size; i++)
     {
-        *(res + i) = round(((*(arr1 + i) - *(arr2 + i)) / 0x7fff));
+        tmp = ((double)*(arr1 + i) / (double)0x7fff);
+        *(res + i) = (round(tmp)) - *(arr2 + i);
     }
 }
 
@@ -29,30 +31,21 @@ int mod2(int val)
 void output_layer_3(const int32_t out, uint8_t *final)
 {
     const uint32_t *ptr = out;
-    int count = 0;
     uint32_t first[16];
     uint32_t second[16];
     uint32_t third[16];
     uint32_t fourth[16];
-    int try = 0;
+    int try = 0, i = 0;
 
     while (*ptr != 0)
     {
-        count = 0;
-
-        for (int i = 0; i < 16; i++)
+        for (i = 0; i < 16; i++)
         {
-            first[count] = mod2((*(ptr)) >> 0);
-
-            second[count] = mod2((*(ptr)) >> 8);
-
-            third[count] = mod2((*(ptr)) >> 16);
-
-            fourth[count] = mod2((*(ptr)) >> 24);
-            count++;
-            *ptr++;
+            first[i] = mod2((*ptr) >> 0);
+            second[i] = mod2((*ptr) >> 8);
+            third[i] = mod2((*ptr) >> 16);
+            fourth[i] = mod2((*ptr++) >> 24);
         }
-
         if (try == 0)
         {
             for (int i = 0; i < 64; i++)
@@ -75,8 +68,7 @@ void output_layer_3(const int32_t out, uint8_t *final)
                 }
             }
         }
-
-        if (try == 1)
+        else if (try == 1)
         {
             for (int i = 64; i < 128; i++)
             {
@@ -98,8 +90,7 @@ void output_layer_3(const int32_t out, uint8_t *final)
                 }
             }
         }
-
-        if (try == 2)
+        else if (try == 2)
         {
             for (int i = 128; i < CNN_NUM_OUTPUTS_FROZEN_LAYER; i++)
             {
@@ -121,7 +112,6 @@ void output_layer_3(const int32_t out, uint8_t *final)
                 }
             }
         }
-
         try++;
     }
 }
@@ -131,16 +121,16 @@ int counter = 0;
 static int update_place = 0;
 static int spot = 0;
 
-uint32_t sottraction(int32_t *hex, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int shift)
+int32_t sottraction(int32_t *hex, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int shift)
 {
     int8_t tmp;
     tmp = mod2((*hex >> shift) & 0xff) - (*dW)[update_place++];
-    *hex = *hex - ((((*hex >> shift) & 0xff) - tmp) << shift);
+    *hex = *hex - ((mod2((*hex >> shift) & 0xff) - tmp) << shift); //forse devi fare in modo che dW diventi tra -128 e 127
 
     return *hex;
 }
 
-// 7 hex weights in this channel
+// 7 hex weights
 void split_7(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *hex5, int32_t *hex6, int32_t *hex7, int8_t (*final)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
 {
     int i, m = 0;
@@ -233,7 +223,7 @@ void split_7(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t
     }
 }
 
-// 6 hex weights in this channel
+// 6 hex weights
 void split_6(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *hex5, int32_t *hex6, int8_t (*final)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
 {
     int i, m = 0;
@@ -439,7 +429,7 @@ void split_6(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t
     }
 }
 
-// 5 hex weights in this channel
+// 5 hex weights
 void split_5(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *hex5, int8_t (*final)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
 {
     int i, m = 0;
@@ -511,7 +501,9 @@ void split_5(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t
 
 void find_weights(int8_t (*weights)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
 {
-    int i, m = 288, place = 0;
+    // printf("peso intero = %x\n",kernels_miei[139]);
+    // printf("sono qui\n");
+    int i, offset = 288, place = 0;
     if (update_place == 192)
     {
         update_place = 0;
@@ -529,28 +521,20 @@ void find_weights(int8_t (*weights)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, i
             {
                 split_5((int32_t)(kernels_miei + i + 1), (int32_t)(kernels_miei + i + 2), (int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 4), (int32_t)(kernels_miei + i + 5), (weights + place), choose, dW + place++);
                 split_6((int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 5), (int32_t)(kernels_miei + i + 6), (int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 9), weights + place, choose, dW + place++);
-
                 split_7((int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 10), (int32_t)(kernels_miei + i + 11), (int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), weights + place, choose, dW + place++);
                 spot++; // 1
-
                 split_6((int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), (int32_t)(kernels_miei + i + 15), (int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 18), weights + place, choose, dW + place++);
                 spot++; // 2
-
                 split_6((int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 17), (int32_t)(kernels_miei + i + 18), (int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 20), (int32_t)(kernels_miei + i + 21), weights + place, choose, dW + place++);
                 spot++; // 3
-
                 split_6((int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 21), (int32_t)(kernels_miei + i + 22), (int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), weights + place, choose, dW + place++);
                 spot = 1;
-
                 split_7((int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), (int32_t)(kernels_miei + i + 26), (int32_t)(kernels_miei + i + 27), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), weights + place, choose, dW + place++);
                 spot = 4; // 4
-
                 split_6((int32_t)(kernels_miei + i + 28), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), (int32_t)(kernels_miei + i + 31), (int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 34), weights + place, choose, dW + place++);
                 spot = 1;
-
                 split_5((int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 33), (int32_t)(kernels_miei + i + 34), (int32_t)(kernels_miei + i + 35), (int32_t)(kernels_miei + i + 36), weights + place, choose, dW + place++);
                 spot = 0;
-
                 split_5((int32_t)(kernels_miei + i + 37), (int32_t)(kernels_miei + i + 38), (int32_t)(kernels_miei + i + 39), (int32_t)(kernels_miei + i + 40), (int32_t)(kernels_miei + i + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
                 place = 0;
                 counter += 16;
@@ -559,27 +543,27 @@ void find_weights(int8_t (*weights)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, i
             }
             else if (kernels_miei[i] == 329)
             {
-                split_5((int32_t)(kernels_miei + i + m + 1), (int32_t)(kernels_miei + i + m + 2), (int32_t)(kernels_miei + i + m + 3), (int32_t)(kernels_miei + i + m + 4), (int32_t)(kernels_miei + i + m + 5), weights + place, choose, dW + place++);
-                split_6((int32_t)(kernels_miei + i + m + 3), (int32_t)(kernels_miei + i + m + 5), (int32_t)(kernels_miei + i + m + 6), (int32_t)(kernels_miei + i + m + 7), (int32_t)(kernels_miei + i + m + 8), (int32_t)(kernels_miei + i + m + 9), weights + place, choose, dW + place++);
-                split_7((int32_t)(kernels_miei + i + m + 7), (int32_t)(kernels_miei + i + m + 8), (int32_t)(kernels_miei + i + m + 10), (int32_t)(kernels_miei + i + m + 11), (int32_t)(kernels_miei + i + m + 12), (int32_t)(kernels_miei + i + m + 13), (int32_t)(kernels_miei + i + m + 14), weights + place, choose, dW + place++);
+                split_5((int32_t)(kernels_miei + i + offset + 1), (int32_t)(kernels_miei + i + offset + 2), (int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 4), (int32_t)(kernels_miei + i + offset + 5), weights + place, choose, dW + place++);
+                split_6((int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 5), (int32_t)(kernels_miei + i + offset + 6), (int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 9), weights + place, choose, dW + place++);
+                split_7((int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 10), (int32_t)(kernels_miei + i + offset + 11), (int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), weights + place, choose, dW + place++);
                 spot++; // 1
-                split_6((int32_t)(kernels_miei + i + m + 12), (int32_t)(kernels_miei + i + m + 13), (int32_t)(kernels_miei + i + m + 14), (int32_t)(kernels_miei + i + m + 15), (int32_t)(kernels_miei + i + m + 16), (int32_t)(kernels_miei + i + m + 18), weights + place, choose, dW + place++);
+                split_6((int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), (int32_t)(kernels_miei + i + offset + 15), (int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 18), weights + place, choose, dW + place++);
                 spot++; // 2
-                split_6((int32_t)(kernels_miei + i + m + 16), (int32_t)(kernels_miei + i + m + 17), (int32_t)(kernels_miei + i + m + 18), (int32_t)(kernels_miei + i + m + 19), (int32_t)(kernels_miei + i + m + 20), (int32_t)(kernels_miei + i + m + 21), weights + place, choose, dW + place++);
+                split_6((int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 17), (int32_t)(kernels_miei + i + offset + 18), (int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 20), (int32_t)(kernels_miei + i + offset + 21), weights + place, choose, dW + place++);
                 spot++; // 3
-                split_6((int32_t)(kernels_miei + i + m + 19), (int32_t)(kernels_miei + i + m + 21), (int32_t)(kernels_miei + i + m + 22), (int32_t)(kernels_miei + i + m + 23), (int32_t)(kernels_miei + i + m + 24), (int32_t)(kernels_miei + i + m + 25), weights + place, choose, dW + place++);
+                split_6((int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 21), (int32_t)(kernels_miei + i + offset + 22), (int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), weights + place, choose, dW + place++);
                 spot = 1;
-                split_7((int32_t)(kernels_miei + i + m + 23), (int32_t)(kernels_miei + i + m + 24), (int32_t)(kernels_miei + i + m + 25), (int32_t)(kernels_miei + i + m + 26), (int32_t)(kernels_miei + i + m + 27), (int32_t)(kernels_miei + i + m + 29), (int32_t)(kernels_miei + i + m + 30), weights + place, choose, dW + place++);
+                split_7((int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), (int32_t)(kernels_miei + i + offset + 26), (int32_t)(kernels_miei + i + offset + 27), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), weights + place, choose, dW + place++);
                 spot = 4; // 4
-                split_6((int32_t)(kernels_miei + i + m + 28), (int32_t)(kernels_miei + i + m + 29), (int32_t)(kernels_miei + i + m + 30), (int32_t)(kernels_miei + i + m + 31), (int32_t)(kernels_miei + i + m + 32), (int32_t)(kernels_miei + i + m + 34), weights + place, choose, dW + place++);
+                split_6((int32_t)(kernels_miei + i + offset + 28), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), (int32_t)(kernels_miei + i + offset + 31), (int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 34), weights + place, choose, dW + place++);
                 spot = 1;
-                split_5((int32_t)(kernels_miei + i + m + 32), (int32_t)(kernels_miei + i + m + 33), (int32_t)(kernels_miei + i + m + 34), (int32_t)(kernels_miei + i + m + 35), (int32_t)(kernels_miei + i + m + 36), weights + place, choose, dW + place++);
+                split_5((int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 33), (int32_t)(kernels_miei + i + offset + 34), (int32_t)(kernels_miei + i + offset + 35), (int32_t)(kernels_miei + i + offset + 36), weights + place, choose, dW + place++);
                 spot = 0;
-                split_5((int32_t)(kernels_miei + i + m + 37), (int32_t)(kernels_miei + i + m + 38), (int32_t)(kernels_miei + i + m + 39), (int32_t)(kernels_miei + i + m + 40), (int32_t)(kernels_miei + i + m + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+                split_5((int32_t)(kernels_miei + i + offset + 37), (int32_t)(kernels_miei + i + offset + 38), (int32_t)(kernels_miei + i + offset + 39), (int32_t)(kernels_miei + i + offset + 40), (int32_t)(kernels_miei + i + offset + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
                 place = 0;
                 counter += 16;
                 update_place = 0;
-                i += 39;
+                i += 280;
             }
         }
     }
@@ -590,7 +574,7 @@ void bias_update(q15_t *cost, float learning_rate)
     int tmp;
     for (int i = 0; i < 10; i++)
     {
-        tmp = learning_rate * *(cost+i);
+        tmp = learning_rate * (*(cost + i));
         bias[i] -= tmp;
     }
 }

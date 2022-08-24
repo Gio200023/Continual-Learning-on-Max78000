@@ -2247,17 +2247,15 @@ KERNELS =[ \
   0x4ad61750, 0x00000000 \
 ]
 
+""" 
+Find the mnist weights from the kernels and write it in kernels.txt
+"""
+
 kernel1 = []
 kernel2 = []
 
 KERNEL_OMOGENEO=41
 KERNEL_ETEROGENEO=329
-
-# for h in a:
-#     if (h) == 3:
-#         for m in range(h):
-#             b.append(a[h+m])
-# print(b)
 
 f = open("kernels.txt", "a")
 
