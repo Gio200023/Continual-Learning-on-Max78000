@@ -116,11 +116,10 @@ void softmax_layer(void)
   softmax_q17p14_q15((const q31_t *)ml_data, CNN_NUM_OUTPUTS, ml_softmax);
 }
 
-void print_inference_result(int i)
+void print_inference_result(void)
 {
   int digs, tens;
-  printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
-  printf("Classification results of [%d] lap:\n", i);
+
   for (int inf = 0; inf < CNN_NUM_OUTPUTS; inf++)
   {
     digs = (1000 * ml_softmax[inf] + 0x4000) >> 15;
@@ -144,7 +143,7 @@ int main(void)
 
   SystemCoreClockUpdate();
 
-  printf("Waiting...\n");
+  printf("\nWaiting to set up debugger\n");
 
   // DO NOT DELETE THIS LINE:
   MXC_Delay(SEC(2)); // Let debugger interrupt if needed
@@ -198,11 +197,13 @@ int main(void)
 #ifdef CNN_INFERENCE_TIMER
     if (i % 100 == 0)
     {
-      print_inference_result(i);
+      printf("Classification results of [%d] lap:\n", i);
+      print_inference_result();
+      printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
     }
 #endif
 
-    /* predict channel output */
+    /* predict channels output */
     for (f = 0; f < CNN_NUM_OUTPUTS; f++)
     {
       for (int place = 0; place < CNN_NUM_OUTPUTS_FROZEN_LAYER; place++)
@@ -210,12 +211,14 @@ int main(void)
         prediction[f][place] = (weights[f][place] * output_L0[place]);
       }
     }
-    // RISULTATI VENGONO GIUSTI più o meno
 
     /********************
      *  BACKPROPAGATION  *
      ********************/
+
+    /* Mesaure weights update */
     MXC_TMR_SW_Start(MXC_TMR1);
+
     /* Find neurons that need a weights change */
     array_substraction(cost, ml_softmax, true_output, sizeof ml_softmax / sizeof ml_softmax[0]);
     int tmp;
@@ -228,20 +231,23 @@ int main(void)
         tmp = ((float)learning_rate * deltaW);
         if (tmp < -128)
         {
-          tmp = 128;
+          tmp = -128;
         }
         else if (tmp > 127)
         {
           tmp = 127;
         }
-        dW[f][place] = tmp; // dW is the value to deduct from the weights TRASFORMALO IN INT8
+        dW[f][place] = tmp; // dW is the value to deduct from the weights
       }
     }
 
-    printf("cost[0] = %d \n", cost[0]);
+    /* Update weights */
+    weights_function(weights, UPDATE, dW, cost);
 
-    weights_function(weights, UPDATE, dW, cost); // UPDATE weights
+    /* Update Biases */
     bias_update(cost, learning_rate);
+
+    /* Print step and time to update weights and biases */
     timestamp = MXC_TMR_SW_Stop(MXC_TMR1);
     printf("step: %4d, timer = %u\n", step++, timestamp);
   }
@@ -265,13 +271,14 @@ int main(void)
     softmax_layer();
 
 #ifdef CNN_INFERENCE_TIMER
-    print_inference_result(i);
+    printf("Classification results of [%d] image:\n", l);
+    print_inference_result();
+    printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
 #endif
   }
   /**********************************
    *  INFERENCE on mnist digit 8
    ************************************/
-
   load_input1(); // Load data input
   cnn_start();   // Start CNN processing
 
@@ -282,7 +289,9 @@ int main(void)
   softmax_layer();
 
 #ifdef CNN_INFERENCE_TIMER
-  print_inference_result(i);
+  printf("\nInference on digit 8:\n");
+  print_inference_result();
+  printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
 #endif
 
   cnn_disable();
