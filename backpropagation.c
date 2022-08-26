@@ -125,7 +125,7 @@ int32_t sottraction(int32_t *hex, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int s
 {
     int8_t tmp;
     tmp = mod2((*hex >> shift) & 0xff) - (*dW)[update_place++];
-    *hex = *hex - ((mod2((*hex >> shift) & 0xff) - tmp) << shift); //forse devi fare in modo che dW diventi tra -128 e 127
+    *hex = *hex - ((mod2((*hex >> shift) & 0xff) - tmp) << shift);
 
     return *hex;
 }
@@ -227,7 +227,7 @@ void split_7(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t
 void split_6(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t *hex5, int32_t *hex6, int8_t (*final)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
 {
     int i, m = 0;
-    if (choose == 0) // find
+    if (choose == 0) // FIND
     {
         if (spot == 0)
         {
@@ -499,11 +499,85 @@ void split_5(int32_t *hex1, int32_t *hex2, int32_t *hex3, int32_t *hex4, int32_t
     }
 }
 
-void find_weights(int8_t (*weights)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
+// OLD
+// void find_weights(int8_t (*weights)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER])
+// {
+//     int i, offset = 288, place = 0, count = 0;
+//     if (update_place == 192)
+//     {
+//         update_place = 0;
+//     }
+//     if (counter == 192)
+//     {
+//         counter = 0;
+//     }
+
+//     for (i = 0; i < 17930; i++)
+//     {
+//         if ((kernels_miei[i] >> 16) == 0x0 && (kernels_miei[i - 1] >> 24) == 0x50 && (kernels_miei[i] == 41 || kernels_miei[i] == 329))
+//         {
+//             if (kernels_miei[i] == 41)
+//             {
+//                 split_5((int32_t)(kernels_miei + i + 1), (int32_t)(kernels_miei + i + 2), (int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 4), (int32_t)(kernels_miei + i + 5), (weights + place), choose, dW + place++);
+//                 split_6((int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 5), (int32_t)(kernels_miei + i + 6), (int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 9), weights + place, choose, dW + place++);
+//                 split_7((int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 10), (int32_t)(kernels_miei + i + 11), (int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), weights + place, choose, dW + place++);
+//                 spot++; // 1
+//                 split_6((int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), (int32_t)(kernels_miei + i + 15), (int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 18), weights + place, choose, dW + place++);
+//                 spot++; // 2
+//                 split_6((int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 17), (int32_t)(kernels_miei + i + 18), (int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 20), (int32_t)(kernels_miei + i + 21), weights + place, choose, dW + place++);
+//                 spot++; // 3
+//                 split_6((int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 21), (int32_t)(kernels_miei + i + 22), (int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), weights + place, choose, dW + place++);
+//                 spot = 1;
+//                 split_7((int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), (int32_t)(kernels_miei + i + 26), (int32_t)(kernels_miei + i + 27), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), weights + place, choose, dW + place++);
+//                 spot = 4; // 4
+//                 split_6((int32_t)(kernels_miei + i + 28), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), (int32_t)(kernels_miei + i + 31), (int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 34), weights + place, choose, dW + place++);
+//                 spot = 1;
+//                 split_5((int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 33), (int32_t)(kernels_miei + i + 34), (int32_t)(kernels_miei + i + 35), (int32_t)(kernels_miei + i + 36), weights + place, choose, dW + place++);
+//                 spot = 0;
+//                 split_5((int32_t)(kernels_miei + i + 37), (int32_t)(kernels_miei + i + 38), (int32_t)(kernels_miei + i + 39), (int32_t)(kernels_miei + i + 40), (int32_t)(kernels_miei + i + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+//                 place = 0;
+//                 counter += 16;
+//                 update_place = 0;
+//                 i += 39;
+//                 count++;
+//             }
+//             else if (kernels_miei[i] == 329)
+//             {
+//                 split_5((int32_t)(kernels_miei + i + offset + 1), (int32_t)(kernels_miei + i + offset + 2), (int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 4), (int32_t)(kernels_miei + i + offset + 5), weights + place, choose, dW + place++);
+//                 split_6((int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 5), (int32_t)(kernels_miei + i + offset + 6), (int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 9), weights + place, choose, dW + place++);
+//                 split_7((int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 10), (int32_t)(kernels_miei + i + offset + 11), (int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), weights + place, choose, dW + place++);
+//                 spot++; // 1
+//                 split_6((int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), (int32_t)(kernels_miei + i + offset + 15), (int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 18), weights + place, choose, dW + place++);
+//                 spot++; // 2
+//                 split_6((int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 17), (int32_t)(kernels_miei + i + offset + 18), (int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 20), (int32_t)(kernels_miei + i + offset + 21), weights + place, choose, dW + place++);
+//                 spot++; // 3
+//                 split_6((int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 21), (int32_t)(kernels_miei + i + offset + 22), (int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), weights + place, choose, dW + place++);
+//                 spot = 1;
+//                 split_7((int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), (int32_t)(kernels_miei + i + offset + 26), (int32_t)(kernels_miei + i + offset + 27), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), weights + place, choose, dW + place++);
+//                 spot = 4; // 4
+//                 split_6((int32_t)(kernels_miei + i + offset + 28), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), (int32_t)(kernels_miei + i + offset + 31), (int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 34), weights + place, choose, dW + place++);
+//                 spot = 1;
+//                 split_5((int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 33), (int32_t)(kernels_miei + i + offset + 34), (int32_t)(kernels_miei + i + offset + 35), (int32_t)(kernels_miei + i + offset + 36), weights + place, choose, dW + place++);
+//                 spot = 0;
+//                 split_5((int32_t)(kernels_miei + i + offset + 37), (int32_t)(kernels_miei + i + offset + 38), (int32_t)(kernels_miei + i + offset + 39), (int32_t)(kernels_miei + i + offset + 40), (int32_t)(kernels_miei + i + offset + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+//                 place = 0;
+//                 counter += 16;
+//                 update_place = 0;
+//                 i += 280;
+//                 count++;
+//                 if (count > 12)
+//                 {
+//                     break;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// NEW
+void weights_function(int8_t (*weights)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, int (*dW)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int cost[10])
 {
-    // printf("peso intero = %x\n",kernels_miei[139]);
-    // printf("sono qui\n");
-    int i, offset = 288, place = 0;
+    int i, offset = 288, place = 0, count = 0;
     if (update_place == 192)
     {
         update_place = 0;
@@ -519,51 +593,280 @@ void find_weights(int8_t (*weights)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, i
         {
             if (kernels_miei[i] == 41)
             {
-                split_5((int32_t)(kernels_miei + i + 1), (int32_t)(kernels_miei + i + 2), (int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 4), (int32_t)(kernels_miei + i + 5), (weights + place), choose, dW + place++);
-                split_6((int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 5), (int32_t)(kernels_miei + i + 6), (int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 9), weights + place, choose, dW + place++);
-                split_7((int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 10), (int32_t)(kernels_miei + i + 11), (int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), weights + place, choose, dW + place++);
-                spot++; // 1
-                split_6((int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), (int32_t)(kernels_miei + i + 15), (int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 18), weights + place, choose, dW + place++);
-                spot++; // 2
-                split_6((int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 17), (int32_t)(kernels_miei + i + 18), (int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 20), (int32_t)(kernels_miei + i + 21), weights + place, choose, dW + place++);
-                spot++; // 3
-                split_6((int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 21), (int32_t)(kernels_miei + i + 22), (int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), weights + place, choose, dW + place++);
-                spot = 1;
-                split_7((int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), (int32_t)(kernels_miei + i + 26), (int32_t)(kernels_miei + i + 27), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), weights + place, choose, dW + place++);
-                spot = 4; // 4
-                split_6((int32_t)(kernels_miei + i + 28), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), (int32_t)(kernels_miei + i + 31), (int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 34), weights + place, choose, dW + place++);
-                spot = 1;
-                split_5((int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 33), (int32_t)(kernels_miei + i + 34), (int32_t)(kernels_miei + i + 35), (int32_t)(kernels_miei + i + 36), weights + place, choose, dW + place++);
-                spot = 0;
-                split_5((int32_t)(kernels_miei + i + 37), (int32_t)(kernels_miei + i + 38), (int32_t)(kernels_miei + i + 39), (int32_t)(kernels_miei + i + 40), (int32_t)(kernels_miei + i + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+                if (choose == 0)
+                {
+                    split_5((int32_t)(kernels_miei + i + 1), (int32_t)(kernels_miei + i + 2), (int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 4), (int32_t)(kernels_miei + i + 5), (weights + place), choose, dW + place++);
+                    split_6((int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 5), (int32_t)(kernels_miei + i + 6), (int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 9), weights + place, choose, dW + place++);
+                    split_7((int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 10), (int32_t)(kernels_miei + i + 11), (int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), weights + place, choose, dW + place++);
+                    spot++; // 1
+                    split_6((int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), (int32_t)(kernels_miei + i + 15), (int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 18), weights + place, choose, dW + place++);
+                    spot++; // 2
+                    split_6((int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 17), (int32_t)(kernels_miei + i + 18), (int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 20), (int32_t)(kernels_miei + i + 21), weights + place, choose, dW + place++);
+                    spot++; // 3
+                    split_6((int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 21), (int32_t)(kernels_miei + i + 22), (int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), weights + place, choose, dW + place++);
+                    spot = 1;
+                    split_7((int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), (int32_t)(kernels_miei + i + 26), (int32_t)(kernels_miei + i + 27), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), weights + place, choose, dW + place++);
+                    spot = 4; // 4
+                    split_6((int32_t)(kernels_miei + i + 28), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), (int32_t)(kernels_miei + i + 31), (int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 34), weights + place, choose, dW + place++);
+                    spot = 1;
+                    split_5((int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 33), (int32_t)(kernels_miei + i + 34), (int32_t)(kernels_miei + i + 35), (int32_t)(kernels_miei + i + 36), weights + place, choose, dW + place++);
+                    spot = 0;
+                    split_5((int32_t)(kernels_miei + i + 37), (int32_t)(kernels_miei + i + 38), (int32_t)(kernels_miei + i + 39), (int32_t)(kernels_miei + i + 40), (int32_t)(kernels_miei + i + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+                    counter += 16;
+                }
+                else if (choose == 1)
+                {
+                    if (cost[place] != 0)
+                    {
+                        split_5((int32_t)(kernels_miei + i + 1), (int32_t)(kernels_miei + i + 2), (int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 4), (int32_t)(kernels_miei + i + 5), (weights + place), choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + 3), (int32_t)(kernels_miei + i + 5), (int32_t)(kernels_miei + i + 6), (int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 9), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_7((int32_t)(kernels_miei + i + 7), (int32_t)(kernels_miei + i + 8), (int32_t)(kernels_miei + i + 10), (int32_t)(kernels_miei + i + 11), (int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    place++;
+                    spot++; // 1
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + 12), (int32_t)(kernels_miei + i + 13), (int32_t)(kernels_miei + i + 14), (int32_t)(kernels_miei + i + 15), (int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 18), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot++; // 2
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + 16), (int32_t)(kernels_miei + i + 17), (int32_t)(kernels_miei + i + 18), (int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 20), (int32_t)(kernels_miei + i + 21), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot++; // 3
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + 19), (int32_t)(kernels_miei + i + 21), (int32_t)(kernels_miei + i + 22), (int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot = 1;
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_7((int32_t)(kernels_miei + i + 23), (int32_t)(kernels_miei + i + 24), (int32_t)(kernels_miei + i + 25), (int32_t)(kernels_miei + i + 26), (int32_t)(kernels_miei + i + 27), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot = 4; // 4
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + 28), (int32_t)(kernels_miei + i + 29), (int32_t)(kernels_miei + i + 30), (int32_t)(kernels_miei + i + 31), (int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 34), weights + place, choose, dW + place++);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot = 1;
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_5((int32_t)(kernels_miei + i + 32), (int32_t)(kernels_miei + i + 33), (int32_t)(kernels_miei + i + 34), (int32_t)(kernels_miei + i + 35), (int32_t)(kernels_miei + i + 36), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot = 0;
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_5((int32_t)(kernels_miei + i + 37), (int32_t)(kernels_miei + i + 38), (int32_t)(kernels_miei + i + 39), (int32_t)(kernels_miei + i + 40), (int32_t)(kernels_miei + i + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                }
                 place = 0;
-                counter += 16;
                 update_place = 0;
                 i += 39;
+                count++;
             }
             else if (kernels_miei[i] == 329)
             {
-                split_5((int32_t)(kernels_miei + i + offset + 1), (int32_t)(kernels_miei + i + offset + 2), (int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 4), (int32_t)(kernels_miei + i + offset + 5), weights + place, choose, dW + place++);
-                split_6((int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 5), (int32_t)(kernels_miei + i + offset + 6), (int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 9), weights + place, choose, dW + place++);
-                split_7((int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 10), (int32_t)(kernels_miei + i + offset + 11), (int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), weights + place, choose, dW + place++);
-                spot++; // 1
-                split_6((int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), (int32_t)(kernels_miei + i + offset + 15), (int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 18), weights + place, choose, dW + place++);
-                spot++; // 2
-                split_6((int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 17), (int32_t)(kernels_miei + i + offset + 18), (int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 20), (int32_t)(kernels_miei + i + offset + 21), weights + place, choose, dW + place++);
-                spot++; // 3
-                split_6((int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 21), (int32_t)(kernels_miei + i + offset + 22), (int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), weights + place, choose, dW + place++);
-                spot = 1;
-                split_7((int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), (int32_t)(kernels_miei + i + offset + 26), (int32_t)(kernels_miei + i + offset + 27), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), weights + place, choose, dW + place++);
-                spot = 4; // 4
-                split_6((int32_t)(kernels_miei + i + offset + 28), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), (int32_t)(kernels_miei + i + offset + 31), (int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 34), weights + place, choose, dW + place++);
-                spot = 1;
-                split_5((int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 33), (int32_t)(kernels_miei + i + offset + 34), (int32_t)(kernels_miei + i + offset + 35), (int32_t)(kernels_miei + i + offset + 36), weights + place, choose, dW + place++);
-                spot = 0;
-                split_5((int32_t)(kernels_miei + i + offset + 37), (int32_t)(kernels_miei + i + offset + 38), (int32_t)(kernels_miei + i + offset + 39), (int32_t)(kernels_miei + i + offset + 40), (int32_t)(kernels_miei + i + offset + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+                if (choose == 0)
+                {
+                    split_5((int32_t)(kernels_miei + i + offset + 1), (int32_t)(kernels_miei + i + offset + 2), (int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 4), (int32_t)(kernels_miei + i + offset + 5), weights + place, choose, dW + place++);
+                    split_6((int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 5), (int32_t)(kernels_miei + i + offset + 6), (int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 9), weights + place, choose, dW + place++);
+                    split_7((int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 10), (int32_t)(kernels_miei + i + offset + 11), (int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), weights + place, choose, dW + place++);
+                    spot++; // 1
+                    split_6((int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), (int32_t)(kernels_miei + i + offset + 15), (int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 18), weights + place, choose, dW + place++);
+                    spot++; // 2
+                    split_6((int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 17), (int32_t)(kernels_miei + i + offset + 18), (int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 20), (int32_t)(kernels_miei + i + offset + 21), weights + place, choose, dW + place++);
+                    spot++; // 3
+                    split_6((int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 21), (int32_t)(kernels_miei + i + offset + 22), (int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), weights + place, choose, dW + place++);
+                    spot = 1;
+                    split_7((int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), (int32_t)(kernels_miei + i + offset + 26), (int32_t)(kernels_miei + i + offset + 27), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), weights + place, choose, dW + place++);
+                    spot = 4; // 4
+                    split_6((int32_t)(kernels_miei + i + offset + 28), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), (int32_t)(kernels_miei + i + offset + 31), (int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 34), weights + place, choose, dW + place++);
+                    spot = 1;
+                    split_5((int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 33), (int32_t)(kernels_miei + i + offset + 34), (int32_t)(kernels_miei + i + offset + 35), (int32_t)(kernels_miei + i + offset + 36), weights + place, choose, dW + place++);
+                    spot = 0;
+                    split_5((int32_t)(kernels_miei + i + offset + 37), (int32_t)(kernels_miei + i + offset + 38), (int32_t)(kernels_miei + i + offset + 39), (int32_t)(kernels_miei + i + offset + 40), (int32_t)(kernels_miei + i + offset + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+                    counter += 16;
+                }
+                else if (choose == 1)
+                {
+                    if (cost[place] != 0)
+                    {
+                        split_5((int32_t)(kernels_miei + i + offset + 1), (int32_t)(kernels_miei + i + offset + 2), (int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 4), (int32_t)(kernels_miei + i + offset + 5), (weights + place), choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + offset + 3), (int32_t)(kernels_miei + i + offset + 5), (int32_t)(kernels_miei + i + offset + 6), (int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 9), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_7((int32_t)(kernels_miei + i + offset + 7), (int32_t)(kernels_miei + i + offset + 8), (int32_t)(kernels_miei + i + offset + 10), (int32_t)(kernels_miei + i + offset + 11), (int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    place++;
+                    spot++; // 1
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + offset + 12), (int32_t)(kernels_miei + i + offset + 13), (int32_t)(kernels_miei + i + offset + 14), (int32_t)(kernels_miei + i + offset + 15), (int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 18), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot++; // 2
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + offset + 16), (int32_t)(kernels_miei + i + offset + 17), (int32_t)(kernels_miei + i + offset + 18), (int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 20), (int32_t)(kernels_miei + i + offset + 21), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot++; // 3
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + offset + 19), (int32_t)(kernels_miei + i + offset + 21), (int32_t)(kernels_miei + i + offset + 22), (int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot = 1;
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_7((int32_t)(kernels_miei + i + offset + 23), (int32_t)(kernels_miei + i + offset + 24), (int32_t)(kernels_miei + i + offset + 25), (int32_t)(kernels_miei + i + offset + 26), (int32_t)(kernels_miei + i + offset + 27), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot = 4; // 4
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_6((int32_t)(kernels_miei + i + offset + 28), (int32_t)(kernels_miei + i + offset + 29), (int32_t)(kernels_miei + i + offset + 30), (int32_t)(kernels_miei + i + offset + 31), (int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 34), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot = 1;
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_5((int32_t)(kernels_miei + i + offset + 32), (int32_t)(kernels_miei + i + offset + 33), (int32_t)(kernels_miei + i + offset + 34), (int32_t)(kernels_miei + i + offset + 35), (int32_t)(kernels_miei + i + offset + 36), weights + place, choose, dW + place);
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                    spot = 0;
+                    place++;
+
+                    if (cost[place] != 0)
+                    {
+                        split_5((int32_t)(kernels_miei + i + offset + 37), (int32_t)(kernels_miei + i + offset + 38), (int32_t)(kernels_miei + i + offset + 39), (int32_t)(kernels_miei + i + offset + 40), (int32_t)(kernels_miei + i + offset + 41), weights + place, choose, dW + place); // update weights[place++][counter] and dw[place++][counter]
+                    }
+                    else
+                    {
+                        update_place += 16;
+                    }
+                }
                 place = 0;
-                counter += 16;
+
                 update_place = 0;
                 i += 280;
+                count++;
+                if (count > 12)
+                {
+                    break;
+                }
             }
         }
     }
@@ -572,6 +875,7 @@ void find_weights(int8_t (*weights)[CNN_NUM_OUTPUTS_FROZEN_LAYER], int choose, i
 void bias_update(q15_t *cost, float learning_rate)
 {
     int tmp;
+
     for (int i = 0; i < 10; i++)
     {
         tmp = learning_rate * (*(cost + i));

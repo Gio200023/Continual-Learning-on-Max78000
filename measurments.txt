@@ -1,0 +1,60 @@
+100 MHz         1000 ITERATIONS
+#FIRST measurment
+Energy and time of inference from upload to CL layer
+TIME_tot = 35932 ms TOT
+ENERGY_tot = 1552630 uJ for 1000 inference
+ENERGY_one = 1552.352 uJ for 1 inference 
+
+#SECOND
+Frozen layer time and Energy
+TIME = 6174 ms FROZEN
+ENERGY_tot = 296771 uJ
+ENERGY_one = 296.771 uJ
+
+#THIRD
+CL layer
+TIME 29758 ms CONTINUAL
+ENERGY_tot = 1255859 uJ
+ENERGY_one = 1255.859 uJ
+
+
+
+
+60 MHz          1000 ITERATIONS
+Energy and time of inference from upload to CL layer
+TIME = 60342 ms
+ENERGY_tot = 1253026 uJ
+ENERGY_one = 1253.026 uJ
+
+#SECOND
+Frozen layer time and Energy 
+TIME = 10539 ms
+ENERGY = 267681 uJ
+ENERGY_one = 267.681 uJ
+
+#THIRD
+CL layer
+TIME = 49803 ms
+ENERGY_tot = 985345 uJ
+ENERGY_one = 985.345 uJ
+
+
+
+7.328 MHz      50 ITERATIONS
+ITERATIONS = 50
+Energy and time of inference from upload to CL layer
+TIME = 23015 ms (1000 = 460300 ms)
+ENERGY_tot = 292933 uJ
+ENERGY_one = 5858.66 uJ
+
+#SECOND
+Frozen layer time and Energy 
+TIME = 4266 ms
+ENERGY = 57002 uJ
+ENERGY_one = 1140.04 uJ
+
+#THIRD
+CL layer
+TIME = 18749 ms
+ENERGY_tot = 235931 uJ
+ENERGY_one = 4718.62 uJ

@@ -108,9 +108,7 @@ int cnn_load_weights(void)
 	{
 		*((volatile uint8_t *)((uint32_t)addr | 1)) = 0x01; // Set address
 		len = *ptr++;
-		// if (len == 41){
-		// 	printf("\n%x\n",*ptr);
-		// }
+
 		while (len-- > 0)
 		{
 			*addr++ = *ptr++;
@@ -843,19 +841,21 @@ int cnn_config_layer(int layer_num)
 int OS_layers[] = OS_LAYERS;
 int get_next_OS_layer(int layer_count)
 {
-	if(layer_count == OS_layers[OS_LAYER_NUM -1])	
+	if (layer_count == OS_layers[OS_LAYER_NUM - 1])
 		return LAYER_NUM; // No more OS layers, return the total number of layers
 	int i = 0;
-	for(i = 0; i < OS_LAYER_NUM - 1; i++){
-		if(layer_count == OS_layers[i]){
-			return OS_layers[i+1];
+	for (i = 0; i < OS_LAYER_NUM - 1; i++)
+	{
+		if (layer_count == OS_layers[i])
+		{
+			return OS_layers[i + 1];
 		}
 	}
 	printf("[ERR]: Layer %d is not in the One-Shot list\n", layer_count);
 	return 0;
 }
 
-
-int get_last_OS_layer(){
-  return OS_layers[OS_LAYER_NUM - 1];
+int get_last_OS_layer()
+{
+	return OS_layers[OS_LAYER_NUM - 1];
 }

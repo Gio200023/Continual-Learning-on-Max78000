@@ -42,8 +42,10 @@
 #include "mxc.h"
 #include "cnn.h"
 #include "sample_inputs.h"
+#include "sampledata_mnist.h"
 #include "math.h"
 #include "backpropagation.h"
+#include "pb.h"
 
 /**
  * @brief weigths array
@@ -55,28 +57,29 @@ int8_t weights[CNN_NUM_OUTPUTS][CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
  * @brief predictions of every channel -> weights[][] x output[LAYER_NUM-1]
  *
  */
-int8_t prediction[CNN_NUM_OUTPUTS][CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0}; // da int16 a int8
+static int prediction[CNN_NUM_OUTPUTS][CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
 
 // Learning rate
-float learning_rate = 0.1;
+float learning_rate = 0.05;
 
 // True output array and cost array
 int true_output[CNN_NUM_OUTPUTS] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-int cost[10] = {0};
+static int cost[10] = {0};
 
 // Values to subtract
-int16_t deltaW = 0;
-int dW[CNN_NUM_OUTPUTS][CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
+int deltaW = 0;
+static int dW[CNN_NUM_OUTPUTS][CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0};
 
 // Output array
 static int32_t ml_data[CNN_NUM_OUTPUTS];
 static int32_t ml_data_frozen[CNN_NUM_OUTPUTS_LAYER_0];
-int8_t output_L0[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0}; // cambiato da uint a int
+static int8_t output_L0[CNN_NUM_OUTPUTS_FROZEN_LAYER] = {0}; // cambiato da uint a int
 
 // Softmax array
 static q15_t ml_softmax[CNN_NUM_OUTPUTS];
 
-volatile uint32_t cnn_time; // Stopwatch
+volatile uint32_t cnn_time;  // Stopwatch
+volatile uint32_t timestamp; // timer CL
 
 void fail(void)
 {
@@ -91,12 +94,20 @@ int input = 0;
 static uint32_t *input_0;
 void load_input(void)
 {
-  if (input == 45)
+  if (input == 40)
   {
     input = 0;
   }
   input_0 = (uint32_t *)sample_inputs_all[input++];
   memcpy32((uint32_t *)0x50400000, input_0, 196);
+}
+static const uint32_t input_1[] = SAMPLE_INPUT_MNIST;
+
+void load_input1(void)
+{
+  // This function loads the sample data input -- replace with actual data
+
+  memcpy32((uint32_t *)0x50400000, input_1, 196);
 }
 
 void softmax_layer(void)
@@ -105,16 +116,32 @@ void softmax_layer(void)
   softmax_q17p14_q15((const q31_t *)ml_data, CNN_NUM_OUTPUTS, ml_softmax);
 }
 
-int a = 0;
+void print_inference_result(int i)
+{
+  int digs, tens;
+  printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
+  printf("Classification results of [%d] lap:\n", i);
+  for (int inf = 0; inf < CNN_NUM_OUTPUTS; inf++)
+  {
+    digs = (1000 * ml_softmax[inf] + 0x4000) >> 15;
+    tens = digs % 10;
+    digs = digs / 10;
+    printf("[%7d] -> Class %d: %d.%d%%\n", ml_data[inf], inf, digs, tens);
+  }
+}
+
+int step = 0;
 int main(void)
 {
   int i, f = 0;
-  int digs, tens;
 
   MXC_ICC_Enable(MXC_ICC0); // Enable cache
 
-  // Switch to 100 MHz clock
-  MXC_SYS_Clock_Select(MXC_SYS_CLOCK_IPO);
+  // Clock Selection
+  MXC_SYS_Clock_Select(MXC_SYS_CLOCK_IPO); // 100 MHz
+  // MXC_SYS_Clock_Select(MXC_SYS_CLOCK_ISO); // 60 MHz
+  // MXC_SYS_Clock_Select(MXC_SYS_CLOCK_IBRO); // 7.3728 MHz
+
   SystemCoreClockUpdate();
 
   printf("Waiting...\n");
@@ -131,7 +158,7 @@ int main(void)
   cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
 
   int layer_count = 0;
-  for (i = 0; i < ITERATIONS; i++)
+  for (i = 0; i < 100; i++)
   {
     cnn_init();         // Bring state machines to consistent state
     cnn_load_weights(); // Load kernels
@@ -156,7 +183,7 @@ int main(void)
         output_layer_3(ml_data_frozen, output_L0);
 
         /* find weights of every channel */
-        find_weights(weights, FIND, dW);
+        weights_function(weights, FIND, dW, cost);
       }
 
       cnn_stop_SMs(); // Be sure that before next iterations all the State Machines are stopped
@@ -171,15 +198,7 @@ int main(void)
 #ifdef CNN_INFERENCE_TIMER
     if (i % 100 == 0)
     {
-      printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
-      printf("Classification results of [%d] lap:\n", i);
-      for (int inf = 0; inf < CNN_NUM_OUTPUTS; inf++)
-      {
-        digs = (1000 * ml_softmax[inf] + 0x4000) >> 15;
-        tens = digs % 10;
-        digs = digs / 10;
-        printf("[%7d] -> Class %d: %d.%d%%\n", ml_data[inf], inf, digs, tens);
-      }
+      print_inference_result(i);
     }
 #endif
 
@@ -191,40 +210,82 @@ int main(void)
         prediction[f][place] = (weights[f][place] * output_L0[place]);
       }
     }
+    // RISULTATI VENGONO GIUSTI più o meno
+
     /********************
      *  BACKPROPAGATION  *
      ********************/
-
+    MXC_TMR_SW_Start(MXC_TMR1);
     /* Find neurons that need a weights change */
     array_substraction(cost, ml_softmax, true_output, sizeof ml_softmax / sizeof ml_softmax[0]);
-
+    int tmp;
     for (f = 0; f < CNN_NUM_OUTPUTS; f++) // for every output channel
     {
       for (int place = 0; place < CNN_NUM_OUTPUTS_FROZEN_LAYER; place++) // for the lenght of each channel
       {
         /* Update on every channel */
-        deltaW = cost[f] * (q15_t)prediction[f][place]; // deltaW is the prediction of the f^th times cost[f]
-        dW[f][place] = ((float)learning_rate * deltaW); // dW is the value to deduct from the weights
+        deltaW = cost[f] * /*(q15_t)*/ prediction[f][place]; // deltaW is the prediction of the f^th times cost[f]
+        tmp = ((float)learning_rate * deltaW);
+        if (tmp < -128)
+        {
+          tmp = 128;
+        }
+        else if (tmp > 127)
+        {
+          tmp = 127;
+        }
+        dW[f][place] = tmp; // dW is the value to deduct from the weights TRASFORMALO IN INT8
       }
     }
 
-    find_weights(weights, UPDATE, dW); // UPDATE weights
+    printf("cost[0] = %d \n", cost[0]);
+
+    weights_function(weights, UPDATE, dW, cost); // UPDATE weights
     bias_update(cost, learning_rate);
+    timestamp = MXC_TMR_SW_Stop(MXC_TMR1);
+    printf("step: %4d, timer = %u\n", step++, timestamp);
   }
 
-  cnn_disable();
+  /*******************************
+   * Inference on every 45 samples
+   *******************************/
+  cnn_init();         // Bring state machines to consistent state
+  cnn_load_weights(); // Load kernels
+  cnn_load_bias();    // Load biases
+  cnn_config_layer(0);
+  for (int l = 0; l < 45; l++)
+  {
+    load_input(); // Load data input
+    cnn_start();  // Start CNN processing
+
+    while (cnn_time == 0)
+      __WFI(); // Wait for CNN
+
+    cnn_stop_SMs();
+    softmax_layer();
+
 #ifdef CNN_INFERENCE_TIMER
-  printf("Approximate inference time of last iteration: %u us\n\n", cnn_time);
+    print_inference_result(i);
+#endif
+  }
+  /**********************************
+   *  INFERENCE on mnist digit 8
+   ************************************/
+
+  load_input1(); // Load data input
+  cnn_start();   // Start CNN processing
+
+  while (cnn_time == 0)
+    __WFI(); // Wait for CNN
+
+  cnn_stop_SMs();
+  softmax_layer();
+
+#ifdef CNN_INFERENCE_TIMER
+  print_inference_result(i);
 #endif
 
-  printf("Classification results:\n");
-  for (i = 0; i < CNN_NUM_OUTPUTS; i++)
-  {
-    digs = (1000 * ml_softmax[i] + 0x4000) >> 15;
-    tens = digs % 10;
-    digs = digs / 10;
-    printf("[%7d] -> Class %d: %d.%d%%\n", ml_data[i], i, digs, tens);
-  }
+  cnn_disable();
   return 0;
 }
 /*

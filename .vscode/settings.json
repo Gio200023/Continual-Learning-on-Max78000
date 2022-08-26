@@ -83,7 +83,12 @@
         "initializer_list": "c",
         "ranges": "c",
         "utility": "c",
-        "sampledata_emnist.h": "c"
+        "sampledata_emnist.h": "c",
+        "pb.h": "c",
+        "sample_inputs.h": "c",
+        "*.tcc": "c",
+        "chrono": "c",
+        "cmath": "c"
     }
 }
 

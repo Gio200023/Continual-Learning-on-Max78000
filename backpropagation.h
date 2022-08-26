@@ -17,7 +17,7 @@
 #define UPDATE 1
 #define FIND 0
 
-#define ITERATIONS 1400
+#define ITERATIONS 5000
 
 /**
  * @brief substraction of 2 arrays, ml_softmax - true_output.
@@ -57,8 +57,8 @@ int mod2(int val);
  * @param choose choose between Find weights or Update weights
  * @param dW if (Choose==Update), value to update every single weights
  */
-void find_weights(int8_t (*weights)[], int choose, int (*dW)[]);
-
+void weights_function(int8_t (*weights)[], int choose, int (*dW)[], int cost[10]);
+// void weights_function(int8_t (*weights)[], int choose, int (*dW)[]);
 /**
  * @brief update bias
  * 

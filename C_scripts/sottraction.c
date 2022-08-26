@@ -13,7 +13,7 @@ int32_t sottraction(int32_t *hex, int dW, int shift)
     // printf("%d\n",(*dW)[update_place]);
     printf("hex prima era uguale a = %x\n", *hex);
     tmp = mod2((*hex >> shift) & 0xff) - mod2(dW);
-    printf("mod2(dw) = %d\n",mod2(0xe4));
+    printf("mod2(dw) = %d\n", mod2(0xe4));
     printf("tmp = %x\n", tmp);
     printf("hexincula= %x\n", ((mod2((*hex >> shift) & 0xff) - mod2(tmp)) << shift));
     *hex = *hex - ((mod2((*hex >> shift) & 0xff) - mod2(tmp)) << shift);
@@ -34,12 +34,20 @@ int round_mio(double num)
     return 5;
 }
 
+void change(int ur[5])
+{
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d\n", ur[i]);
+    }
+}
+
 int main()
 {
-    int32_t a = 0x95f90ce4;
-    int32_t *hex1;
-    hex1 = &a;
-    sottraction(hex1,300,0);
+    // int32_t a = 0x95f90ce4;
+    // int32_t *hex1;
+    // hex1 = &a;
+    // sottraction(hex1,300,0);
     // int aka = 30171;
     // int taka = 32767;
     // double b = (double)aka / (double)taka;
@@ -52,5 +60,11 @@ int main()
     // int16_t delta = 2000;
     // int a = (float)learn * delta;
     // printf("%d\n",a);
-}
 
+    // int8_t a = 128;
+    // int8_t b = 2;
+    // printf("%d\n",a+b);
+
+    int ur[5] = {0, 2, 4, 6, 8};
+    change(ur);
+}

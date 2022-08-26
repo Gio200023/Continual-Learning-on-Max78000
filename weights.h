@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-extern uint8_t bias[];
+extern int8_t bias[];
 extern uint32_t kernels_miei[];
 
 #endif // __WEIGHTS_H__

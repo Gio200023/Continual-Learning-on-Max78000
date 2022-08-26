@@ -1,0 +1,725 @@
+Waiting...
+Approximate inference time of 0 iteration: 1414 us
+
+Classification results of [0] lap:
+[ -24204] -> Class 0: 0.0%
+[-241276] -> Class 1: 0.0%
+[  59070] -> Class 2: 0.0%
+[   5203] -> Class 3: 0.0%
+[  71341] -> Class 4: 0.0%
+[-106206] -> Class 5: 0.0%
+[  -4448] -> Class 6: 0.0%
+[-209723] -> Class 7: 0.0%
+[ 385998] -> Class 8: 100.0%
+[  51839] -> Class 9: 0.0%
+step:    0, timer = 5441
+step:    1, timer = 5221
+step:    2, timer = 5370
+step:    3, timer = 5386
+step:    4, timer = 5209
+step:    5, timer = 5379
+step:    6, timer = 5370
+step:    7, timer = 5396
+step:    8, timer = 5373
+step:    9, timer = 5537
+step:   10, timer = 3847
+step:   11, timer = 5376
+step:   12, timer = 5401
+step:   13, timer = 5510
+step:   14, timer = 5409
+step:   15, timer = 5397
+step:   16, timer = 5384
+step:   17, timer = 5373
+step:   18, timer = 5379
+step:   19, timer = 5414
+step:   20, timer = 5406
+step:   21, timer = 5374
+step:   22, timer = 5401
+step:   23, timer = 5405
+step:   24, timer = 5378
+step:   25, timer = 5399
+step:   26, timer = 2370
+step:   27, timer = 5376
+step:   28, timer = 5399
+step:   29, timer = 5349
+step:   30, timer = 5400
+step:   31, timer = 2371
+step:   32, timer = 2365
+step:   33, timer = 2364
+step:   34, timer = 2371
+step:   35, timer = 2376
+step:   36, timer = 2376
+step:   37, timer = 2366
+step:   38, timer = 2356
+step:   39, timer = 2371
+step:   40, timer = 2357
+step:   41, timer = 2378
+step:   42, timer = 2378
+step:   43, timer = 3825
+step:   44, timer = 5248
+step:   45, timer = 5384
+step:   46, timer = 5383
+step:   47, timer = 3824
+step:   48, timer = 2362
+step:   49, timer = 2364
+step:   50, timer = 2371
+step:   51, timer = 2376
+step:   52, timer = 2359
+step:   53, timer = 2359
+step:   54, timer = 2347
+step:   55, timer = 2365
+step:   56, timer = 2362
+step:   57, timer = 2351
+step:   58, timer = 2370
+step:   59, timer = 2359
+step:   60, timer = 5369
+step:   61, timer = 5342
+step:   62, timer = 5390
+step:   63, timer = 2387
+step:   64, timer = 2378
+step:   65, timer = 5373
+step:   66, timer = 2383
+step:   67, timer = 5224
+step:   68, timer = 5255
+step:   69, timer = 5263
+step:   70, timer = 2388
+step:   71, timer = 5235
+step:   72, timer = 5246
+step:   73, timer = 2380
+step:   74, timer = 5388
+step:   75, timer = 2375
+step:   76, timer = 2378
+step:   77, timer = 3863
+step:   78, timer = 2383
+step:   79, timer = 2370
+step:   80, timer = 2378
+step:   81, timer = 2383
+step:   82, timer = 2382
+step:   83, timer = 3868
+step:   84, timer = 2382
+step:   85, timer = 2359
+step:   86, timer = 2387
+step:   87, timer = 2376
+step:   88, timer = 2360
+step:   89, timer = 2364
+step:   90, timer = 2385
+step:   91, timer = 2378
+step:   92, timer = 2379
+step:   93, timer = 2370
+step:   94, timer = 2371
+step:   95, timer = 2376
+step:   96, timer = 2376
+step:   97, timer = 2350
+step:   98, timer = 2370
+step:   99, timer = 2379
+Approximate inference time of 100 iteration: 1414 us
+
+Classification results of [100] lap:
+[ 210168] -> Class 0: 99.9%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.1%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 114916] -> Class 0: 98.1%
+[-221007] -> Class 1: 0.0%
+[ -54739] -> Class 2: 0.1%
+[  -7559] -> Class 3: 0.8%
+[   2451] -> Class 4: 0.8%
+[ -93747] -> Class 5: 0.0%
+[ -79064] -> Class 6: 0.0%
+[-142565] -> Class 7: 0.0%
+[ -46753] -> Class 8: 0.1%
+[ -54052] -> Class 9: 0.1%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 110364] -> Class 0: 96.0%
+[-216356] -> Class 1: 0.0%
+[ -56336] -> Class 2: 0.1%
+[ -65156] -> Class 3: 0.0%
+[ -52676] -> Class 4: 0.1%
+[-141397] -> Class 5: 0.0%
+[  34419] -> Class 6: 3.0%
+[-224079] -> Class 7: 0.0%
+[  -7645] -> Class 8: 0.7%
+[ -88366] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 128763] -> Class 0: 79.3%
+[-244665] -> Class 1: 0.0%
+[  -6383] -> Class 2: 0.3%
+[   -672] -> Class 3: 0.3%
+[ -94020] -> Class 4: 0.0%
+[ -91212] -> Class 5: 0.0%
+[  94941] -> Class 6: 19.8%
+[-323950] -> Class 7: 0.0%
+[ -39287] -> Class 8: 0.1%
+[ -17855] -> Class 9: 0.2%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 102309] -> Class 0: 97.7%
+[-128332] -> Class 1: 0.0%
+[ -56870] -> Class 2: 0.1%
+[ -18261] -> Class 3: 0.8%
+[ -68155] -> Class 4: 0.1%
+[-206644] -> Class 5: 0.0%
+[ -73263] -> Class 6: 0.0%
+[ -59807] -> Class 7: 0.1%
+[ -35527] -> Class 8: 0.4%
+[ -16334] -> Class 9: 0.8%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 174717] -> Class 0: 99.1%
+[-241716] -> Class 1: 0.0%
+[  -6558] -> Class 2: 0.0%
+[ -56844] -> Class 3: 0.0%
+[-125021] -> Class 4: 0.0%
+[-130487] -> Class 5: 0.0%
+[  56126] -> Class 6: 0.8%
+[-219091] -> Class 7: 0.0%
+[  -7491] -> Class 8: 0.0%
+[ -70676] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[  96013] -> Class 0: 93.8%
+[-138438] -> Class 1: 0.0%
+[-109330] -> Class 2: 0.0%
+[ -64510] -> Class 3: 0.1%
+[  12131] -> Class 4: 2.9%
+[-165983] -> Class 5: 0.0%
+[-105690] -> Class 6: 0.0%
+[ -85234] -> Class 7: 0.0%
+[  14267] -> Class 8: 2.9%
+[ -46112] -> Class 9: 0.2%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 116277] -> Class 0: 88.3%
+[-228173] -> Class 1: 0.0%
+[ -25073] -> Class 2: 0.2%
+[ -49107] -> Class 3: 0.1%
+[-145833] -> Class 4: 0.0%
+[ -85324] -> Class 5: 0.0%
+[  68393] -> Class 6: 11.0%
+[-230596] -> Class 7: 0.0%
+[ -65782] -> Class 8: 0.0%
+[ -22859] -> Class 9: 0.3%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 212617] -> Class 0: 99.9%
+[-210586] -> Class 1: 0.0%
+[ -15878] -> Class 2: 0.0%
+[  13630] -> Class 3: 0.0%
+[-101625] -> Class 4: 0.0%
+[ -47225] -> Class 5: 0.0%
+[  -4746] -> Class 6: 0.0%
+[-289379] -> Class 7: 0.0%
+[ -11766] -> Class 8: 0.0%
+[ -80992] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 170112] -> Class 0: 94.1%
+[-248614] -> Class 1: 0.0%
+[ -15789] -> Class 2: 0.0%
+[  97817] -> Class 3: 5.9%
+[-114575] -> Class 4: 0.0%
+[ -57570] -> Class 5: 0.0%
+[ -63549] -> Class 6: 0.0%
+[-186188] -> Class 7: 0.0%
+[ -60143] -> Class 8: 0.0%
+[ -73082] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[  76672] -> Class 0: 75.6%
+[-206840] -> Class 1: 0.0%
+[ -21604] -> Class 2: 1.2%
+[  -7047] -> Class 3: 2.4%
+[ -97264] -> Class 4: 0.0%
+[ -74283] -> Class 5: 0.1%
+[ -17709] -> Class 6: 1.2%
+[-124992] -> Class 7: 0.0%
+[ -29927] -> Class 8: 0.6%
+[  43901] -> Class 9: 18.9%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 134991] -> Class 0: 99.0%
+[-191456] -> Class 1: 0.0%
+[ -41066] -> Class 2: 0.0%
+[   8048] -> Class 3: 0.4%
+[ -26667] -> Class 4: 0.1%
+[ -74001] -> Class 5: 0.0%
+[ -70049] -> Class 6: 0.0%
+[-163720] -> Class 7: 0.0%
+[    395] -> Class 8: 0.4%
+[ -44032] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 134238] -> Class 0: 97.4%
+[-218320] -> Class 1: 0.0%
+[  31921] -> Class 2: 1.5%
+[  24100] -> Class 3: 0.8%
+[ -51030] -> Class 4: 0.0%
+[ -51572] -> Class 5: 0.0%
+[ -33555] -> Class 6: 0.1%
+[-196650] -> Class 7: 0.0%
+[ -62068] -> Class 8: 0.0%
+[ -22041] -> Class 9: 0.1%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 157021] -> Class 0: 98.8%
+[-278194] -> Class 1: 0.0%
+[  46926] -> Class 2: 0.8%
+[   6785] -> Class 3: 0.2%
+[ -93045] -> Class 4: 0.0%
+[ -99000] -> Class 5: 0.0%
+[   1352] -> Class 6: 0.1%
+[-243778] -> Class 7: 0.0%
+[ -45800] -> Class 8: 0.0%
+[  -4691] -> Class 9: 0.1%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 193174] -> Class 0: 99.9%
+[-222942] -> Class 1: 0.0%
+[ -33540] -> Class 2: 0.0%
+[ -27761] -> Class 3: 0.0%
+[ -39113] -> Class 4: 0.0%
+[-154670] -> Class 5: 0.0%
+[ -20647] -> Class 6: 0.0%
+[-204195] -> Class 7: 0.0%
+[  -3606] -> Class 8: 0.0%
+[-131623] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 119467] -> Class 0: 91.0%
+[-229547] -> Class 1: 0.0%
+[ -22822] -> Class 2: 0.2%
+[ -26770] -> Class 3: 0.2%
+[-112810] -> Class 4: 0.0%
+[-118801] -> Class 5: 0.0%
+[  47043] -> Class 6: 5.7%
+[-285662] -> Class 7: 0.0%
+[ -47354] -> Class 8: 0.1%
+[  37643] -> Class 9: 2.8%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 118581] -> Class 0: 95.5%
+[-222575] -> Class 1: 0.0%
+[ -21857] -> Class 2: 0.2%
+[  33942] -> Class 3: 3.0%
+[ -86303] -> Class 4: 0.0%
+[ -42211] -> Class 5: 0.1%
+[   9008] -> Class 6: 0.7%
+[-211422] -> Class 7: 0.0%
+[ -41601] -> Class 8: 0.1%
+[  -5355] -> Class 9: 0.4%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 213784] -> Class 0: 99.9%
+[-242042] -> Class 1: 0.0%
+[ -46946] -> Class 2: 0.0%
+[ -14783] -> Class 3: 0.0%
+[-164595] -> Class 4: 0.0%
+[ -97712] -> Class 5: 0.0%
+[  37180] -> Class 6: 0.0%
+[-268940] -> Class 7: 0.0%
+[ -35884] -> Class 8: 0.0%
+[-108911] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 130371] -> Class 0: 97.9%
+[-243376] -> Class 1: 0.0%
+[  -3803] -> Class 2: 0.4%
+[ -49900] -> Class 3: 0.0%
+[ -65311] -> Class 4: 0.0%
+[-153442] -> Class 5: 0.0%
+[  31836] -> Class 6: 1.5%
+[-206658] -> Class 7: 0.0%
+[ -26823] -> Class 8: 0.1%
+[ -61131] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 109257] -> Class 0: 85.6%
+[-253640] -> Class 1: 0.0%
+[ -27727] -> Class 2: 0.3%
+[ -31144] -> Class 3: 0.2%
+[-118769] -> Class 4: 0.0%
+[ -27506] -> Class 5: 0.3%
+[  54133] -> Class 6: 10.7%
+[-236639] -> Class 7: 0.0%
+[ -32563] -> Class 8: 0.2%
+[  33201] -> Class 9: 2.7%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 194343] -> Class 0: 88.8%
+[-213549] -> Class 1: 0.0%
+[ -54023] -> Class 2: 0.0%
+[ -89781] -> Class 3: 0.0%
+[ -84908] -> Class 4: 0.0%
+[  -8973] -> Class 5: 0.0%
+[ 143849] -> Class 6: 11.1%
+[-292581] -> Class 7: 0.0%
+[ -23709] -> Class 8: 0.0%
+[  36151] -> Class 9: 0.1%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 141326] -> Class 0: 19.9%
+[-231985] -> Class 1: 0.0%
+[ -37644] -> Class 2: 0.0%
+[ -94550] -> Class 3: 0.0%
+[-122159] -> Class 4: 0.0%
+[  -9876] -> Class 5: 0.0%
+[ 169326] -> Class 6: 79.7%
+[-326578] -> Class 7: 0.0%
+[ -74303] -> Class 8: 0.0%
+[  39965] -> Class 9: 0.3%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 161003] -> Class 0: 95.5%
+[-201159] -> Class 1: 0.0%
+[ -50341] -> Class 2: 0.0%
+[ -51347] -> Class 3: 0.0%
+[-103818] -> Class 4: 0.0%
+[ -96280] -> Class 5: 0.0%
+[  78942] -> Class 6: 3.0%
+[-321950] -> Class 7: 0.0%
+[ -27305] -> Class 8: 0.0%
+[  63636] -> Class 9: 1.5%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[  55586] -> Class 0: 38.9%
+[ -80486] -> Class 1: 0.1%
+[-116999] -> Class 2: 0.0%
+[  26722] -> Class 3: 9.7%
+[  47759] -> Class 4: 38.9%
+[-128272] -> Class 5: 0.0%
+[-101062] -> Class 6: 0.0%
+[  20498] -> Class 7: 9.7%
+[ -99452] -> Class 8: 0.1%
+[  -6894] -> Class 9: 2.4%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 109656] -> Class 0: 93.1%
+[-226528] -> Class 1: 0.0%
+[  39935] -> Class 2: 5.8%
+[ -61311] -> Class 3: 0.1%
+[ -67125] -> Class 4: 0.0%
+[-125634] -> Class 5: 0.0%
+[ -34763] -> Class 6: 0.2%
+[-177867] -> Class 7: 0.0%
+[   1836] -> Class 8: 0.7%
+[ -65971] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 143022] -> Class 0: 93.5%
+[-266308] -> Class 1: 0.0%
+[  10958] -> Class 2: 0.4%
+[ -16307] -> Class 3: 0.1%
+[ -97495] -> Class 4: 0.0%
+[-151060] -> Class 5: 0.0%
+[  71392] -> Class 6: 5.8%
+[-247744] -> Class 7: 0.0%
+[ -38856] -> Class 8: 0.0%
+[  -7784] -> Class 9: 0.2%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 171424] -> Class 0: 99.9%
+[-195838] -> Class 1: 0.0%
+[ -82644] -> Class 2: 0.0%
+[ -45357] -> Class 3: 0.0%
+[-114879] -> Class 4: 0.0%
+[-139786] -> Class 5: 0.0%
+[   8267] -> Class 6: 0.1%
+[-242067] -> Class 7: 0.0%
+[ -44957] -> Class 8: 0.0%
+[ -64463] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 156135] -> Class 0: 99.4%
+[-224857] -> Class 1: 0.0%
+[  -3983] -> Class 2: 0.1%
+[   9206] -> Class 3: 0.2%
+[ -94100] -> Class 4: 0.0%
+[-202119] -> Class 5: 0.0%
+[  -6473] -> Class 6: 0.1%
+[-132097] -> Class 7: 0.0%
+[ -33233] -> Class 8: 0.0%
+[   2459] -> Class 9: 0.2%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 125711] -> Class 0: 88.0%
+[-247745] -> Class 1: 0.0%
+[   4897] -> Class 2: 0.7%
+[ -76303] -> Class 3: 0.0%
+[-120195] -> Class 4: 0.0%
+[-101789] -> Class 5: 0.0%
+[  84567] -> Class 6: 11.0%
+[-270613] -> Class 7: 0.0%
+[ -32932] -> Class 8: 0.1%
+[ -22718] -> Class 9: 0.2%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 103139] -> Class 0: 96.3%
+[-224765] -> Class 1: 0.0%
+[ -70154] -> Class 2: 0.0%
+[  16301] -> Class 3: 3.0%
+[ -89795] -> Class 4: 0.0%
+[-127842] -> Class 5: 0.0%
+[ -35411] -> Class 6: 0.4%
+[-235933] -> Class 7: 0.0%
+[ -44796] -> Class 8: 0.2%
+[ -96410] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 121207] -> Class 0: 98.5%
+[-194095] -> Class 1: 0.0%
+[ -26409] -> Class 2: 0.2%
+[ -12639] -> Class 3: 0.4%
+[ -71099] -> Class 4: 0.0%
+[ -80543] -> Class 5: 0.0%
+[ -63766] -> Class 6: 0.0%
+[-161634] -> Class 7: 0.0%
+[   4697] -> Class 8: 0.8%
+[ -77773] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 108591] -> Class 0: 75.0%
+[-139212] -> Class 1: 0.0%
+[ -27046] -> Class 2: 0.3%
+[  49433] -> Class 3: 4.7%
+[ -74164] -> Class 4: 0.0%
+[-175718] -> Class 5: 0.0%
+[-101109] -> Class 6: 0.0%
+[  53595] -> Class 7: 9.4%
+[  13435] -> Class 8: 1.2%
+[  65347] -> Class 9: 9.4%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 112978] -> Class 0: 96.4%
+[-201207] -> Class 1: 0.0%
+[  15712] -> Class 2: 1.5%
+[ -97478] -> Class 3: 0.0%
+[ -16351] -> Class 4: 0.4%
+[-119229] -> Class 5: 0.0%
+[ -37139] -> Class 6: 0.2%
+[-165602] -> Class 7: 0.0%
+[  16397] -> Class 8: 1.5%
+[ -63164] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 105251] -> Class 0: 92.0%
+[-221428] -> Class 1: 0.0%
+[ -24291] -> Class 2: 0.4%
+[ -61294] -> Class 3: 0.1%
+[ -96960] -> Class 4: 0.0%
+[-158936] -> Class 5: 0.0%
+[  46829] -> Class 6: 5.7%
+[-235150] -> Class 7: 0.0%
+[ -22743] -> Class 8: 0.4%
+[   4142] -> Class 9: 1.4%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[  97673] -> Class 0: 70.6%
+[-260281] -> Class 1: 0.0%
+[ -13667] -> Class 2: 0.5%
+[  10902] -> Class 3: 2.2%
+[-123258] -> Class 4: 0.0%
+[ -89598] -> Class 5: 0.0%
+[  71727] -> Class 6: 17.7%
+[-267073] -> Class 7: 0.0%
+[ -62375] -> Class 8: 0.1%
+[  51727] -> Class 9: 8.8%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 162294] -> Class 0: 99.4%
+[-241426] -> Class 1: 0.0%
+[  36266] -> Class 2: 0.4%
+[   3056] -> Class 3: 0.1%
+[ -95411] -> Class 4: 0.0%
+[ -90319] -> Class 5: 0.0%
+[ -24185] -> Class 6: 0.0%
+[-223304] -> Class 7: 0.0%
+[ -55115] -> Class 8: 0.0%
+[ -57600] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 198168] -> Class 0: 99.9%
+[-237253] -> Class 1: 0.0%
+[ -18713] -> Class 2: 0.0%
+[  23656] -> Class 3: 0.0%
+[ -78999] -> Class 4: 0.0%
+[ -97426] -> Class 5: 0.0%
+[ -27647] -> Class 6: 0.0%
+[-218318] -> Class 7: 0.0%
+[ -33638] -> Class 8: 0.0%
+[ -89206] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 120675] -> Class 0: 98.5%
+[-229142] -> Class 1: 0.0%
+[   7261] -> Class 2: 0.8%
+[ -44806] -> Class 3: 0.1%
+[ -75892] -> Class 4: 0.0%
+[ -86862] -> Class 5: 0.0%
+[  -7989] -> Class 6: 0.4%
+[-212053] -> Class 7: 0.0%
+[ -37173] -> Class 8: 0.1%
+[ -40259] -> Class 9: 0.1%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 139315] -> Class 0: 99.0%
+[-195491] -> Class 1: 0.0%
+[ -41472] -> Class 2: 0.0%
+[ -66478] -> Class 3: 0.0%
+[ -66966] -> Class 4: 0.0%
+[-116932] -> Class 5: 0.0%
+[ -16795] -> Class 6: 0.1%
+[-212492] -> Class 7: 0.0%
+[  18416] -> Class 8: 0.8%
+[ -84537] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 108112] -> Class 0: 93.3%
+[-185307] -> Class 1: 0.0%
+[ -90494] -> Class 2: 0.0%
+[  40650] -> Class 3: 5.8%
+[-138858] -> Class 4: 0.0%
+[ -83509] -> Class 5: 0.0%
+[  -5276] -> Class 6: 0.7%
+[-291405] -> Class 7: 0.0%
+[ -62316] -> Class 8: 0.1%
+[-125210] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 210168] -> Class 0: 99.9%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.1%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 114916] -> Class 0: 98.1%
+[-221007] -> Class 1: 0.0%
+[ -54739] -> Class 2: 0.1%
+[  -7559] -> Class 3: 0.8%
+[   2451] -> Class 4: 0.8%
+[ -93747] -> Class 5: 0.0%
+[ -79064] -> Class 6: 0.0%
+[-142565] -> Class 7: 0.0%
+[ -46753] -> Class 8: 0.1%
+[ -54052] -> Class 9: 0.1%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 110364] -> Class 0: 96.0%
+[-216356] -> Class 1: 0.0%
+[ -56336] -> Class 2: 0.1%
+[ -65156] -> Class 3: 0.0%
+[ -52676] -> Class 4: 0.1%
+[-141397] -> Class 5: 0.0%
+[  34419] -> Class 6: 3.0%
+[-224079] -> Class 7: 0.0%
+[  -7645] -> Class 8: 0.7%
+[ -88366] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 128763] -> Class 0: 79.3%
+[-244665] -> Class 1: 0.0%
+[  -6383] -> Class 2: 0.3%
+[   -672] -> Class 3: 0.3%
+[ -94020] -> Class 4: 0.0%
+[ -91212] -> Class 5: 0.0%
+[  94941] -> Class 6: 19.8%
+[-323950] -> Class 7: 0.0%
+[ -39287] -> Class 8: 0.1%
+[ -17855] -> Class 9: 0.2%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[ 102309] -> Class 0: 97.7%
+[-128332] -> Class 1: 0.0%
+[ -56870] -> Class 2: 0.1%
+[ -18261] -> Class 3: 0.8%
+[ -68155] -> Class 4: 0.1%
+[-206644] -> Class 5: 0.0%
+[ -73263] -> Class 6: 0.0%
+[ -59807] -> Class 7: 0.1%
+[ -35527] -> Class 8: 0.4%
+[ -16334] -> Class 9: 0.8%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[  19294] -> Class 0: 0.0%
+[  93125] -> Class 1: 0.0%
+[-171506] -> Class 2: 0.0%
+[ -22931] -> Class 3: 0.0%
+[  -8599] -> Class 4: 0.0%
+[-131108] -> Class 5: 0.0%
+[-251948] -> Class 6: 0.0%
+[ 416854] -> Class 7: 100.0%
+[ -49488] -> Class 8: 0.0%
+[  84617] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+Classification results of [100] lap:
+[  19294] -> Class 0: 0.0%
+[  93125] -> Class 1: 0.0%
+[-171506] -> Class 2: 0.0%
+[ -22931] -> Class 3: 0.0%
+[  -8599] -> Class 4: 0.0%
+[-131108] -> Class 5: 0.0%
+[-251948] -> Class 6: 0.0%
+[ 416854] -> Class 7: 100.0%
+[ -49488] -> Class 8: 0.0%
+[  84617] -> Class 9: 0.0%
