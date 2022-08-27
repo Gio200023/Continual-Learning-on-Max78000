@@ -88,7 +88,8 @@
         "sample_inputs.h": "c",
         "*.tcc": "c",
         "chrono": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "training_samples.h": "c"
     }
 }
 

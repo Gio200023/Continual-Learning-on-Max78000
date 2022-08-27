@@ -41,7 +41,8 @@
 #include <stdio.h>
 #include "mxc.h"
 #include "cnn.h"
-#include "sample_inputs.h"
+#include "training_samples.h"
+#include "testing_samples.h"
 #include "sampledata_mnist.h"
 #include "math.h"
 #include "backpropagation.h"
@@ -88,24 +89,32 @@ void fail(void)
     ;
 }
 
-// 1-channel 28x28 data input (784 bytes / 196 32-bit words):
-// CHW 28x28, channel 0
+/* 1-channel 28x28 data input (784 bytes / 196 32-bit words) */
 int input = 0;
-static uint32_t *input_0;
-void load_input(void)
+static uint32_t *training_input;
+/* load training input */
+void load_training_input(void)
 {
   if (input == 40)
   {
     input = 0;
   }
-  input_0 = (uint32_t *)sample_inputs_all[input++];
-  memcpy32((uint32_t *)0x50400000, input_0, 196);
+  training_input = (uint32_t *)samples_training[input++];
+  memcpy32((uint32_t *)0x50400000, training_input, 196);
 }
-static const uint32_t input_mnist[] = SAMPLE_INPUT_MNIST;
 
+static uint32_t *test_input;
+/* load training input */
+void load_test_input(void)
+{
+  test_input = (uint32_t *)samples_test[input++];
+  memcpy32((uint32_t *)0x50400000, test_input, 196);
+}
+
+static const uint32_t input_mnist[] = SAMPLE_INPUT_MNIST;
+/* This function loads the sample data input digit 7 */
 void load_mnist_input(void)
 {
-  // This function loads the sample data input digit 7
 
   memcpy32((uint32_t *)0x50400000, input_mnist, 196);
 }
@@ -149,7 +158,7 @@ int main(void)
   MXC_Delay(SEC(2)); // Let debugger interrupt if needed
 
   /**************************************************************************
-   *  INFERENCE LAYER BY LAYER WITH BACKPROPAGATION --> CONTINUAL LEARNING
+   *  INFERENCE LAYER BY LAYER WITH CONTINUAL LEARNING (TinyOL algorithm)
    *************************************************************************/
 
   // Enable peripheral, enable CNN interrupt, turn on CNN clock
@@ -157,7 +166,7 @@ int main(void)
   cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
 
   int layer_count = 0;
-  for (i = 0; i < 100; i++)
+  for (i = 0; i < ITERATIONS; i++)
   {
     cnn_init();         // Bring state machines to consistent state
     cnn_load_weights(); // Load kernels
@@ -169,7 +178,7 @@ int main(void)
       cnn_config_layer(layer_count);
 
       if (layer_count == 0)
-        load_input();
+        load_training_input();
       cnn_start(); // Start state machines
 
       while (cnn_time == 0)
@@ -262,8 +271,8 @@ int main(void)
   input = 0;
   for (int l = 0; l < 40; l++)
   {
-    load_input(); // Load data input
-    cnn_start();  // Start CNN processing
+    load_training_input(); // Load data input
+    cnn_start();           // Start CNN processing
 
     while (cnn_time == 0)
       __WFI(); // Wait for CNN
@@ -286,9 +295,9 @@ int main(void)
   cnn_load_weights(); // Load kernels
   cnn_load_bias();    // Load biases
   cnn_config_layer(0);
-  input = 41;
-  load_input(); // Load data input
-  cnn_start();  // Start CNN processing
+  input = 0;
+  load_test_input(); // Load data input
+  cnn_start();       // Start CNN processing
 
   while (cnn_time == 0)
     __WFI(); // Wait for CNN
@@ -306,7 +315,7 @@ int main(void)
    *  INFERENCE on mnist digit 7
    ************************************/
   load_mnist_input(); // Load data input
-  cnn_start();   // Start CNN processing
+  cnn_start();        // Start CNN processing
 
   while (cnn_time == 0)
     __WFI(); // Wait for CNN

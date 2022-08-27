@@ -17,7 +17,7 @@
 #define UPDATE 1
 #define FIND 0
 
-#define ITERATIONS 5000
+#define ITERATIONS 1000
 
 /**
  * @brief substraction of 2 arrays, ml_softmax - true_output.

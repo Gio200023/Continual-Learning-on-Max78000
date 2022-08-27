@@ -1,0 +1,1677 @@
+Waiting to set up debugger
+Classification results of [0] lap:
+[ -24204] -> Class 0: 0.0%
+[-241276] -> Class 1: 0.0%
+[  59070] -> Class 2: 0.0%
+[   5203] -> Class 3: 0.0%
+[  71341] -> Class 4: 0.0%
+[-106206] -> Class 5: 0.0%
+[  -4448] -> Class 6: 0.0%
+[-209723] -> Class 7: 0.0%
+[ 385998] -> Class 8: 100.0%
+[  51839] -> Class 9: 0.0%
+Approximate inference time of 0 iteration: 1414 us
+
+step:    0, timer = 4801
+step:    1, timer = 4682
+step:    2, timer = 4830
+step:    3, timer = 4844
+step:    4, timer = 4669
+step:    5, timer = 4842
+step:    6, timer = 4833
+step:    7, timer = 4856
+step:    8, timer = 4834
+step:    9, timer = 4998
+step:   10, timer = 3307
+step:   11, timer = 4832
+step:   12, timer = 4860
+step:   13, timer = 4967
+step:   14, timer = 4865
+step:   15, timer = 4858
+step:   16, timer = 4842
+step:   17, timer = 4830
+step:   18, timer = 4834
+step:   19, timer = 4870
+step:   20, timer = 4865
+step:   21, timer = 4838
+step:   22, timer = 4857
+step:   23, timer = 4867
+step:   24, timer = 4840
+step:   25, timer = 4860
+step:   26, timer = 1912
+step:   27, timer = 4833
+step:   28, timer = 4861
+step:   29, timer = 4806
+step:   30, timer = 4856
+step:   31, timer = 1917
+step:   32, timer = 1912
+step:   33, timer = 1912
+step:   34, timer = 1912
+step:   35, timer = 1923
+step:   36, timer = 1917
+step:   37, timer = 1912
+step:   38, timer = 1899
+step:   39, timer = 1917
+step:   40, timer = 1899
+step:   41, timer = 1923
+step:   42, timer = 1917
+step:   43, timer = 3287
+step:   44, timer = 4710
+step:   45, timer = 4839
+step:   46, timer = 4844
+step:   47, timer = 3284
+step:   48, timer = 1905
+step:   49, timer = 1905
+step:   50, timer = 1912
+step:   51, timer = 1917
+step:   52, timer = 1905
+step:   53, timer = 1899
+step:   54, timer = 1894
+step:   55, timer = 1905
+step:   56, timer = 1905
+step:   57, timer = 1894
+step:   58, timer = 1912
+step:   59, timer = 1899
+step:   60, timer = 4830
+step:   61, timer = 4798
+step:   62, timer = 4849
+step:   63, timer = 1935
+step:   64, timer = 1917
+step:   65, timer = 4835
+step:   66, timer = 1923
+step:   67, timer = 4688
+step:   68, timer = 4714
+step:   69, timer = 4720
+step:   70, timer = 1930
+step:   71, timer = 4695
+step:   72, timer = 4706
+step:   73, timer = 1923
+step:   74, timer = 4843
+step:   75, timer = 1923
+step:   76, timer = 1923
+step:   77, timer = 3319
+step:   78, timer = 1930
+step:   79, timer = 1917
+step:   80, timer = 1923
+step:   81, timer = 1930
+step:   82, timer = 1923
+step:   83, timer = 3330
+step:   84, timer = 1930
+step:   85, timer = 1905
+step:   86, timer = 1930
+step:   87, timer = 1917
+step:   88, timer = 1905
+step:   89, timer = 1912
+step:   90, timer = 1930
+step:   91, timer = 1923
+step:   92, timer = 1923
+step:   93, timer = 1912
+step:   94, timer = 1912
+step:   95, timer = 1917
+step:   96, timer = 1923
+step:   97, timer = 1894
+step:   98, timer = 1917
+step:   99, timer = 1923
+Classification results of [100] lap:
+[ 210168] -> Class 0: 99.9%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.1%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 100 iteration: 1413 us
+
+step:  100, timer = 1888
+step:  101, timer = 1923
+step:  102, timer = 1917
+step:  103, timer = 1923
+step:  104, timer = 1930
+step:  105, timer = 1905
+step:  106, timer = 1930
+step:  107, timer = 1917
+step:  108, timer = 1905
+step:  109, timer = 1912
+step:  110, timer = 1930
+step:  111, timer = 1923
+step:  112, timer = 1923
+step:  113, timer = 1912
+step:  114, timer = 1912
+step:  115, timer = 1917
+step:  116, timer = 1923
+step:  117, timer = 1894
+step:  118, timer = 1917
+step:  119, timer = 1923
+step:  120, timer = 1905
+step:  121, timer = 4823
+step:  122, timer = 3311
+step:  123, timer = 3317
+step:  124, timer = 1917
+step:  125, timer = 1912
+step:  126, timer = 1905
+step:  127, timer = 1923
+step:  128, timer = 1905
+step:  129, timer = 1917
+step:  130, timer = 1923
+step:  131, timer = 1930
+step:  132, timer = 1912
+step:  133, timer = 1905
+step:  134, timer = 1905
+step:  135, timer = 1899
+step:  136, timer = 1905
+step:  137, timer = 1894
+step:  138, timer = 1894
+step:  139, timer = 1894
+step:  140, timer = 1894
+step:  141, timer = 1923
+step:  142, timer = 1917
+step:  143, timer = 1905
+step:  144, timer = 1923
+step:  145, timer = 1899
+step:  146, timer = 1912
+step:  147, timer = 1899
+step:  148, timer = 1894
+step:  149, timer = 1917
+step:  150, timer = 1923
+step:  151, timer = 1917
+step:  152, timer = 1923
+step:  153, timer = 1912
+step:  154, timer = 1912
+step:  155, timer = 1894
+step:  156, timer = 1917
+step:  157, timer = 1888
+step:  158, timer = 1912
+step:  159, timer = 1917
+step:  160, timer = 1899
+step:  161, timer = 1894
+step:  162, timer = 1894
+step:  163, timer = 1935
+step:  164, timer = 1917
+step:  165, timer = 1912
+step:  166, timer = 1905
+step:  167, timer = 1923
+step:  168, timer = 1905
+step:  169, timer = 1917
+step:  170, timer = 1923
+step:  171, timer = 1930
+step:  172, timer = 1912
+step:  173, timer = 1905
+step:  174, timer = 1905
+step:  175, timer = 1899
+step:  176, timer = 1905
+step:  177, timer = 1894
+step:  178, timer = 1894
+step:  179, timer = 1894
+step:  180, timer = 1894
+step:  181, timer = 1923
+step:  182, timer = 1917
+step:  183, timer = 1905
+step:  184, timer = 1923
+step:  185, timer = 1899
+step:  186, timer = 1912
+step:  187, timer = 1899
+step:  188, timer = 1894
+step:  189, timer = 1917
+step:  190, timer = 1923
+step:  191, timer = 1917
+step:  192, timer = 1923
+step:  193, timer = 1912
+step:  194, timer = 1912
+step:  195, timer = 1894
+step:  196, timer = 1917
+step:  197, timer = 1888
+step:  198, timer = 1912
+step:  199, timer = 1917
+Classification results of [200] lap:
+[ 193248] -> Class 0: 99.8%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.2%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 200 iteration: 1413 us
+
+step:  200, timer = 1894
+step:  201, timer = 1923
+step:  202, timer = 1917
+step:  203, timer = 1905
+step:  204, timer = 1923
+step:  205, timer = 1899
+step:  206, timer = 1912
+step:  207, timer = 1899
+step:  208, timer = 1894
+step:  209, timer = 1917
+step:  210, timer = 1923
+step:  211, timer = 1917
+step:  212, timer = 1923
+step:  213, timer = 1912
+step:  214, timer = 1912
+step:  215, timer = 1894
+step:  216, timer = 1917
+step:  217, timer = 1888
+step:  218, timer = 1912
+step:  219, timer = 1917
+step:  220, timer = 1899
+step:  221, timer = 1894
+step:  222, timer = 1894
+step:  223, timer = 1935
+step:  224, timer = 1917
+step:  225, timer = 1912
+step:  226, timer = 1905
+step:  227, timer = 1923
+step:  228, timer = 1905
+step:  229, timer = 1917
+step:  230, timer = 1923
+step:  231, timer = 1930
+step:  232, timer = 1912
+step:  233, timer = 1905
+step:  234, timer = 1905
+step:  235, timer = 1899
+step:  236, timer = 1905
+step:  237, timer = 1894
+step:  238, timer = 1894
+step:  239, timer = 1894
+step:  240, timer = 1894
+step:  241, timer = 1923
+step:  242, timer = 1917
+step:  243, timer = 1905
+step:  244, timer = 1923
+step:  245, timer = 1899
+step:  246, timer = 1912
+step:  247, timer = 1899
+step:  248, timer = 1894
+step:  249, timer = 1917
+step:  250, timer = 1923
+step:  251, timer = 1917
+step:  252, timer = 1923
+step:  253, timer = 1912
+step:  254, timer = 1912
+step:  255, timer = 1894
+step:  256, timer = 1917
+step:  257, timer = 1888
+step:  258, timer = 1912
+step:  259, timer = 1917
+step:  260, timer = 1899
+step:  261, timer = 1894
+step:  262, timer = 1894
+step:  263, timer = 1935
+step:  264, timer = 1917
+step:  265, timer = 1912
+step:  266, timer = 1905
+step:  267, timer = 1923
+step:  268, timer = 1905
+step:  269, timer = 1917
+step:  270, timer = 1923
+step:  271, timer = 1930
+step:  272, timer = 1912
+step:  273, timer = 1905
+step:  274, timer = 1905
+step:  275, timer = 1899
+step:  276, timer = 1905
+step:  277, timer = 1894
+step:  278, timer = 1894
+step:  279, timer = 1894
+step:  280, timer = 1894
+step:  281, timer = 1923
+step:  282, timer = 1917
+step:  283, timer = 1905
+step:  284, timer = 1923
+step:  285, timer = 1899
+step:  286, timer = 1912
+step:  287, timer = 1899
+step:  288, timer = 1894
+step:  289, timer = 1917
+step:  290, timer = 1923
+step:  291, timer = 1917
+step:  292, timer = 1923
+step:  293, timer = 1912
+step:  294, timer = 1912
+step:  295, timer = 1894
+step:  296, timer = 1917
+step:  297, timer = 1888
+step:  298, timer = 1912
+step:  299, timer = 1917
+Classification results of [300] lap:
+[ 193248] -> Class 0: 99.8%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.2%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 300 iteration: 1413 us
+
+step:  300, timer = 1894
+step:  301, timer = 1923
+step:  302, timer = 1917
+step:  303, timer = 1905
+step:  304, timer = 1923
+step:  305, timer = 1899
+step:  306, timer = 1912
+step:  307, timer = 1899
+step:  308, timer = 1894
+step:  309, timer = 1917
+step:  310, timer = 1923
+step:  311, timer = 1917
+step:  312, timer = 1923
+step:  313, timer = 1912
+step:  314, timer = 1912
+step:  315, timer = 1894
+step:  316, timer = 1917
+step:  317, timer = 1888
+step:  318, timer = 1912
+step:  319, timer = 1917
+step:  320, timer = 1899
+step:  321, timer = 1894
+step:  322, timer = 1894
+step:  323, timer = 1935
+step:  324, timer = 1917
+step:  325, timer = 1912
+step:  326, timer = 1905
+step:  327, timer = 1923
+step:  328, timer = 1905
+step:  329, timer = 1917
+step:  330, timer = 1923
+step:  331, timer = 1930
+step:  332, timer = 1912
+step:  333, timer = 1905
+step:  334, timer = 1905
+step:  335, timer = 1899
+step:  336, timer = 1905
+step:  337, timer = 1894
+step:  338, timer = 1894
+step:  339, timer = 1894
+step:  340, timer = 1894
+step:  341, timer = 1923
+step:  342, timer = 1917
+step:  343, timer = 1905
+step:  344, timer = 1923
+step:  345, timer = 1899
+step:  346, timer = 1912
+step:  347, timer = 1899
+step:  348, timer = 1894
+step:  349, timer = 1917
+step:  350, timer = 1923
+step:  351, timer = 1917
+step:  352, timer = 1923
+step:  353, timer = 1912
+step:  354, timer = 1912
+step:  355, timer = 1894
+step:  356, timer = 1917
+step:  357, timer = 1888
+step:  358, timer = 1912
+step:  359, timer = 1917
+step:  360, timer = 1899
+step:  361, timer = 1894
+step:  362, timer = 1894
+step:  363, timer = 1935
+step:  364, timer = 1917
+step:  365, timer = 1912
+step:  366, timer = 1905
+step:  367, timer = 1923
+step:  368, timer = 1905
+step:  369, timer = 1917
+step:  370, timer = 1923
+step:  371, timer = 1930
+step:  372, timer = 1912
+step:  373, timer = 1905
+step:  374, timer = 1905
+step:  375, timer = 1899
+step:  376, timer = 1905
+step:  377, timer = 1894
+step:  378, timer = 1894
+step:  379, timer = 1894
+step:  380, timer = 1894
+step:  381, timer = 1923
+step:  382, timer = 1917
+step:  383, timer = 1905
+step:  384, timer = 1923
+step:  385, timer = 1899
+step:  386, timer = 1912
+step:  387, timer = 1899
+step:  388, timer = 1894
+step:  389, timer = 1917
+step:  390, timer = 1923
+step:  391, timer = 1917
+step:  392, timer = 1923
+step:  393, timer = 1912
+step:  394, timer = 1912
+step:  395, timer = 1894
+step:  396, timer = 1917
+step:  397, timer = 1888
+step:  398, timer = 1912
+step:  399, timer = 1917
+Classification results of [400] lap:
+[ 193248] -> Class 0: 99.8%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.2%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 400 iteration: 1413 us
+
+step:  400, timer = 1894
+step:  401, timer = 1923
+step:  402, timer = 1917
+step:  403, timer = 1905
+step:  404, timer = 1923
+step:  405, timer = 1899
+step:  406, timer = 1912
+step:  407, timer = 1899
+step:  408, timer = 1894
+step:  409, timer = 1917
+step:  410, timer = 1923
+step:  411, timer = 1917
+step:  412, timer = 1923
+step:  413, timer = 1912
+step:  414, timer = 1912
+step:  415, timer = 1894
+step:  416, timer = 1917
+step:  417, timer = 1888
+step:  418, timer = 1912
+step:  419, timer = 1917
+step:  420, timer = 1899
+step:  421, timer = 1894
+step:  422, timer = 1894
+step:  423, timer = 1935
+step:  424, timer = 1917
+step:  425, timer = 1912
+step:  426, timer = 1905
+step:  427, timer = 1923
+step:  428, timer = 1905
+step:  429, timer = 1917
+step:  430, timer = 1923
+step:  431, timer = 1930
+step:  432, timer = 1912
+step:  433, timer = 1905
+step:  434, timer = 1905
+step:  435, timer = 1899
+step:  436, timer = 1905
+step:  437, timer = 1894
+step:  438, timer = 1894
+step:  439, timer = 1894
+step:  440, timer = 1894
+step:  441, timer = 1923
+step:  442, timer = 1917
+step:  443, timer = 1905
+step:  444, timer = 1923
+step:  445, timer = 1899
+step:  446, timer = 1912
+step:  447, timer = 1899
+step:  448, timer = 1894
+step:  449, timer = 1917
+step:  450, timer = 1923
+step:  451, timer = 1917
+step:  452, timer = 1923
+step:  453, timer = 1912
+step:  454, timer = 1912
+step:  455, timer = 1894
+step:  456, timer = 1917
+step:  457, timer = 1888
+step:  458, timer = 1912
+step:  459, timer = 1917
+step:  460, timer = 1899
+step:  461, timer = 1894
+step:  462, timer = 1894
+step:  463, timer = 1935
+step:  464, timer = 1917
+step:  465, timer = 1912
+step:  466, timer = 1905
+step:  467, timer = 1923
+step:  468, timer = 1905
+step:  469, timer = 1917
+step:  470, timer = 1923
+step:  471, timer = 1930
+step:  472, timer = 1912
+step:  473, timer = 1905
+step:  474, timer = 1905
+step:  475, timer = 1899
+step:  476, timer = 1905
+step:  477, timer = 1894
+step:  478, timer = 1894
+step:  479, timer = 1894
+step:  480, timer = 1894
+step:  481, timer = 1923
+step:  482, timer = 1917
+step:  483, timer = 1905
+step:  484, timer = 1923
+step:  485, timer = 1899
+step:  486, timer = 1912
+step:  487, timer = 1899
+step:  488, timer = 1894
+step:  489, timer = 1917
+step:  490, timer = 1923
+step:  491, timer = 1917
+step:  492, timer = 1923
+step:  493, timer = 1912
+step:  494, timer = 1912
+step:  495, timer = 1894
+step:  496, timer = 1917
+step:  497, timer = 1888
+step:  498, timer = 1912
+step:  499, timer = 1917
+Classification results of [500] lap:
+[ 193248] -> Class 0: 99.8%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.2%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 500 iteration: 1413 us
+
+step:  500, timer = 1894
+step:  501, timer = 1923
+step:  502, timer = 1917
+step:  503, timer = 1905
+step:  504, timer = 1923
+step:  505, timer = 1899
+step:  506, timer = 1912
+step:  507, timer = 1899
+step:  508, timer = 1894
+step:  509, timer = 1917
+step:  510, timer = 1923
+step:  511, timer = 1917
+step:  512, timer = 1923
+step:  513, timer = 1912
+step:  514, timer = 1912
+step:  515, timer = 1894
+step:  516, timer = 1917
+step:  517, timer = 1888
+step:  518, timer = 1912
+step:  519, timer = 1917
+step:  520, timer = 1899
+step:  521, timer = 1894
+step:  522, timer = 1894
+step:  523, timer = 1935
+step:  524, timer = 1917
+step:  525, timer = 1912
+step:  526, timer = 1905
+step:  527, timer = 1923
+step:  528, timer = 1905
+step:  529, timer = 1917
+step:  530, timer = 1923
+step:  531, timer = 1930
+step:  532, timer = 1912
+step:  533, timer = 1905
+step:  534, timer = 1905
+step:  535, timer = 1899
+step:  536, timer = 1905
+step:  537, timer = 1894
+step:  538, timer = 1894
+step:  539, timer = 1894
+step:  540, timer = 1894
+step:  541, timer = 1923
+step:  542, timer = 1917
+step:  543, timer = 1905
+step:  544, timer = 1923
+step:  545, timer = 1899
+step:  546, timer = 1912
+step:  547, timer = 1899
+step:  548, timer = 1894
+step:  549, timer = 1917
+step:  550, timer = 1923
+step:  551, timer = 1917
+step:  552, timer = 1923
+step:  553, timer = 1912
+step:  554, timer = 1912
+step:  555, timer = 1894
+step:  556, timer = 1917
+step:  557, timer = 1888
+step:  558, timer = 1912
+step:  559, timer = 1917
+step:  560, timer = 1899
+step:  561, timer = 1894
+step:  562, timer = 1894
+step:  563, timer = 1935
+step:  564, timer = 1917
+step:  565, timer = 1912
+step:  566, timer = 1905
+step:  567, timer = 1923
+step:  568, timer = 1905
+step:  569, timer = 1917
+step:  570, timer = 1923
+step:  571, timer = 1930
+step:  572, timer = 1912
+step:  573, timer = 1905
+step:  574, timer = 1905
+step:  575, timer = 1899
+step:  576, timer = 1905
+step:  577, timer = 1894
+step:  578, timer = 1894
+step:  579, timer = 1894
+step:  580, timer = 1894
+step:  581, timer = 1923
+step:  582, timer = 1917
+step:  583, timer = 1905
+step:  584, timer = 1923
+step:  585, timer = 1899
+step:  586, timer = 1912
+step:  587, timer = 1899
+step:  588, timer = 1894
+step:  589, timer = 1917
+step:  590, timer = 1923
+step:  591, timer = 1917
+step:  592, timer = 1923
+step:  593, timer = 1912
+step:  594, timer = 1912
+step:  595, timer = 1894
+step:  596, timer = 1917
+step:  597, timer = 1888
+step:  598, timer = 1912
+step:  599, timer = 1917
+Classification results of [600] lap:
+[ 193248] -> Class 0: 99.8%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.2%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 600 iteration: 1413 us
+
+step:  600, timer = 1894
+step:  601, timer = 1923
+step:  602, timer = 1917
+step:  603, timer = 1905
+step:  604, timer = 1923
+step:  605, timer = 1899
+step:  606, timer = 1912
+step:  607, timer = 1899
+step:  608, timer = 1894
+step:  609, timer = 1917
+step:  610, timer = 1923
+step:  611, timer = 1917
+step:  612, timer = 1923
+step:  613, timer = 1912
+step:  614, timer = 1912
+step:  615, timer = 1894
+step:  616, timer = 1917
+step:  617, timer = 1888
+step:  618, timer = 1912
+step:  619, timer = 1917
+step:  620, timer = 1899
+step:  621, timer = 1894
+step:  622, timer = 1894
+step:  623, timer = 1935
+step:  624, timer = 1917
+step:  625, timer = 1912
+step:  626, timer = 1905
+step:  627, timer = 1923
+step:  628, timer = 1905
+step:  629, timer = 1917
+step:  630, timer = 1923
+step:  631, timer = 1930
+step:  632, timer = 1912
+step:  633, timer = 1905
+step:  634, timer = 1905
+step:  635, timer = 1899
+step:  636, timer = 1905
+step:  637, timer = 1894
+step:  638, timer = 1894
+step:  639, timer = 1894
+step:  640, timer = 1894
+step:  641, timer = 1923
+step:  642, timer = 1917
+step:  643, timer = 1905
+step:  644, timer = 1923
+step:  645, timer = 1899
+step:  646, timer = 1912
+step:  647, timer = 1899
+step:  648, timer = 1894
+step:  649, timer = 1917
+step:  650, timer = 1923
+step:  651, timer = 1917
+step:  652, timer = 1923
+step:  653, timer = 1912
+step:  654, timer = 1912
+step:  655, timer = 1894
+step:  656, timer = 1917
+step:  657, timer = 1888
+step:  658, timer = 1912
+step:  659, timer = 1917
+step:  660, timer = 1899
+step:  661, timer = 1894
+step:  662, timer = 1894
+step:  663, timer = 1935
+step:  664, timer = 1917
+step:  665, timer = 1912
+step:  666, timer = 1905
+step:  667, timer = 1923
+step:  668, timer = 1905
+step:  669, timer = 1917
+step:  670, timer = 1923
+step:  671, timer = 1930
+step:  672, timer = 1912
+step:  673, timer = 1905
+step:  674, timer = 1905
+step:  675, timer = 1899
+step:  676, timer = 1905
+step:  677, timer = 1894
+step:  678, timer = 1894
+step:  679, timer = 1894
+step:  680, timer = 1894
+step:  681, timer = 1923
+step:  682, timer = 1917
+step:  683, timer = 1905
+step:  684, timer = 1923
+step:  685, timer = 1899
+step:  686, timer = 1912
+step:  687, timer = 1899
+step:  688, timer = 1894
+step:  689, timer = 1917
+step:  690, timer = 1923
+step:  691, timer = 1917
+step:  692, timer = 1923
+step:  693, timer = 1912
+step:  694, timer = 1912
+step:  695, timer = 1894
+step:  696, timer = 1917
+step:  697, timer = 1888
+step:  698, timer = 1912
+step:  699, timer = 1917
+Classification results of [700] lap:
+[ 193248] -> Class 0: 99.8%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.2%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 700 iteration: 1413 us
+
+step:  700, timer = 1894
+step:  701, timer = 1923
+step:  702, timer = 1917
+step:  703, timer = 1905
+step:  704, timer = 1923
+step:  705, timer = 1899
+step:  706, timer = 1912
+step:  707, timer = 1899
+step:  708, timer = 1894
+step:  709, timer = 1917
+step:  710, timer = 1923
+step:  711, timer = 1917
+step:  712, timer = 1923
+step:  713, timer = 1912
+step:  714, timer = 1912
+step:  715, timer = 1894
+step:  716, timer = 1917
+step:  717, timer = 1888
+step:  718, timer = 1912
+step:  719, timer = 1917
+step:  720, timer = 1899
+step:  721, timer = 1894
+step:  722, timer = 1894
+step:  723, timer = 1935
+step:  724, timer = 1917
+step:  725, timer = 1912
+step:  726, timer = 1905
+step:  727, timer = 1923
+step:  728, timer = 1905
+step:  729, timer = 1917
+step:  730, timer = 1923
+step:  731, timer = 1930
+step:  732, timer = 1912
+step:  733, timer = 1905
+step:  734, timer = 1905
+step:  735, timer = 1899
+step:  736, timer = 1905
+step:  737, timer = 1894
+step:  738, timer = 1894
+step:  739, timer = 1894
+step:  740, timer = 1894
+step:  741, timer = 1923
+step:  742, timer = 1917
+step:  743, timer = 1905
+step:  744, timer = 1923
+step:  745, timer = 1899
+step:  746, timer = 1912
+step:  747, timer = 1899
+step:  748, timer = 1894
+step:  749, timer = 1917
+step:  750, timer = 1923
+step:  751, timer = 1917
+step:  752, timer = 1923
+step:  753, timer = 1912
+step:  754, timer = 1912
+step:  755, timer = 1894
+step:  756, timer = 1917
+step:  757, timer = 1888
+step:  758, timer = 1912
+step:  759, timer = 1917
+step:  760, timer = 1899
+step:  761, timer = 1894
+step:  762, timer = 1894
+step:  763, timer = 1935
+step:  764, timer = 1917
+step:  765, timer = 1912
+step:  766, timer = 1905
+step:  767, timer = 1923
+step:  768, timer = 1905
+step:  769, timer = 1917
+step:  770, timer = 1923
+step:  771, timer = 1930
+step:  772, timer = 1912
+step:  773, timer = 1905
+step:  774, timer = 1905
+step:  775, timer = 1899
+step:  776, timer = 1905
+step:  777, timer = 1894
+step:  778, timer = 1894
+step:  779, timer = 1894
+step:  780, timer = 1894
+step:  781, timer = 1923
+step:  782, timer = 1917
+step:  783, timer = 1905
+step:  784, timer = 1923
+step:  785, timer = 1899
+step:  786, timer = 1912
+step:  787, timer = 1899
+step:  788, timer = 1894
+step:  789, timer = 1917
+step:  790, timer = 1923
+step:  791, timer = 1917
+step:  792, timer = 1923
+step:  793, timer = 1912
+step:  794, timer = 1912
+step:  795, timer = 1894
+step:  796, timer = 1917
+step:  797, timer = 1888
+step:  798, timer = 1912
+step:  799, timer = 1917
+Classification results of [800] lap:
+[ 193248] -> Class 0: 99.8%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.2%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 800 iteration: 1413 us
+
+step:  800, timer = 1894
+step:  801, timer = 1923
+step:  802, timer = 1917
+step:  803, timer = 1905
+step:  804, timer = 1923
+step:  805, timer = 1899
+step:  806, timer = 1912
+step:  807, timer = 1899
+step:  808, timer = 1894
+step:  809, timer = 1917
+step:  810, timer = 1923
+step:  811, timer = 1917
+step:  812, timer = 1923
+step:  813, timer = 1912
+step:  814, timer = 1912
+step:  815, timer = 1894
+step:  816, timer = 1917
+step:  817, timer = 1888
+step:  818, timer = 1912
+step:  819, timer = 1917
+step:  820, timer = 1899
+step:  821, timer = 1894
+step:  822, timer = 1894
+step:  823, timer = 1935
+step:  824, timer = 1917
+step:  825, timer = 1912
+step:  826, timer = 1905
+step:  827, timer = 1923
+step:  828, timer = 1905
+step:  829, timer = 1917
+step:  830, timer = 1923
+step:  831, timer = 1930
+step:  832, timer = 1912
+step:  833, timer = 1905
+step:  834, timer = 1905
+step:  835, timer = 1899
+step:  836, timer = 1905
+step:  837, timer = 1894
+step:  838, timer = 1894
+step:  839, timer = 1894
+step:  840, timer = 1894
+step:  841, timer = 1923
+step:  842, timer = 1917
+step:  843, timer = 1905
+step:  844, timer = 1923
+step:  845, timer = 1899
+step:  846, timer = 1912
+step:  847, timer = 1899
+step:  848, timer = 1894
+step:  849, timer = 1917
+step:  850, timer = 1923
+step:  851, timer = 1917
+step:  852, timer = 1923
+step:  853, timer = 1912
+step:  854, timer = 1912
+step:  855, timer = 1894
+step:  856, timer = 1917
+step:  857, timer = 1888
+step:  858, timer = 1912
+step:  859, timer = 1917
+step:  860, timer = 1899
+step:  861, timer = 1894
+step:  862, timer = 1894
+step:  863, timer = 1935
+step:  864, timer = 1917
+step:  865, timer = 1912
+step:  866, timer = 1905
+step:  867, timer = 1923
+step:  868, timer = 1905
+step:  869, timer = 1917
+step:  870, timer = 1923
+step:  871, timer = 1930
+step:  872, timer = 1912
+step:  873, timer = 1905
+step:  874, timer = 1905
+step:  875, timer = 1899
+step:  876, timer = 1905
+step:  877, timer = 1894
+step:  878, timer = 1894
+step:  879, timer = 1894
+step:  880, timer = 1894
+step:  881, timer = 1923
+step:  882, timer = 1917
+step:  883, timer = 1905
+step:  884, timer = 1923
+step:  885, timer = 1899
+step:  886, timer = 1912
+step:  887, timer = 1899
+step:  888, timer = 1894
+step:  889, timer = 1917
+step:  890, timer = 1923
+step:  891, timer = 1917
+step:  892, timer = 1923
+step:  893, timer = 1912
+step:  894, timer = 1912
+step:  895, timer = 1894
+step:  896, timer = 1917
+step:  897, timer = 1888
+step:  898, timer = 1912
+step:  899, timer = 1917
+Classification results of [900] lap:
+[ 193248] -> Class 0: 99.8%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.2%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 900 iteration: 1413 us
+
+step:  900, timer = 1894
+step:  901, timer = 1923
+step:  902, timer = 1917
+step:  903, timer = 1905
+step:  904, timer = 1923
+step:  905, timer = 1899
+step:  906, timer = 1912
+step:  907, timer = 1899
+step:  908, timer = 1894
+step:  909, timer = 1917
+step:  910, timer = 1923
+step:  911, timer = 1917
+step:  912, timer = 1923
+step:  913, timer = 1912
+step:  914, timer = 1912
+step:  915, timer = 1894
+step:  916, timer = 1917
+step:  917, timer = 1888
+step:  918, timer = 1912
+step:  919, timer = 1917
+step:  920, timer = 1899
+step:  921, timer = 1894
+step:  922, timer = 1894
+step:  923, timer = 1935
+step:  924, timer = 1917
+step:  925, timer = 1912
+step:  926, timer = 1905
+step:  927, timer = 1923
+step:  928, timer = 1905
+step:  929, timer = 1917
+step:  930, timer = 1923
+step:  931, timer = 1930
+step:  932, timer = 1912
+step:  933, timer = 1905
+step:  934, timer = 1905
+step:  935, timer = 1899
+step:  936, timer = 1905
+step:  937, timer = 1894
+step:  938, timer = 1894
+step:  939, timer = 1894
+step:  940, timer = 1894
+step:  941, timer = 1923
+step:  942, timer = 1917
+step:  943, timer = 1905
+step:  944, timer = 1923
+step:  945, timer = 1899
+step:  946, timer = 1912
+step:  947, timer = 1899
+step:  948, timer = 1894
+step:  949, timer = 1917
+step:  950, timer = 1923
+step:  951, timer = 1917
+step:  952, timer = 1923
+step:  953, timer = 1912
+step:  954, timer = 1912
+step:  955, timer = 1894
+step:  956, timer = 1917
+step:  957, timer = 1888
+step:  958, timer = 1912
+step:  959, timer = 1917
+step:  960, timer = 1899
+step:  961, timer = 1894
+step:  962, timer = 1894
+step:  963, timer = 1935
+step:  964, timer = 1917
+step:  965, timer = 1912
+step:  966, timer = 1905
+step:  967, timer = 1923
+step:  968, timer = 1905
+step:  969, timer = 1917
+step:  970, timer = 1923
+step:  971, timer = 1930
+step:  972, timer = 1912
+step:  973, timer = 1905
+step:  974, timer = 1905
+step:  975, timer = 1899
+step:  976, timer = 1905
+step:  977, timer = 1894
+step:  978, timer = 1894
+step:  979, timer = 1894
+step:  980, timer = 1894
+step:  981, timer = 1923
+step:  982, timer = 1917
+step:  983, timer = 1905
+step:  984, timer = 1923
+step:  985, timer = 1899
+step:  986, timer = 1912
+step:  987, timer = 1899
+step:  988, timer = 1894
+step:  989, timer = 1917
+step:  990, timer = 1923
+step:  991, timer = 1917
+step:  992, timer = 1923
+step:  993, timer = 1912
+step:  994, timer = 1912
+step:  995, timer = 1894
+step:  996, timer = 1917
+step:  997, timer = 1888
+step:  998, timer = 1912
+step:  999, timer = 1917
+Classification results of [0] train image:
+[ 193248] -> Class 0: 99.8%
+[-241657] -> Class 1: 0.0%
+[ -41471] -> Class 2: 0.0%
+[  44081] -> Class 3: 0.2%
+[ -62152] -> Class 4: 0.0%
+[-106235] -> Class 5: 0.0%
+[ -50391] -> Class 6: 0.0%
+[-210081] -> Class 7: 0.0%
+[ -45116] -> Class 8: 0.0%
+[ -83020] -> Class 9: 0.0%
+Approximate inference time of 0 train image: 1413 us
+
+Classification results of [1] train image:
+[ 141346] -> Class 0: 99.3%
+[-221007] -> Class 1: 0.0%
+[ -54739] -> Class 2: 0.0%
+[  -7559] -> Class 3: 0.2%
+[   2451] -> Class 4: 0.4%
+[ -93747] -> Class 5: 0.0%
+[ -79064] -> Class 6: 0.0%
+[-142565] -> Class 7: 0.0%
+[ -46753] -> Class 8: 0.0%
+[ -54052] -> Class 9: 0.0%
+Approximate inference time of 1 train image: 1413 us
+
+Classification results of [2] train image:
+[ 135322] -> Class 0: 98.2%
+[-216356] -> Class 1: 0.0%
+[ -56336] -> Class 2: 0.0%
+[ -65156] -> Class 3: 0.0%
+[ -52676] -> Class 4: 0.0%
+[-141397] -> Class 5: 0.0%
+[  34419] -> Class 6: 1.5%
+[-224079] -> Class 7: 0.0%
+[  -7645] -> Class 8: 0.2%
+[ -88366] -> Class 9: 0.0%
+Approximate inference time of 2 train image: 1413 us
+
+Classification results of [3] train image:
+[ 211070] -> Class 0: 99.2%
+[-244665] -> Class 1: 0.0%
+[  -6383] -> Class 2: 0.0%
+[   -672] -> Class 3: 0.0%
+[ -94020] -> Class 4: 0.0%
+[ -91212] -> Class 5: 0.0%
+[  94941] -> Class 6: 0.8%
+[-323950] -> Class 7: 0.0%
+[ -39287] -> Class 8: 0.0%
+[ -17855] -> Class 9: 0.0%
+Approximate inference time of 3 train image: 1413 us
+
+Classification results of [4] train image:
+[ 120806] -> Class 0: 99.0%
+[-128332] -> Class 1: 0.0%
+[ -56870] -> Class 2: 0.0%
+[ -18261] -> Class 3: 0.4%
+[ -68155] -> Class 4: 0.0%
+[-206644] -> Class 5: 0.0%
+[ -73263] -> Class 6: 0.0%
+[ -59807] -> Class 7: 0.0%
+[ -35527] -> Class 8: 0.1%
+[ -16334] -> Class 9: 0.4%
+Approximate inference time of 4 train image: 1413 us
+
+Classification results of [5] train image:
+[ 229529] -> Class 0: 99.9%
+[-241716] -> Class 1: 0.0%
+[  -6558] -> Class 2: 0.0%
+[ -56844] -> Class 3: 0.0%
+[-125021] -> Class 4: 0.0%
+[-130487] -> Class 5: 0.0%
+[  56126] -> Class 6: 0.0%
+[-219091] -> Class 7: 0.0%
+[  -7491] -> Class 8: 0.0%
+[ -70676] -> Class 9: 0.0%
+Approximate inference time of 5 train image: 1413 us
+
+Classification results of [6] train image:
+[ 146682] -> Class 0: 99.2%
+[-138438] -> Class 1: 0.0%
+[-109330] -> Class 2: 0.0%
+[ -64510] -> Class 3: 0.0%
+[  12131] -> Class 4: 0.4%
+[-165983] -> Class 5: 0.0%
+[-105690] -> Class 6: 0.0%
+[ -85234] -> Class 7: 0.0%
+[  14267] -> Class 8: 0.4%
+[ -46112] -> Class 9: 0.0%
+Approximate inference time of 6 train image: 1413 us
+
+Classification results of [7] train image:
+[ 211601] -> Class 0: 99.8%
+[-228173] -> Class 1: 0.0%
+[ -25073] -> Class 2: 0.0%
+[ -49107] -> Class 3: 0.0%
+[-145833] -> Class 4: 0.0%
+[ -85324] -> Class 5: 0.0%
+[  68393] -> Class 6: 0.2%
+[-230596] -> Class 7: 0.0%
+[ -65782] -> Class 8: 0.0%
+[ -22859] -> Class 9: 0.0%
+Approximate inference time of 7 train image: 1413 us
+
+Classification results of [8] train image:
+[ 228584] -> Class 0: 100.0%
+[-210586] -> Class 1: 0.0%
+[ -15878] -> Class 2: 0.0%
+[  13630] -> Class 3: 0.0%
+[-101625] -> Class 4: 0.0%
+[ -47225] -> Class 5: 0.0%
+[  -4746] -> Class 6: 0.0%
+[-289379] -> Class 7: 0.0%
+[ -11766] -> Class 8: 0.0%
+[ -80992] -> Class 9: 0.0%
+Approximate inference time of 8 train image: 1413 us
+
+Classification results of [9] train image:
+[ 131203] -> Class 0: 79.8%
+[-248614] -> Class 1: 0.0%
+[ -15789] -> Class 2: 0.2%
+[  97817] -> Class 3: 20.0%
+[-114575] -> Class 4: 0.0%
+[ -57570] -> Class 5: 0.0%
+[ -63549] -> Class 6: 0.0%
+[-186188] -> Class 7: 0.0%
+[ -60143] -> Class 8: 0.0%
+[ -73082] -> Class 9: 0.0%
+Approximate inference time of 9 train image: 1413 us
+
+Classification results of [10] train image:
+[ 139682] -> Class 0: 98.0%
+[-206840] -> Class 1: 0.0%
+[ -21604] -> Class 2: 0.1%
+[  -7047] -> Class 3: 0.2%
+[ -97264] -> Class 4: 0.0%
+[ -74283] -> Class 5: 0.0%
+[ -17709] -> Class 6: 0.1%
+[-124992] -> Class 7: 0.0%
+[ -29927] -> Class 8: 0.1%
+[  43901] -> Class 9: 1.5%
+Approximate inference time of 10 train image: 1413 us
+
+Classification results of [11] train image:
+[ 165435] -> Class 0: 99.7%
+[-191456] -> Class 1: 0.0%
+[ -41066] -> Class 2: 0.0%
+[   8048] -> Class 3: 0.1%
+[ -26667] -> Class 4: 0.0%
+[ -74001] -> Class 5: 0.0%
+[ -70049] -> Class 6: 0.0%
+[-163720] -> Class 7: 0.0%
+[    395] -> Class 8: 0.1%
+[ -44032] -> Class 9: 0.0%
+Approximate inference time of 11 train image: 1413 us
+
+Classification results of [12] train image:
+[ 158596] -> Class 0: 99.1%
+[-218320] -> Class 1: 0.0%
+[  31921] -> Class 2: 0.4%
+[  24100] -> Class 3: 0.4%
+[ -51030] -> Class 4: 0.0%
+[ -51572] -> Class 5: 0.0%
+[ -33555] -> Class 6: 0.0%
+[-196650] -> Class 7: 0.0%
+[ -62068] -> Class 8: 0.0%
+[ -22041] -> Class 9: 0.0%
+Approximate inference time of 12 train image: 1413 us
+
+Classification results of [13] train image:
+[ 177674] -> Class 0: 99.4%
+[-278194] -> Class 1: 0.0%
+[  46926] -> Class 2: 0.4%
+[   6785] -> Class 3: 0.1%
+[ -93045] -> Class 4: 0.0%
+[ -99000] -> Class 5: 0.0%
+[   1352] -> Class 6: 0.0%
+[-243778] -> Class 7: 0.0%
+[ -45800] -> Class 8: 0.0%
+[  -4691] -> Class 9: 0.0%
+Approximate inference time of 13 train image: 1413 us
+
+Classification results of [14] train image:
+[ 193050] -> Class 0: 99.9%
+[-222942] -> Class 1: 0.0%
+[ -33540] -> Class 2: 0.0%
+[ -27761] -> Class 3: 0.0%
+[ -39113] -> Class 4: 0.0%
+[-154670] -> Class 5: 0.0%
+[ -20647] -> Class 6: 0.0%
+[-204195] -> Class 7: 0.0%
+[  -3606] -> Class 8: 0.0%
+[-131623] -> Class 9: 0.0%
+Approximate inference time of 14 train image: 1413 us
+
+Classification results of [15] train image:
+[ 225415] -> Class 0: 99.9%
+[-229547] -> Class 1: 0.0%
+[ -22822] -> Class 2: 0.0%
+[ -26770] -> Class 3: 0.0%
+[-112810] -> Class 4: 0.0%
+[-118801] -> Class 5: 0.0%
+[  47043] -> Class 6: 0.0%
+[-285662] -> Class 7: 0.0%
+[ -47354] -> Class 8: 0.0%
+[  37643] -> Class 9: 0.0%
+Approximate inference time of 15 train image: 1413 us
+
+Classification results of [16] train image:
+[ 160049] -> Class 0: 99.2%
+[-222575] -> Class 1: 0.0%
+[ -21857] -> Class 2: 0.0%
+[  33942] -> Class 3: 0.4%
+[ -86303] -> Class 4: 0.0%
+[ -42211] -> Class 5: 0.0%
+[   9008] -> Class 6: 0.2%
+[-211422] -> Class 7: 0.0%
+[ -41601] -> Class 8: 0.0%
+[  -5355] -> Class 9: 0.1%
+Approximate inference time of 16 train image: 1413 us
+
+Classification results of [17] train image:
+[ 227385] -> Class 0: 100.0%
+[-242042] -> Class 1: 0.0%
+[ -46946] -> Class 2: 0.0%
+[ -14783] -> Class 3: 0.0%
+[-164595] -> Class 4: 0.0%
+[ -97712] -> Class 5: 0.0%
+[  37180] -> Class 6: 0.0%
+[-268940] -> Class 7: 0.0%
+[ -35884] -> Class 8: 0.0%
+[-108911] -> Class 9: 0.0%
+Approximate inference time of 17 train image: 1413 us
+
+Classification results of [18] train image:
+[ 173398] -> Class 0: 99.7%
+[-243376] -> Class 1: 0.0%
+[  -3803] -> Class 2: 0.0%
+[ -49900] -> Class 3: 0.0%
+[ -65311] -> Class 4: 0.0%
+[-153442] -> Class 5: 0.0%
+[  31836] -> Class 6: 0.2%
+[-206658] -> Class 7: 0.0%
+[ -26823] -> Class 8: 0.0%
+[ -61131] -> Class 9: 0.0%
+Approximate inference time of 18 train image: 1413 us
+
+Classification results of [19] train image:
+[ 165853] -> Class 0: 98.7%
+[-253640] -> Class 1: 0.0%
+[ -27727] -> Class 2: 0.0%
+[ -31144] -> Class 3: 0.0%
+[-118769] -> Class 4: 0.0%
+[ -27506] -> Class 5: 0.0%
+[  54133] -> Class 6: 0.8%
+[-236639] -> Class 7: 0.0%
+[ -32563] -> Class 8: 0.0%
+[  33201] -> Class 9: 0.4%
+Approximate inference time of 19 train image: 1413 us
+
+Classification results of [20] train image:
+[ 223581] -> Class 0: 96.9%
+[-213549] -> Class 1: 0.0%
+[ -54023] -> Class 2: 0.0%
+[ -89781] -> Class 3: 0.0%
+[ -84908] -> Class 4: 0.0%
+[  -8973] -> Class 5: 0.0%
+[ 143849] -> Class 6: 3.0%
+[-292581] -> Class 7: 0.0%
+[ -23709] -> Class 8: 0.0%
+[  36151] -> Class 9: 0.0%
+Approximate inference time of 20 train image: 1413 us
+
+Classification results of [21] train image:
+[ 243406] -> Class 0: 96.9%
+[-231985] -> Class 1: 0.0%
+[ -37644] -> Class 2: 0.0%
+[ -94550] -> Class 3: 0.0%
+[-122159] -> Class 4: 0.0%
+[  -9876] -> Class 5: 0.0%
+[ 169326] -> Class 6: 3.0%
+[-326578] -> Class 7: 0.0%
+[ -74303] -> Class 8: 0.0%
+[  39965] -> Class 9: 0.0%
+Approximate inference time of 21 train image: 1413 us
+
+Classification results of [22] train image:
+[ 224211] -> Class 0: 99.7%
+[-201159] -> Class 1: 0.0%
+[ -50341] -> Class 2: 0.0%
+[ -51347] -> Class 3: 0.0%
+[-103818] -> Class 4: 0.0%
+[ -96280] -> Class 5: 0.0%
+[  78942] -> Class 6: 0.2%
+[-321950] -> Class 7: 0.0%
+[ -27305] -> Class 8: 0.0%
+[  63636] -> Class 9: 0.1%
+Approximate inference time of 22 train image: 1413 us
+
+Classification results of [23] train image:
+[  69647] -> Class 0: 56.0%
+[ -80486] -> Class 1: 0.1%
+[-116999] -> Class 2: 0.0%
+[  26722] -> Class 3: 7.0%
+[  47759] -> Class 4: 28.0%
+[-128272] -> Class 5: 0.0%
+[-101062] -> Class 6: 0.1%
+[  20498] -> Class 7: 7.0%
+[ -99452] -> Class 8: 0.1%
+[  -6894] -> Class 9: 1.7%
+Approximate inference time of 23 train image: 1413 us
+
+Classification results of [24] train image:
+[ 167385] -> Class 0: 99.5%
+[-226528] -> Class 1: 0.0%
+[  39935] -> Class 2: 0.4%
+[ -61311] -> Class 3: 0.0%
+[ -67125] -> Class 4: 0.0%
+[-125634] -> Class 5: 0.0%
+[ -34763] -> Class 6: 0.0%
+[-177867] -> Class 7: 0.0%
+[   1836] -> Class 8: 0.1%
+[ -65971] -> Class 9: 0.0%
+Approximate inference time of 24 train image: 1413 us
+
+Classification results of [25] train image:
+[ 182216] -> Class 0: 99.1%
+[-266308] -> Class 1: 0.0%
+[  10958] -> Class 2: 0.1%
+[ -16307] -> Class 3: 0.0%
+[ -97495] -> Class 4: 0.0%
+[-151060] -> Class 5: 0.0%
+[  71392] -> Class 6: 0.8%
+[-247744] -> Class 7: 0.0%
+[ -38856] -> Class 8: 0.0%
+[  -7784] -> Class 9: 0.0%
+Approximate inference time of 25 train image: 1413 us
+
+Classification results of [26] train image:
+[ 172987] -> Class 0: 99.9%
+[-195838] -> Class 1: 0.0%
+[ -82644] -> Class 2: 0.0%
+[ -45357] -> Class 3: 0.0%
+[-114879] -> Class 4: 0.0%
+[-139786] -> Class 5: 0.0%
+[   8267] -> Class 6: 0.1%
+[-242067] -> Class 7: 0.0%
+[ -44957] -> Class 8: 0.0%
+[ -64463] -> Class 9: 0.0%
+Approximate inference time of 26 train image: 1413 us
+
+Classification results of [27] train image:
+[  90657] -> Class 0: 91.1%
+[-224857] -> Class 1: 0.0%
+[  -3983] -> Class 2: 1.4%
+[   9206] -> Class 3: 2.8%
+[ -94100] -> Class 4: 0.0%
+[-202119] -> Class 5: 0.0%
+[  -6473] -> Class 6: 1.4%
+[-132097] -> Class 7: 0.0%
+[ -33233] -> Class 8: 0.4%
+[   2459] -> Class 9: 2.8%
+Approximate inference time of 27 train image: 1413 us
+
+Classification results of [28] train image:
+[ 192048] -> Class 0: 99.2%
+[-247745] -> Class 1: 0.0%
+[   4897] -> Class 2: 0.0%
+[ -76303] -> Class 3: 0.0%
+[-120195] -> Class 4: 0.0%
+[-101789] -> Class 5: 0.0%
+[  84567] -> Class 6: 0.8%
+[-270613] -> Class 7: 0.0%
+[ -32932] -> Class 8: 0.0%
+[ -22718] -> Class 9: 0.0%
+Approximate inference time of 28 train image: 1413 us
+
+Classification results of [29] train image:
+[ 134105] -> Class 0: 99.0%
+[-224765] -> Class 1: 0.0%
+[ -70154] -> Class 2: 0.0%
+[  16301] -> Class 3: 0.8%
+[ -89795] -> Class 4: 0.0%
+[-127842] -> Class 5: 0.0%
+[ -35411] -> Class 6: 0.1%
+[-235933] -> Class 7: 0.0%
+[ -44796] -> Class 8: 0.0%
+[ -96410] -> Class 9: 0.0%
+Approximate inference time of 29 train image: 1413 us
+
+Classification results of [30] train image:
+[ 140060] -> Class 0: 99.3%
+[-194095] -> Class 1: 0.0%
+[ -26409] -> Class 2: 0.1%
+[ -12639] -> Class 3: 0.2%
+[ -71099] -> Class 4: 0.0%
+[ -80543] -> Class 5: 0.0%
+[ -63766] -> Class 6: 0.0%
+[-161634] -> Class 7: 0.0%
+[   4697] -> Class 8: 0.4%
+[ -77773] -> Class 9: 0.0%
+Approximate inference time of 30 train image: 1413 us
+
+Classification results of [31] train image:
+[  94915] -> Class 0: 64.9%
+[-139212] -> Class 1: 0.0%
+[ -27046] -> Class 2: 0.5%
+[  49433] -> Class 3: 8.1%
+[ -74164] -> Class 4: 0.1%
+[-175718] -> Class 5: 0.0%
+[-101109] -> Class 6: 0.0%
+[  53595] -> Class 7: 8.1%
+[  13435] -> Class 8: 2.0%
+[  65347] -> Class 9: 16.2%
+Approximate inference time of 31 train image: 1413 us
+
+Classification results of [32] train image:
+[ 173147] -> Class 0: 99.8%
+[-201207] -> Class 1: 0.0%
+[  15712] -> Class 2: 0.1%
+[ -97478] -> Class 3: 0.0%
+[ -16351] -> Class 4: 0.0%
+[-119229] -> Class 5: 0.0%
+[ -37139] -> Class 6: 0.0%
+[-165602] -> Class 7: 0.0%
+[  16397] -> Class 8: 0.1%
+[ -63164] -> Class 9: 0.0%
+Approximate inference time of 32 train image: 1413 us
+
+Classification results of [33] train image:
+[ 206373] -> Class 0: 99.9%
+[-221428] -> Class 1: 0.0%
+[ -24291] -> Class 2: 0.0%
+[ -61294] -> Class 3: 0.0%
+[ -96960] -> Class 4: 0.0%
+[-158936] -> Class 5: 0.0%
+[  46829] -> Class 6: 0.1%
+[-235150] -> Class 7: 0.0%
+[ -22743] -> Class 8: 0.0%
+[   4142] -> Class 9: 0.0%
+Approximate inference time of 33 train image: 1413 us
+
+Classification results of [34] train image:
+[ 193211] -> Class 0: 99.0%
+[-260281] -> Class 1: 0.0%
+[ -13667] -> Class 2: 0.0%
+[  10902] -> Class 3: 0.0%
+[-123258] -> Class 4: 0.0%
+[ -89598] -> Class 5: 0.0%
+[  71727] -> Class 6: 0.8%
+[-267073] -> Class 7: 0.0%
+[ -62375] -> Class 8: 0.0%
+[  51727] -> Class 9: 0.2%
+Approximate inference time of 34 train image: 1413 us
+
+Classification results of [35] train image:
+[ 193939] -> Class 0: 99.9%
+[-241426] -> Class 1: 0.0%
+[  36266] -> Class 2: 0.1%
+[   3056] -> Class 3: 0.0%
+[ -95411] -> Class 4: 0.0%
+[ -90319] -> Class 5: 0.0%
+[ -24185] -> Class 6: 0.0%
+[-223304] -> Class 7: 0.0%
+[ -55115] -> Class 8: 0.0%
+[ -57600] -> Class 9: 0.0%
+Approximate inference time of 35 train image: 1413 us
+
+Classification results of [36] train image:
+[ 162139] -> Class 0: 99.5%
+[-237253] -> Class 1: 0.0%
+[ -18713] -> Class 2: 0.0%
+[  23656] -> Class 3: 0.4%
+[ -78999] -> Class 4: 0.0%
+[ -97426] -> Class 5: 0.0%
+[ -27647] -> Class 6: 0.0%
+[-218318] -> Class 7: 0.0%
+[ -33638] -> Class 8: 0.0%
+[ -89206] -> Class 9: 0.0%
+Approximate inference time of 36 train image: 1413 us
+
+Classification results of [37] train image:
+[ 204002] -> Class 0: 100.0%
+[-229142] -> Class 1: 0.0%
+[   7261] -> Class 2: 0.0%
+[ -44806] -> Class 3: 0.0%
+[ -75892] -> Class 4: 0.0%
+[ -86862] -> Class 5: 0.0%
+[  -7989] -> Class 6: 0.0%
+[-212053] -> Class 7: 0.0%
+[ -37173] -> Class 8: 0.0%
+[ -40259] -> Class 9: 0.0%
+Approximate inference time of 37 train image: 1413 us
+
+Classification results of [38] train image:
+[ 201420] -> Class 0: 99.9%
+[-195491] -> Class 1: 0.0%
+[ -41472] -> Class 2: 0.0%
+[ -66478] -> Class 3: 0.0%
+[ -66966] -> Class 4: 0.0%
+[-116932] -> Class 5: 0.0%
+[ -16795] -> Class 6: 0.0%
+[-212492] -> Class 7: 0.0%
+[  18416] -> Class 8: 0.0%
+[ -84537] -> Class 9: 0.0%
+Approximate inference time of 38 train image: 1413 us
+
+Classification results of [39] train image:
+[ 202341] -> Class 0: 99.9%
+[-185307] -> Class 1: 0.0%
+[ -90494] -> Class 2: 0.0%
+[  40650] -> Class 3: 0.1%
+[-138858] -> Class 4: 0.0%
+[ -83509] -> Class 5: 0.0%
+[  -5276] -> Class 6: 0.0%
+[-291405] -> Class 7: 0.0%
+[ -62316] -> Class 8: 0.0%
+[-125210] -> Class 9: 0.0%
+Approximate inference time of 39 train image: 1413 us
+
+Classification results of test image:
+[ 105751] -> Class 0: 96.7%
+[-149163] -> Class 1: 0.0%
+[-111312] -> Class 2: 0.0%
+[  -7432] -> Class 3: 0.8%
+[ -24023] -> Class 4: 0.4%
+[ -67687] -> Class 5: 0.0%
+[ -30157] -> Class 6: 0.4%
+[-143813] -> Class 7: 0.0%
+[ -48252] -> Class 8: 0.2%
+[  12858] -> Class 9: 1.5%
+Approximate inference time of test image: 1413 us
+
+
+Inference on digit 7:
+[   3074] -> Class 0: 0.0%
+[  93125] -> Class 1: 0.0%
+[-171506] -> Class 2: 0.0%
+[ -22931] -> Class 3: 0.0%
+[  -8599] -> Class 4: 0.0%
+[-131108] -> Class 5: 0.0%
+[-251948] -> Class 6: 0.0%
+[ 416854] -> Class 7: 100.0%
+[ -49488] -> Class 8: 0.0%
+[  84617] -> Class 9: 0.0%
+Approximate inference time of mnist digit: 1413 us
