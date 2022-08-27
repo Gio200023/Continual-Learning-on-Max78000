@@ -101,13 +101,13 @@ void load_input(void)
   input_0 = (uint32_t *)sample_inputs_all[input++];
   memcpy32((uint32_t *)0x50400000, input_0, 196);
 }
-static const uint32_t input_1[] = SAMPLE_INPUT_MNIST;
+static const uint32_t input_mnist[] = SAMPLE_INPUT_MNIST;
 
-void load_input1(void)
+void load_mnist_input(void)
 {
-  // This function loads the sample data input -- replace with actual data
+  // This function loads the sample data input digit 7
 
-  memcpy32((uint32_t *)0x50400000, input_1, 196);
+  memcpy32((uint32_t *)0x50400000, input_mnist, 196);
 }
 
 void softmax_layer(void)
@@ -259,7 +259,8 @@ int main(void)
   cnn_load_weights(); // Load kernels
   cnn_load_bias();    // Load biases
   cnn_config_layer(0);
-  for (int l = 0; l < 45; l++)
+  input = 0;
+  for (int l = 0; l < 40; l++)
   {
     load_input(); // Load data input
     cnn_start();  // Start CNN processing
@@ -271,15 +272,40 @@ int main(void)
     softmax_layer();
 
 #ifdef CNN_INFERENCE_TIMER
-    printf("Classification results of [%d] image:\n", l);
+    printf("Classification results of [%d] train image:\n", l);
     print_inference_result();
-    printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
+    printf("Approximate inference time of %d train image: %u us\n\n", l, cnn_time);
 #endif
   }
+
+  /*******************************
+   * Inference on Test samples
+   *******************************/
+
+  cnn_init();         // Bring state machines to consistent state
+  cnn_load_weights(); // Load kernels
+  cnn_load_bias();    // Load biases
+  cnn_config_layer(0);
+  input = 41;
+  load_input(); // Load data input
+  cnn_start();  // Start CNN processing
+
+  while (cnn_time == 0)
+    __WFI(); // Wait for CNN
+
+  cnn_stop_SMs();
+  softmax_layer();
+
+#ifdef CNN_INFERENCE_TIMER
+  printf("Classification results of test image:\n");
+  print_inference_result();
+  printf("Approximate inference time of test image: %u us\n\n", cnn_time);
+#endif
+
   /**********************************
-   *  INFERENCE on mnist digit 8
+   *  INFERENCE on mnist digit 7
    ************************************/
-  load_input1(); // Load data input
+  load_mnist_input(); // Load data input
   cnn_start();   // Start CNN processing
 
   while (cnn_time == 0)
@@ -289,9 +315,9 @@ int main(void)
   softmax_layer();
 
 #ifdef CNN_INFERENCE_TIMER
-  printf("\nInference on digit 8:\n");
+  printf("\nInference on digit 7:\n");
   print_inference_result();
-  printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
+  printf("Approximate inference time of mnist digit: %u us\n\n", cnn_time);
 #endif
 
   cnn_disable();

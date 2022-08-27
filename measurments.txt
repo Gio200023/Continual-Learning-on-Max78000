@@ -14,6 +14,7 @@ ENERGY_one = 296.771 uJ
 #THIRD
 CL layer
 TIME 29758 ms CONTINUAL
+TIME_one = 29.758 ms
 ENERGY_tot = 1255859 uJ
 ENERGY_one = 1255.859 uJ
 
@@ -35,6 +36,7 @@ ENERGY_one = 267.681 uJ
 #THIRD
 CL layer
 TIME = 49803 ms
+TIME_tot = 49.803 ms
 ENERGY_tot = 985345 uJ
 ENERGY_one = 985.345 uJ
 
