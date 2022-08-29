@@ -166,7 +166,7 @@ int main(void)
   cnn_enable(MXC_S_GCR_PCLKDIV_CNNCLKSEL_PCLK, MXC_S_GCR_PCLKDIV_CNNCLKDIV_DIV1);
 
   int layer_count = 0;
-  for (i = 0; i < ITERATIONS; i++)
+  for (i = 0; i < 1000; i++)
   {
     cnn_init();         // Bring state machines to consistent state
     cnn_load_weights(); // Load kernels
@@ -206,9 +206,9 @@ int main(void)
 #ifdef CNN_INFERENCE_TIMER
     if (i % 100 == 0)
     {
-      printf("Classification results of [%d] lap:\n", i);
-      print_inference_result();
-      printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
+    printf("Classification results of [%d] lap:\n", i);
+    print_inference_result();
+    printf("Approximate inference time of %d iteration: %u us\n\n", i, cnn_time);
     }
 #endif
 
@@ -280,11 +280,11 @@ int main(void)
     cnn_stop_SMs();
     softmax_layer();
 
-#ifdef CNN_INFERENCE_TIMER
-    printf("Classification results of [%d] train image:\n", l);
-    print_inference_result();
-    printf("Approximate inference time of %d train image: %u us\n\n", l, cnn_time);
-#endif
+    #ifdef CNN_INFERENCE_TIMER
+        printf("Classification results of [%d] train image:\n", l);
+        print_inference_result();
+        printf("Approximate inference time of %d train image: %u us\n\n", l, cnn_time);
+    #endif
   }
 
   /*******************************
@@ -305,11 +305,11 @@ int main(void)
   cnn_stop_SMs();
   softmax_layer();
 
-#ifdef CNN_INFERENCE_TIMER
-  printf("Classification results of test image:\n");
-  print_inference_result();
-  printf("Approximate inference time of test image: %u us\n\n", cnn_time);
-#endif
+  #ifdef CNN_INFERENCE_TIMER
+    printf("Classification results of test image:\n");
+    print_inference_result();
+    printf("Approximate inference time of test image: %u us\n\n", cnn_time);
+  #endif
 
   /**********************************
    *  INFERENCE on mnist digit 7

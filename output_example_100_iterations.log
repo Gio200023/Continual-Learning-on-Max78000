@@ -124,7 +124,7 @@ Classification results of [0] train image:
 [-210081] -> Class 7: 0.0%
 [ -45116] -> Class 8: 0.0%
 [ -83020] -> Class 9: 0.0%
-Approximate inference time of 0 train image: 1413 us
+Approximate inference time of 0 train image: 1413 us 1.413 milliseconds
 
 Classification results of [1] train image:
 [ 114916] -> Class 0: 98.1%
