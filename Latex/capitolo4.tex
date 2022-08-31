@@ -1,0 +1,17 @@
+\chapter{Conclusion}
+\label{cha:conclusion}
+
+\quad This thesis introduces the idea of continuous learning on micro-controllers for self-learning ML models. Device deployment in settings with variable context is frequent in TinyML apps. The change of context can cause the models' accuracy to deteriorate rapidly, making for unsuitable and unreliable gadgets. It is vital to use ongoing learning techniques in these situations. These support the models by giving the system flexibility and adaptability traits that can keep up with context drift. 
+This study implements a CL strategy, particularly the TinyOL method. The algorithm is developed in a framework and deployed on the Max78000 micro-controller. The MCU uses a CNN accelerator to compute the inferences of new samples, paired with the CL system developed. 
+In the application, the CL is applied for image classifications. Initially, the application uses other frameworks (such as PyTorch) to train the model to recognize digits. Later the CL system is used to recognize and replace a new class, the letter A from the Emnist dataset. 
+The application is implemented in a supervised environment. The sample data are known to the user, and thanks to this knowledge, it was possible to deploy a pre-made true-label table. After a few training sessions, the method showed that the model accounted properly for each class. 
+ 
+ \singlespacing
+ 
+\quad One of the main drawbacks of this study is the loss of time between the loading and unloading of data. The time lost is due to the complex memory map of the CNN accelerator. To overcome the time problem there would be needed a deep memory scan, thanks to which it would be possible to update the weights and biases directly in the memory. A possible future implementation is the development of a streaming mode from a real-time camera. The problem with a camera would be the unsupervised environment in which a truth table can't be used. For this reason, the application in real-time settings has not yet been developed. 
+ 
+\clearpage
+\newpage
+\mbox{~}
+\clearpage
+\newpage

@@ -1,0 +1,24 @@
+\chapter{Introduction}
+\label{cha:introduction}
+
+\quad In recent years Machine Learning (ML) applications on small devices, known as TinyML, have been widely used. This kind of technology has been used in almost every sector even in automation, industrial applications, and autonomous driving. Another well-suited field for TinyML is the Internet of Things (IoT). Here edge computing technology is applied to the embedded systems to perform fast and high-level Data computation. This shift comes with great benefits but also some challenges. Firstly, it drastically reduces the traffic on the IoT network. Secondly, the model runs on the edge of the network. (This way it is not necessary to send the Data to a server to run inference [and it reduces the latency of the output]). Not moving Data around allow embedded systems to use less power and concentrate the energy consumption on the inference. Also, microcontrollers have low power consumption. Less internet bandwidth is used to manage the Data hence they do not have to be sent to the server constantly. Data are stored only on the edge, so that in addition, it is safer when talking about privacy.
+
+\quad In the last few decades, (CNN) Convolution Neural Networks have been the customary technology in many image-related machine learning algorithms given their high accuracy in image recognition.
+Advancements in Machine Learning, especially Deep Learning, have entirely revolutionized the tech world and society. Tasks that were considered impossible to be performed by machines are now the foundation of many intelligent objects surrounding us. However, the classical machine learning paradigm consists of collecting a massive volume of Data, training the model, and eventually deploying it, a method that is progressively becoming too obsolete to deal with current problems. Thanks to a new branch of ML called Continual Learning, (or Online Learning), we can address the issue of not having all the Data at once during training and the inability to adjust to changing scenarios. This new technique is built on the idea of learning continuously and adaptively about the external world, collecting Data through time. Therefore it allows the model to change and fine-tune its weights and structure to better contrast the change in context. An additional feature is the ability to recognize new never-seen classes. This characteristic, if paired with the model's ability to extend its structure, allows the creation of a flexible model that can allocate brand new weights and biases for better predictions.
+
+
+\section{Problem Statement}
+\label{sec:problem_statement}
+\quad The implementation of CL in industrial applications is not a new topic in the research world, but its application on tiny devices has just started to become increasingly popular. The purpose is to adapt a simplified version of the continual learning algorithm to a microcontroller (MCU) equipped with a CNN accelerator. The procedure is applied to a Mnist image recognition model whose weights will change to be able to recognize a new class. The source of samples Data is the Emnist dataset, a collection of handwritten black and white images. The system replaces an existing class with a never-seen one, and continually performs updates on weights and biases for flexible adaptation to the new one. The experiment aims to execute real-time training to let the ML model learn a new pattern. The study can be considered a simplification of real-world applications, but it is a clear example of how a CL model can behave in these scenarios. The work carried out in this study shows that the application on tiny devices is possible. Even though the CL strategies are applied only on the last layer the results are satisfying and in the example, the model correctly digests the new class. The test shows that a model equipped with a CL system can expand its knowledge and learn more classes, in this case, a letter.
+The MCU where the algorithm is implemented is the Max78000 board made by Maxim company.  
+
+\section{Brief Summary}
+\label{sec:brief_summary}
+
+\quad This thesis is divided into chapters. The first chapter introduces a background of what was the preliminary study for the conduction of this project. The second chapter, on the other hand, discusses the steps in the implementation of the system, starting with the creation of the project template and the study behind the allocation of weights, and ending with the main pipeline of the system and an explanation of the algorithm used. The last chapter talks about the practical aspects of the experiment such as the network model and the device set up, afterwards it also discusses the results obtained and demonstrates some of them with graphs.
+
+\clearpage
+\newpage
+\mbox{~}
+\clearpage
+\newpage
