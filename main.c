@@ -168,7 +168,7 @@ int main(void)
   int layer_count = 0;
   for (i = 0; i < 1000; i++)
   {
-    cnn_init();         // Bring state machines to consistent state
+    cnn_init();         // Init State Machines
     cnn_load_weights(); // Load kernels
     cnn_load_bias();    // Load biases
 
@@ -194,13 +194,14 @@ int main(void)
         weights_function(weights, FIND, dW, cost);
       }
 
-      cnn_stop_SMs(); // Be sure that before next iterations all the State Machines are stopped
-    }
-    softmax_layer(); // Softmax array with percentage
+      cnn_stop_SMs(); // Stop state Machines
+      }
 
-    if ((i + 1) % 100 == 0)
-    {
-      input = 0;
+      softmax_layer(); // Classification output
+
+      if ((i + 1) % 100 == 0)
+      {
+        input = 0;
     }
 
 #ifdef CNN_INFERENCE_TIMER
