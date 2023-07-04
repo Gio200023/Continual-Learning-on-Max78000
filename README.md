@@ -322,3 +322,91 @@ Every step required to create a Network Model, train it and synthesize it (trans
 ---
 
 ## Build and Flash
+To build and flash the code on the Max78000 the programs explained before are needed. Particularly, Arm-Gdb and Openocd.
+There are many methods to build and flashing programs on Max78000. 
+
+### Method 1: Terminal
+
+#### Build
+Inside each template project there is a Makefile. The command:
+```shell
+$ make
+```
+builds the project following the rules inside the makefile. First thing to do is select the right board type. 
+For example at the 63 line inside the makefile of this project there is 
+```shell
+#BOARD=EvKit_V1
+BOARD=FTHR_RevA
+```
+Just comment or uncomment the right board.
+
+Other possible commands are:
+```shell
+$ make clean
+$ make distclean
+```
+the first one removes the build folder, the second one removes the build folder and clean the peripheral too.
+
+#### Flash
+To flash the code inside the Max78000 thourgh terminal, there are few steps to do.
+
+1. Open a remote connection between the host and the board.
+  To do this open a window terminal, go inside the MaximSDK/Tools/OpenOCD, and type:
+```shell
+$ ./openocd -f scripts/interface/cmsis-dap.cfg -f scripts/target/max78000.cfg -s/c/MaximSDK/Tools/OpenOCD/scripts
+```
+The output should be something like this:
+```shell
+Open On-Chip Debugger 0.11.0+dev-g4cdaa275b (2022-03-02-20:48)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Info : CMSIS-DAP: SWD  supported
+Info : CMSIS-DAP: Atomic commands supported
+Info : CMSIS-DAP: Test domain timer supported
+Info : CMSIS-DAP: FW Version = 0256
+Info : CMSIS-DAP: Serial# = 0444170137ff8ae200000000000000000000000097969906
+Info : CMSIS-DAP: Interface Initialised (SWD)
+Info : SWCLK/TCK = 1 SWDIO/TMS = 1 TDI = 0 TDO = 0 nTRST = 0 nRESET = 1
+Info : CMSIS-DAP: Interface ready
+Info : clock speed 2000 kHz
+Info : SWD DPIDR 0x2ba01477
+Info : max32xxx.cpu: Cortex-M4 r0p1 processor detected
+Info : max32xxx.cpu: target has 6 breakpoints, 4 watchpoints
+Info : starting gdb server for max32xxx.cpu on 3333
+Info : Listening on port 3333 for gdb connections
+```
+
+2. Flash the code inside the Max78000 with arm-gdb. To do this go inside the project folder (build the project with make) and type:
+```shell
+$ arm-none-eabi-gdb build/Continual-Learning-on-Max78000.elf
+```
+> The .elf file change name based on your settings. 
+Once inside the arm-gdb enviornment, is time to flash the code. First establish a connection between the host and the board, and reset the board.
+```shell
+$ target extended-remote :3333
+$ monitor reset halt
+```
+Then load and verify the code:
+```shell
+$ load
+$ compare-sections
+```
+Finally, reset again the board timer and let the program start:
+```shell
+$ monitor reset halt
+$ c
+```
+
+### Method 2: Visual Studio Code Tasks
+This method is preferred because it's simplier to use. There are a few step to configure Vscode but once done that, flashing and building become very fast.
+First thing to do is to set the MAXIM_PATH into the vscode settings. Press `cmd+shift+p` for MacOS, `ctl+shift+p` for Linux/Windows and type setting and select `Preferences: Open User Settings (JSON)` and add:
+```shell
+"MAXIM_PATH":"/Users/gio/MaximSDK", //Change this to the installation location of the MaximSDK from step 1.
+"update.mode": "manual" // Disable auto updates of VS Code (Optional but strongly recommended)
+```
+
+Inside `.vscode` folder there are the config files for the building and flashing of the program on the Max78000 using Visual Studio Code.
+
