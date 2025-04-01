@@ -42,7 +42,7 @@ The repo is structured in the following components:
 This project develops a Continual Learning system on an embedded device. Specifically, the device is the [Max78000](https://www.maximintegrated.com/en/products/microcontrollers/MAX78000.html). The board supports a CNN accelerator that enables battery-powered applications to execute AI inferences while spending only microjoules of energy. 
 
 <p align="center">
-  <img src="https://www.maximintegrated.com/content/dam/images/product-images/evkits/max78000fthr.jpg" width="500" > 
+  <img src="https://qn.eetree.cn/FuSBO8sHQpL6l_Af1UbTgTKTiCck" width="500" > 
 </p>
 
 
